@@ -7,7 +7,6 @@ import 'package:surf_practice_chat_flutter/data/chat/repository/repository.dart'
 
 class ChatRepositoryFirebase implements ChatRepository {
   static const String _messagesCollectionKey = 'messages';
-  static const int _messagesLimit = 20;
 
   final FirebaseFirestore _firebaseClient;
 
@@ -19,7 +18,6 @@ class ChatRepositoryFirebase implements ChatRepository {
   Future<List<ChatMessageDto>> get messages async {
     final result = await _firebaseClient
         .collection(_messagesCollectionKey)
-        .limit(_messagesLimit)
         .orderBy('created')
         .get();
 
