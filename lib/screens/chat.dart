@@ -24,12 +24,12 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<List<ChatMessageDto>>? _messages;
   String _nickname = '';
-  bool isSendInProgress = false;
+  bool _isSendInProgress = false;
 
   @override
   void initState() {
     super.initState();
-    _messages = widget.chatRepository.messages;
+    _messages = _getMessages();
   }
 
   @override
@@ -63,8 +63,9 @@ class _ChatScreenState extends State<ChatScreen> {
             child: FutureBuilder<List<ChatMessageDto>>(
                 future: _messages,
                 builder: (context, snapshot) {
-                  if (snapshot.hasData) {
-                    isSendInProgress = false;
+                  if (snapshot.hasError) {
+                    return Center(child: Text('${snapshot.error}'));
+                  } else if (snapshot.hasData) {
                     return ListView.builder(
                       controller: _scrollController,
                       itemCount: snapshot.data!.length,
@@ -89,11 +90,11 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: _messageController,
                   ),
                 ),
-                isSendInProgress
+                _isSendInProgress
                     ? const CircularProgressIndicator.adaptive()
                     : IconButton(
-                        icon: const Icon(Icons.send),
-                        onPressed: () => _onSend(),
+                        icon: const Icon(Icons.send, color: Colors.purple),
+                        onPressed: () => _onSendMessage(),
                       )
               ],
             ),
@@ -103,25 +104,50 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
+  Future<List<ChatMessageDto>>? _getMessages() {
+    try {
+      return widget.chatRepository.messages;
+    } catch (e) {
+      final snackBar = SnackBar(content: Text('$e'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+    }
+    return null;
+  }
+
   void _onRefresh() {
     setState(
       () {
-        _messages = widget.chatRepository.messages;
+        _messages = _getMessages();
+        if (_scrollController.hasClients) {
+          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+        }
       },
     );
-    if (_scrollController.hasClients) {
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-    }
   }
 
-  void _onSend() {
-    if (_nickname.isEmpty) return;
+  void _onSendMessage() {
+    if (_nickname.isEmpty) {
+      const snackBar = SnackBar(content: Text('Введите никнейм'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+
+    if (_messageController.text.isEmpty) {
+      const snackBar = SnackBar(content: Text('Введите сообщение'));
+      ScaffoldMessenger.of(context).showSnackBar(snackBar);
+      return;
+    }
+
     setState(() {
-      isSendInProgress = true;
+      _isSendInProgress = true;
+
       _messages = widget.chatRepository.sendMessage(
         _nickname,
         _messageController.text,
       );
+
+      _isSendInProgress = false;
+
       _messageController.text = '';
       if (_scrollController.hasClients) {
         _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
