@@ -24,6 +24,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Future<List<ChatMessageDto>>? _messages;
   String _nickname = '';
+  bool isSendInProgress = false;
 
   @override
   void initState() {
@@ -63,6 +64,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 future: _messages,
                 builder: (context, snapshot) {
                   if (snapshot.hasData) {
+                    isSendInProgress = false;
                     return ListView.builder(
                       controller: _scrollController,
                       itemCount: snapshot.data!.length,
@@ -71,26 +73,30 @@ class _ChatScreenState extends State<ChatScreen> {
                     );
                   } else {
                     return const Center(
-                        child: CircularProgressIndicator.adaptive());
+                      child: CircularProgressIndicator.adaptive(),
+                    );
                   }
                 }),
           ),
           Material(
             elevation: 4,
             child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Expanded(
-                    child: TextFormField(
-                      decoration: const InputDecoration(labelText: 'Сообщение'),
-                      controller: _messageController,
-                    ),
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Expanded(
+                  child: TextFormField(
+                    decoration: const InputDecoration(labelText: 'Сообщение'),
+                    controller: _messageController,
                   ),
-                  IconButton(
-                    icon: const Icon(Icons.send),
-                    onPressed: () => _onSend(),
-                  )
-                ]),
+                ),
+                isSendInProgress
+                    ? const CircularProgressIndicator.adaptive()
+                    : IconButton(
+                        icon: const Icon(Icons.send),
+                        onPressed: () => _onSend(),
+                      )
+              ],
+            ),
           ),
         ],
       ),
@@ -109,6 +115,7 @@ class _ChatScreenState extends State<ChatScreen> {
   void _onSend() {
     if (_nickname.isEmpty) return;
     setState(() {
+      isSendInProgress = true;
       _messages = widget.chatRepository.sendMessage(
         _nickname,
         _messageController.text,
