@@ -62,10 +62,6 @@ class _ChatScreenState extends State<ChatScreen> {
             child: FutureBuilder<List<ChatMessageDto>>(
                 future: _messages,
                 builder: (context, snapshot) {
-                  if (snapshot.connectionState != ConnectionState.done) {
-                    return const Center(
-                        child: CircularProgressIndicator.adaptive());
-                  }
                   if (snapshot.hasData) {
                     return ListView.builder(
                       controller: _scrollController,
@@ -113,8 +109,10 @@ class _ChatScreenState extends State<ChatScreen> {
   void _onSend() {
     if (_nickname.isEmpty) return;
     setState(() {
-      _messages =
-          widget.chatRepository.sendMessage(_nickname, _messageController.text);
+      _messages = widget.chatRepository.sendMessage(
+        _nickname,
+        _messageController.text,
+      );
       _messageController.text = '';
       _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
     });
