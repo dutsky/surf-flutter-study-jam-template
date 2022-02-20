@@ -109,7 +109,9 @@ class _ChatScreenState extends State<ChatScreen> {
         _messages = widget.chatRepository.messages;
       },
     );
-    _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    if (_scrollController.hasClients) {
+      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+    }
   }
 
   void _onSend() {
@@ -121,7 +123,9 @@ class _ChatScreenState extends State<ChatScreen> {
         _messageController.text,
       );
       _messageController.text = '';
-      _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      if (_scrollController.hasClients) {
+        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
+      }
     });
   }
 }
