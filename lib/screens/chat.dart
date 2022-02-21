@@ -175,14 +175,6 @@ class _ChatScreenState extends State<ChatScreen> {
       builder: (BuildContext context) {
         return AlertDialog(
           title: const Text('Отправить координаты?'),
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: const <Widget>[
-                Text('This is a demo alert dialog.'),
-                Text('Would you like to approve of this message?'),
-              ],
-            ),
-          ),
           actions: <Widget>[
             TextButton(
               child: const Text('Отмена'),
