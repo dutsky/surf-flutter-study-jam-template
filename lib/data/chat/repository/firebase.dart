@@ -36,11 +36,13 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     _savedLocalName = nickname;
 
-    await _firebaseClient.collection(_messagesCollectionKey).add({
-      _MessageFirebaseDto._authorNameKey: nickname,
-      _MessageFirebaseDto._messageKey: message,
-      _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
-    });
+    await _firebaseClient.collection(_messagesCollectionKey).add(
+      <String, Object?>{
+        _MessageFirebaseDto._authorNameKey: nickname,
+        _MessageFirebaseDto._messageKey: message,
+        _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
+      },
+    );
 
     return messages;
   }
@@ -56,15 +58,17 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     _savedLocalName = nickname;
 
-    await _firebaseClient.collection(_messagesCollectionKey).add({
-      _MessageFirebaseDto._authorNameKey: nickname,
-      _MessageFirebaseDto._messageKey: message ?? '',
-      _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
-      _MessageFirebaseDto._geolocationKey: GeoPoint(
-        location.latitude,
-        location.longitude,
-      ),
-    });
+    await _firebaseClient.collection(_messagesCollectionKey).add(
+      <String, Object?>{
+        _MessageFirebaseDto._authorNameKey: nickname,
+        _MessageFirebaseDto._messageKey: message ?? '',
+        _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
+        _MessageFirebaseDto._geolocationKey: GeoPoint(
+          location.latitude,
+          location.longitude,
+        ),
+      },
+    );
 
     return messages;
   }
@@ -142,20 +146,20 @@ class _MessageFirebaseDto {
     required this.geolocation,
   });
 
-  Map<String, dynamic> toMap() {
-    return {
+  Map<String, Object?> toMap() {
+    return <String, Object?>{
       _authorNameKey: authorName,
       _messageKey: message,
       _createdKey: created.millisecondsSinceEpoch,
     };
   }
 
-  factory _MessageFirebaseDto.fromMap(Map<String, dynamic> map) {
+  factory _MessageFirebaseDto.fromMap(Map<String, Object?> map) {
     return _MessageFirebaseDto(
-      authorName: map[_authorNameKey] ?? '',
-      message: map[_messageKey] ?? '',
+      authorName: map[_authorNameKey] as String? ?? '',
+      message: map[_messageKey] as String? ?? '',
       created: (map[_createdKey] as Timestamp).toDate(),
-      geolocation: map[_geolocationKey],
+      geolocation: map[_geolocationKey] as GeoPoint?,
     );
   }
 
