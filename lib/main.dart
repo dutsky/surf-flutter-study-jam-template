@@ -9,6 +9,7 @@ import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
 import 'package:surf_practice_chat_flutter/screens/chat.dart';
 
+import 'logger.dart';
 import 'settings/bloc/settings_bloc.dart';
 import 'settings/data/models/app_settings.dart';
 import 'settings/data/settings_repository.dart';
@@ -28,7 +29,7 @@ void main() async {
   runZonedGuarded<void>(
     () => BlocOverrides.runZoned(() => runApp(const InitScope()),
         eventTransformer: bloc_concurrency.sequential<Object?>()),
-    (e, st) => print('$e\n$st'),
+    (e, st) => logger.e('$e\n$st'),
   );
 }
 
