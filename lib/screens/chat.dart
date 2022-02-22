@@ -48,6 +48,7 @@ class _ChatScreenState extends State<ChatScreen> {
       appBar: AppBar(
         title: TextFormField(
           style: const TextStyle(color: Colors.white),
+          cursorColor: Colors.white,
           decoration: const InputDecoration(
               labelText: 'Введите ник',
               labelStyle: TextStyle(color: Colors.grey)),
@@ -92,9 +93,9 @@ class _ChatScreenState extends State<ChatScreen> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: const Icon(
+                  icon: Icon(
                     Icons.share_location_outlined,
-                    color: Colors.purple,
+                    color: Theme.of(context).primaryColor,
                   ),
                   onPressed: () => _onSendLocation(),
                 ),
@@ -107,7 +108,10 @@ class _ChatScreenState extends State<ChatScreen> {
                 _isSendInProgress
                     ? const CircularProgressIndicator.adaptive()
                     : IconButton(
-                        icon: const Icon(Icons.send, color: Colors.purple),
+                        icon: Icon(
+                          Icons.send,
+                          color: Theme.of(context).primaryColor,
+                        ),
                         onPressed: () => _onSendMessage(),
                       )
               ],
