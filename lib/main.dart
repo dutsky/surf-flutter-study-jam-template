@@ -1,11 +1,18 @@
 import 'dart:async';
 
+import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:surf_practice_chat_flutter/data/chat/repository/firebase.dart';
 import 'package:surf_practice_chat_flutter/firebase_options.dart';
 import 'package:surf_practice_chat_flutter/screens/chat.dart';
+
+import 'settings/bloc/settings_bloc.dart';
+import 'settings/data/models/app_settings.dart';
+import 'settings/data/settings_repository.dart';
+import 'settings/settings_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,26 +26,53 @@ void main() async {
   );
 
   runZonedGuarded<void>(
-    () => runApp(const MyApp()),
+    () => BlocOverrides.runZoned(() => runApp(const InitScope()),
+        eventTransformer: bloc_concurrency.sequential<Object?>()),
     (e, st) => print('$e\n$st'),
   );
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class InitScope extends StatelessWidget {
+  const InitScope({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
+    final settingsRepository = SettingsRepository(const AppSettings());
 
-    return MaterialApp(
-      theme: ThemeData(
-        colorSchemeSeed: Colors.deepPurple,
-        useMaterial3: true,
-      ),
-      home: ChatScreen(
-        chatRepository: chatRepository,
-      ),
+    return BlocProvider(
+      create: (_) => SettingsBloc(settingsRepository: settingsRepository)
+        ..add(const SettingsEvent.load()),
+      child: MyApp(chatRepository: chatRepository),
+    );
+  }
+}
+
+class MyApp extends StatelessWidget {
+  final ChatRepositoryFirebase chatRepository;
+
+  const MyApp({
+    Key? key,
+    required this.chatRepository,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return BlocBuilder<SettingsBloc, SettingsState>(
+      builder: (context, state) {
+        return MaterialApp(
+          theme: ThemeData(
+            colorSchemeSeed: Colors.deepPurple,
+            useMaterial3: true,
+          ),
+          darkTheme: ThemeData.dark(),
+          themeMode: state.settings.themeMode,
+          routes: {
+            '/': ((context) => ChatScreen(chatRepository: chatRepository)),
+            '/settings': ((context) => const SettingsScreen())
+          },
+        );
+      },
     );
   }
 }
