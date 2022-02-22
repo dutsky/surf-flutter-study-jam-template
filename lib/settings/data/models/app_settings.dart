@@ -8,6 +8,7 @@ part 'app_settings.g.dart';
 class AppSettings with _$AppSettings {
   const factory AppSettings({
     @Default(ThemeMode.system) ThemeMode themeMode,
+    @Default('') String nickname,
   }) = _AppSettings;
 
   factory AppSettings.fromJson(Map<String, dynamic> json) =>

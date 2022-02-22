@@ -22,9 +22,11 @@ AppSettings _$AppSettingsFromJson(Map<String, dynamic> json) {
 class _$AppSettingsTearOff {
   const _$AppSettingsTearOff();
 
-  _AppSettings call({ThemeMode themeMode = ThemeMode.system}) {
+  _AppSettings call(
+      {ThemeMode themeMode = ThemeMode.system, String nickname = ''}) {
     return _AppSettings(
       themeMode: themeMode,
+      nickname: nickname,
     );
   }
 
@@ -39,6 +41,7 @@ const $AppSettings = _$AppSettingsTearOff();
 /// @nodoc
 mixin _$AppSettings {
   ThemeMode get themeMode => throw _privateConstructorUsedError;
+  String get nickname => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -51,7 +54,7 @@ abstract class $AppSettingsCopyWith<$Res> {
   factory $AppSettingsCopyWith(
           AppSettings value, $Res Function(AppSettings) then) =
       _$AppSettingsCopyWithImpl<$Res>;
-  $Res call({ThemeMode themeMode});
+  $Res call({ThemeMode themeMode, String nickname});
 }
 
 /// @nodoc
@@ -65,12 +68,17 @@ class _$AppSettingsCopyWithImpl<$Res> implements $AppSettingsCopyWith<$Res> {
   @override
   $Res call({
     Object? themeMode = freezed,
+    Object? nickname = freezed,
   }) {
     return _then(_value.copyWith(
       themeMode: themeMode == freezed
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      nickname: nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -82,7 +90,7 @@ abstract class _$AppSettingsCopyWith<$Res>
           _AppSettings value, $Res Function(_AppSettings) then) =
       __$AppSettingsCopyWithImpl<$Res>;
   @override
-  $Res call({ThemeMode themeMode});
+  $Res call({ThemeMode themeMode, String nickname});
 }
 
 /// @nodoc
@@ -98,12 +106,17 @@ class __$AppSettingsCopyWithImpl<$Res> extends _$AppSettingsCopyWithImpl<$Res>
   @override
   $Res call({
     Object? themeMode = freezed,
+    Object? nickname = freezed,
   }) {
     return _then(_AppSettings(
       themeMode: themeMode == freezed
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
               as ThemeMode,
+      nickname: nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -111,7 +124,7 @@ class __$AppSettingsCopyWithImpl<$Res> extends _$AppSettingsCopyWithImpl<$Res>
 /// @nodoc
 @JsonSerializable()
 class _$_AppSettings implements _AppSettings {
-  const _$_AppSettings({this.themeMode = ThemeMode.system});
+  const _$_AppSettings({this.themeMode = ThemeMode.system, this.nickname = ''});
 
   factory _$_AppSettings.fromJson(Map<String, dynamic> json) =>
       _$$_AppSettingsFromJson(json);
@@ -119,10 +132,13 @@ class _$_AppSettings implements _AppSettings {
   @JsonKey()
   @override
   final ThemeMode themeMode;
+  @JsonKey()
+  @override
+  final String nickname;
 
   @override
   String toString() {
-    return 'AppSettings(themeMode: $themeMode)';
+    return 'AppSettings(themeMode: $themeMode, nickname: $nickname)';
   }
 
   @override
@@ -130,12 +146,15 @@ class _$_AppSettings implements _AppSettings {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _AppSettings &&
-            const DeepCollectionEquality().equals(other.themeMode, themeMode));
+            const DeepCollectionEquality().equals(other.themeMode, themeMode) &&
+            const DeepCollectionEquality().equals(other.nickname, nickname));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(themeMode),
+      const DeepCollectionEquality().hash(nickname));
 
   @JsonKey(ignore: true)
   @override
@@ -149,13 +168,16 @@ class _$_AppSettings implements _AppSettings {
 }
 
 abstract class _AppSettings implements AppSettings {
-  const factory _AppSettings({ThemeMode themeMode}) = _$_AppSettings;
+  const factory _AppSettings({ThemeMode themeMode, String nickname}) =
+      _$_AppSettings;
 
   factory _AppSettings.fromJson(Map<String, dynamic> json) =
       _$_AppSettings.fromJson;
 
   @override
   ThemeMode get themeMode;
+  @override
+  String get nickname;
   @override
   @JsonKey(ignore: true)
   _$AppSettingsCopyWith<_AppSettings> get copyWith =>
