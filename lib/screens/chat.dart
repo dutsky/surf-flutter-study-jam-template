@@ -6,6 +6,7 @@ import 'package:surf_practice_chat_flutter/widgets/chat_message.dart';
 
 import '../data/chat/models/geolocation.dart';
 import '../data/chat/models/message.dart';
+import '../settings/settings_screen.dart';
 
 /// Chat screen templete. This is your starting point.
 class ChatScreen extends StatefulWidget {
@@ -57,6 +58,10 @@ class _ChatScreenState extends State<ChatScreen> {
             icon: const Icon(Icons.refresh),
             onPressed: () => _onRefresh(),
           ),
+          IconButton(
+            icon: const Icon(Icons.settings),
+            onPressed: () => _onSettings(),
+          )
         ],
       ),
       body: Column(
@@ -227,4 +232,7 @@ class _ChatScreenState extends State<ChatScreen> {
       longitude: locationData.longitude ?? 0,
     );
   }
+
+  void _onSettings() =>
+      Navigator.of(context).pushNamed(SettingsScreen.routeName);
 }
