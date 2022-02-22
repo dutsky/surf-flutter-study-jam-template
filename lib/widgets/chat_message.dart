@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
+import 'package:url_launcher/link.dart';
+
+import 'chat_geo_tile.dart';
+import 'chat_message_tile.dart';
 
 class ChatMessageWidget extends StatelessWidget {
   final ChatMessageDto messageDto;
@@ -11,16 +15,11 @@ class ChatMessageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      tileColor: (messageDto.author is ChatUserLocalDto)
-          ? Colors.purple.withOpacity(0.1)
-          : null,
-      leading: CircleAvatar(
-        backgroundColor: Colors.deepPurple,
-        child: Text(messageDto.author.name[0].toUpperCase()),
-      ),
-      title: Text(messageDto.author.name),
-      subtitle: Text(messageDto.message),
-    );
+    if (messageDto is ChatMessageGeolocationDto) {
+      final messageGeoDto = messageDto as ChatMessageGeolocationDto;
+      return ChatGeoTile(messageGeoDto: messageGeoDto);
+    } else {
+      return ChatMessageTile(messageDto: messageDto);
+    }
   }
 }
