@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:surf_practice_chat_flutter/data/chat/chat.dart';
-import 'package:url_launcher/link.dart';
 
 import 'chat_geo_tile.dart';
 import 'chat_message_tile.dart';
