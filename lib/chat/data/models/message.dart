@@ -1,5 +1,5 @@
-import 'package:surf_practice_chat_flutter/data/chat/models/geolocation.dart';
-import 'package:surf_practice_chat_flutter/data/chat/models/user.dart';
+import 'geolocation.dart';
+import 'user.dart';
 
 /// Data transfer object representing simple chat message.
 class ChatMessageDto {

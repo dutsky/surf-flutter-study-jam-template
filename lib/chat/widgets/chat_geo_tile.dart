@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/link.dart';
 
-import '../data/chat/models/message.dart';
-import '../data/chat/models/user.dart';
+import '../data/models/message.dart';
+import '../data/models/user.dart';
 
 class ChatGeoTile extends StatelessWidget {
   final ChatMessageGeolocationDto messageGeoDto;

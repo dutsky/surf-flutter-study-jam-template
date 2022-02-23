@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 
-import 'package:surf_practice_chat_flutter/data/chat/repository/repository.dart';
-import 'package:surf_practice_chat_flutter/widgets/chat_message.dart';
-
-import '../data/chat/models/geolocation.dart';
-import '../data/chat/models/message.dart';
 import '../settings/settings_screen.dart';
+import 'data/models/geolocation.dart';
+import 'data/models/message.dart';
+import 'data/repository/repository.dart';
+import 'widgets/chat_message.dart';
 
 /// Chat screen templete. This is your starting point.
 class ChatScreen extends StatefulWidget {

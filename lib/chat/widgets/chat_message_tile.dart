@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../data/chat/models/message.dart';
-import '../data/chat/models/user.dart';
+import '../data/models/message.dart';
+import '../data/models/user.dart';
 
 class ChatMessageTile extends StatelessWidget {
   final ChatMessageDto messageDto;

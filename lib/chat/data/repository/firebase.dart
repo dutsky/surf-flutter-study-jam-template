@@ -1,9 +1,9 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'package:surf_practice_chat_flutter/data/chat/models/geolocation.dart';
-import 'package:surf_practice_chat_flutter/data/chat/models/message.dart';
-import 'package:surf_practice_chat_flutter/data/chat/models/user.dart';
-import 'package:surf_practice_chat_flutter/data/chat/repository/repository.dart';
+import '../models/geolocation.dart';
+import '../models/message.dart';
+import '../models/user.dart';
+import 'repository.dart';
 
 class ChatRepositoryFirebase implements ChatRepository {
   static const String _messagesCollectionKey = 'messages';
