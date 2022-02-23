@@ -6,9 +6,12 @@ import '../data/models/user.dart';
 
 class ChatGeoTile extends StatelessWidget {
   final ChatMessageGeolocationDto messageGeoDto;
+  final String time;
+
   const ChatGeoTile({
     Key? key,
     required this.messageGeoDto,
+    required this.time,
   }) : super(key: key);
 
   @override
@@ -64,6 +67,7 @@ class ChatGeoTile extends StatelessWidget {
               ),
             ),
           ),
+          Text(time),
         ],
       ),
     );

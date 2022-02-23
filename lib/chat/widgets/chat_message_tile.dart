@@ -5,10 +5,12 @@ import '../data/models/user.dart';
 
 class ChatMessageTile extends StatelessWidget {
   final ChatMessageDto messageDto;
+  final String time;
 
   const ChatMessageTile({
     Key? key,
     required this.messageDto,
+    required this.time,
   }) : super(key: key);
 
   @override
@@ -29,6 +31,7 @@ class ChatMessageTile extends StatelessWidget {
             ?.copyWith(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(messageDto.message),
+      trailing: Text(time),
     );
   }
 }
