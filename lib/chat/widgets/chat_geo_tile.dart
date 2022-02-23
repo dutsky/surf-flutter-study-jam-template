@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/link.dart';
+import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
+import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../data/models/message.dart';
 import '../data/models/user.dart';
@@ -16,8 +17,7 @@ class ChatGeoTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 0,
+    return Container(
       margin: const EdgeInsets.all(16),
       color: (messageGeoDto.author is ChatUserLocalDto)
           ? Colors.purple.withOpacity(0.1)
@@ -50,16 +50,13 @@ class ChatGeoTile extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 4),
-                  Link(
-                    uri: Uri.parse('https://www.google.com'),
-                    // target: LinkTarget.blank,
-                    builder: (context, openLink) => InkWell(
-                      onTap: () => openLink,
-                      child: Text(
-                        'Открыть в картах',
-                        style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            color: Theme.of(context).primaryColor),
+                  InkWell(
+                    onTap: () => _onLinkOpen(messageGeoDto.location),
+                    child: const Text(
+                      'Открыть в картах',
+                      style: TextStyle(
+                        fontWeight: FontWeight.bold,
+                        color: Colors.purpleAccent,
                       ),
                     ),
                   ),
@@ -71,5 +68,16 @@ class ChatGeoTile extends StatelessWidget {
         ],
       ),
     );
+  }
+
+  Future<void> _onLinkOpen(ChatGeolocationDto location) async {
+    final lat = location.latitude.toString();
+    final long = location.longitude.toString();
+    final uri = Uri(
+      scheme: 'https',
+      host: 'maps.google.com',
+      queryParameters: <String, String>{'q': '$lat,$long'},
+    );
+    await url_launcher.launch(uri.toString());
   }
 }
