@@ -13,7 +13,7 @@ import 'firebase_options.dart';
 import 'logger.dart';
 import 'settings/bloc/settings_bloc.dart';
 import 'settings/data/models/app_settings.dart';
-import 'settings/data/settings_repository.dart';
+import 'settings/data/repository.dart';
 import 'settings/settings_screen.dart';
 
 void main() async {
