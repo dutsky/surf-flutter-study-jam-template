@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import '../data/models/message.dart';
 
 class ChatMessageTile extends StatelessWidget {
-  final ChatMessageDto messageDto;
+  final MessageDto messageDto;
   final String time;
 
   const ChatMessageTile({

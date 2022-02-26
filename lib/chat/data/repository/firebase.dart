@@ -16,7 +16,7 @@ class ChatRepositoryFirebase implements ChatRepository {
   var _savedLocalName = '';
 
   @override
-  Future<List<ChatMessageDto>> get messages async {
+  Future<List<MessageDto>> get messages async {
     final result = await _firebaseClient
         .collection(_messagesCollectionKey)
         .orderBy('created')
@@ -27,7 +27,7 @@ class ChatRepositoryFirebase implements ChatRepository {
   }
 
   @override
-  Future<List<ChatMessageDto>> sendMessage(
+  Future<List<MessageDto>> sendMessage(
     String nickname,
     String message,
   ) async {
@@ -48,7 +48,7 @@ class ChatRepositoryFirebase implements ChatRepository {
   }
 
   @override
-  Future<List<ChatMessageDto>> sendGeolocationMessage({
+  Future<List<MessageDto>> sendGeolocationMessage({
     required String nickname,
     required GeolocationDto location,
     String? message,
@@ -97,7 +97,7 @@ class ChatRepositoryFirebase implements ChatRepository {
     }
   }
 
-  ChatMessageDto _parseFirebaseDataToLocal(
+  MessageDto _parseFirebaseDataToLocal(
     QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
   ) {
     final parsedData = _MessageFirebaseDto.fromMap(snapshot.data());
@@ -109,22 +109,22 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     final geolocation = parsedData.geolocation;
     if (geolocation != null) {
-      return ChatMessageGeolocationDto(
+      return MessageDto.withLocation(
         author: author,
         location: GeolocationDto(
           latitude: geolocation.latitude,
           longitude: geolocation.longitude,
         ),
         message: parsedData.message,
-        createdDate: parsedData.created,
+        createdDateTime: parsedData.created,
+      );
+    } else {
+      return MessageDto.basic(
+        author: author,
+        message: parsedData.message,
+        createdDateTime: parsedData.created,
       );
     }
-
-    return ChatMessageDto(
-      author: author,
-      message: parsedData.message,
-      createdDateTime: parsedData.created,
-    );
   }
 }
 

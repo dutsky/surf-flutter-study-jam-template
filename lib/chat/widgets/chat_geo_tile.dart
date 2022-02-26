@@ -5,7 +5,7 @@ import 'package:url_launcher/url_launcher.dart' as url_launcher;
 import '../data/models/message.dart';
 
 class ChatGeoTile extends StatelessWidget {
-  final ChatMessageGeolocationDto messageGeoDto;
+  final MessageWithLocation messageGeoDto;
   final String time;
 
   const ChatGeoTile({

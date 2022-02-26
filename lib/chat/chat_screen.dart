@@ -27,7 +27,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final _messageController = TextEditingController();
   final _scrollController = ScrollController();
 
-  Future<List<ChatMessageDto>>? _messages;
+  Future<List<MessageDto>>? _messages;
   bool _isSendInProgress = false;
 
   @override
@@ -62,7 +62,7 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: FutureBuilder<List<ChatMessageDto>>(
+            child: FutureBuilder<List<MessageDto>>(
               future: _messages,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
@@ -117,7 +117,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<List<ChatMessageDto>>? _getMessages() {
+  Future<List<MessageDto>>? _getMessages() {
     try {
       return widget.chatRepository.messages;
     } catch (e) {

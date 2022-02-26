@@ -1,41 +1,31 @@
+import 'package:freezed_annotation/freezed_annotation.dart';
+
 import 'geolocation.dart';
 import 'user.dart';
 
-/// Data transfer object representing simple chat message.
-class ChatMessageDto {
-  /// Message author.
-  final UserDto author;
+part 'message.freezed.dart';
 
-  /// Chat message string.
-  final String message;
-
-  /// Creation date and time.
-  final DateTime createdDateTime;
-
-  const ChatMessageDto({
-    required this.author,
-    required this.message,
-    required this.createdDateTime,
-  });
-
-  @override
-  String toString() =>
-      'ChatMessageDto(author: $author, message: $message, createdDate: $createdDateTime)';
-}
-
-/// Data transfer object representing geolocation chat message.
-class ChatMessageGeolocationDto extends ChatMessageDto {
-  /// Location point.
-  final GeolocationDto location;
-
-  ChatMessageGeolocationDto({
+@freezed
+class MessageDto with _$MessageDto {
+  /// Data transfer object representing simple chat message.
+  const factory MessageDto.basic({
+    /// Message author.
     required UserDto author,
-    required this.location,
-    required String message,
-    required DateTime createdDate,
-  }) : super(author: author, message: message, createdDateTime: createdDate);
 
-  @override
-  String toString() =>
-      'ChatMessageGeolocationDto(location: $location) extends ${super.toString()}';
+    /// Chat message string.
+    required String message,
+
+    /// Creation date and time.
+    required DateTime createdDateTime,
+  }) = _Message;
+
+  /// Data transfer object representing geolocation chat message.
+  const factory MessageDto.withLocation({
+    required UserDto author,
+
+    /// Location point.
+    required GeolocationDto location,
+    required String message,
+    required DateTime createdDateTime,
+  }) = MessageWithLocation;
 }
