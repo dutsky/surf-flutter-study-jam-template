@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../data/models/app_settings.dart';
@@ -18,6 +19,7 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
         load: (event) => _onLoad(event, emit),
         update: (event) => _onUpdate(event, emit),
         setNickname: (event) => _onSetNickname(event, emit),
+        setThemeMode: (event) => _onSetThemeMode(event, emit),
       ),
     );
   }
@@ -37,6 +39,12 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
     final settings = state.settings.copyWith(nickname: event.nickname);
     emit(SettingsState.success(settings: settings));
   }
+
+  void _onSetThemeMode(_SetThemeMode event, Emitter<SettingsState> emit) {
+    _settingsRepository.saveThemeMode(event.themeMode);
+    final settings = state.settings.copyWith(themeMode: event.themeMode);
+    emit(SettingsState.success(settings: settings));
+  }
 }
 
 @freezed
@@ -44,6 +52,7 @@ class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.load() = _LoadEvent;
   const factory SettingsEvent.update(AppSettings settings) = _UpdateEvent;
   const factory SettingsEvent.setNickname(String nickname) = _SetNickname;
+  const factory SettingsEvent.setThemeMode(ThemeMode themeMode) = _SetThemeMode;
 }
 
 @freezed
