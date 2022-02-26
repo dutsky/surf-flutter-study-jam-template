@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
+import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
 import 'data/models/geolocation.dart';
 import 'data/models/message.dart';
 import 'data/repository/repository.dart';
 import 'widgets/chat_message.dart';
+import 'widgets/nickname_field.dart';
 
 /// Chat screen templete. This is your starting point.
 class ChatScreen extends StatefulWidget {
@@ -25,7 +28,6 @@ class _ChatScreenState extends State<ChatScreen> {
   final _scrollController = ScrollController();
 
   Future<List<ChatMessageDto>>? _messages;
-  String _nickname = '';
   bool _isSendInProgress = false;
 
   @override
@@ -45,14 +47,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: TextFormField(
-          style: const TextStyle(color: Colors.white),
-          cursorColor: Colors.white,
-          decoration: const InputDecoration(
-              labelText: 'Введите ник',
-              labelStyle: TextStyle(color: Colors.grey)),
-          onChanged: (value) => _nickname = value,
-        ),
+        title: const NicknameField(),
         actions: [
           IconButton(
             icon: const Icon(Icons.refresh),
@@ -143,7 +138,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _onSendMessage() {
-    if (_nickname.isEmpty) {
+    final nickname = context.read<SettingsBloc>().state.settings.nickname;
+    if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
       return;
@@ -159,7 +155,7 @@ class _ChatScreenState extends State<ChatScreen> {
       _isSendInProgress = true;
 
       _messages = widget.chatRepository.sendMessage(
-        _nickname,
+        nickname,
         _messageController.text,
       );
 
@@ -177,6 +173,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _showAlertDialog() async {
+    final nickname = context.read<SettingsBloc>().state.settings.nickname;
+
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -196,7 +194,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 final locationData = await _getLocationData();
                 if (locationData != null) {
                   widget.chatRepository.sendGeolocationMessage(
-                    nickname: _nickname,
+                    nickname: nickname,
                     location: locationData,
                   );
                 }
