@@ -19,8 +19,8 @@ class ChatRepositoryFirebase implements ChatRepository {
   Future<List<MessageDto>> get messages async {
     final result = await _firebaseClient
         .collection(_messagesCollectionKey)
-        .orderBy('created')
-        .limitToLast(_messagesLimit)
+        .orderBy('created', descending: true)
+        .limit(_messagesLimit)
         .get();
 
     return result.docs.map(_parseFirebaseDataToLocal).toList();
@@ -108,23 +108,22 @@ class ChatRepositoryFirebase implements ChatRepository {
         : UserDto.basic(name: parsedData.authorName);
 
     final geolocation = parsedData.geolocation;
-    if (geolocation != null) {
-      return MessageDto.withLocation(
-        author: author,
-        location: GeolocationDto(
-          latitude: geolocation.latitude,
-          longitude: geolocation.longitude,
-        ),
-        message: parsedData.message,
-        createdDateTime: parsedData.created,
-      );
-    } else {
-      return MessageDto.basic(
-        author: author,
-        message: parsedData.message,
-        createdDateTime: parsedData.created,
-      );
-    }
+
+    return geolocation != null
+        ? MessageDto.withLocation(
+            author: author,
+            location: GeolocationDto(
+              latitude: geolocation.latitude,
+              longitude: geolocation.longitude,
+            ),
+            message: parsedData.message,
+            createdDateTime: parsedData.created,
+          )
+        : MessageDto.basic(
+            author: author,
+            message: parsedData.message,
+            createdDateTime: parsedData.created,
+          );
   }
 }
 

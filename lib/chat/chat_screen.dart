@@ -25,7 +25,6 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final _messageController = TextEditingController();
-  final _scrollController = ScrollController();
 
   Future<List<MessageDto>>? _messages;
   bool _isSendInProgress = false;
@@ -39,7 +38,6 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void dispose() {
     _messageController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -69,7 +67,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   return Center(child: Text('${snapshot.error}'));
                 } else if (snapshot.hasData) {
                   return ListView.builder(
-                    controller: _scrollController,
+                    reverse: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) =>
                         ChatMessageWidget(snapshot.data![index]),
@@ -130,12 +128,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _onRefresh() {
     setState(
-      () {
-        _messages = _getMessages();
-        if (_scrollController.hasClients) {
-          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-        }
-      },
+      () => _messages = _getMessages(),
     );
   }
 
@@ -166,9 +159,6 @@ class _ChatScreenState extends State<ChatScreen> {
       _isSendInProgress = false;
 
       _messageController.text = '';
-      if (_scrollController.hasClients) {
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      }
     });
   }
 
