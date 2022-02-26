@@ -27,6 +27,12 @@ class _$SettingsEventTearOff {
       settings,
     );
   }
+
+  _SetNickname setNickname(String nickname) {
+    return _SetNickname(
+      nickname,
+    );
+  }
 }
 
 /// @nodoc
@@ -38,18 +44,21 @@ mixin _$SettingsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,18 +66,21 @@ mixin _$SettingsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +144,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
   }) {
     return load();
   }
@@ -141,6 +154,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
   }) {
     return load?.call();
   }
@@ -150,6 +164,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -163,6 +178,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
   }) {
     return load(this);
   }
@@ -172,6 +188,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
   }) {
     return load?.call(this);
   }
@@ -181,6 +198,7 @@ class _$_LoadEvent implements _LoadEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -269,6 +287,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
   }) {
     return update(settings);
   }
@@ -278,6 +297,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
   }) {
     return update?.call(settings);
   }
@@ -287,6 +307,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -300,6 +321,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
   }) {
     return update(this);
   }
@@ -309,6 +331,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
   }) {
     return update?.call(this);
   }
@@ -318,6 +341,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -333,6 +357,145 @@ abstract class _UpdateEvent implements SettingsEvent {
   AppSettings get settings;
   @JsonKey(ignore: true)
   _$UpdateEventCopyWith<_UpdateEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SetNicknameCopyWith<$Res> {
+  factory _$SetNicknameCopyWith(
+          _SetNickname value, $Res Function(_SetNickname) then) =
+      __$SetNicknameCopyWithImpl<$Res>;
+  $Res call({String nickname});
+}
+
+/// @nodoc
+class __$SetNicknameCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$SetNicknameCopyWith<$Res> {
+  __$SetNicknameCopyWithImpl(
+      _SetNickname _value, $Res Function(_SetNickname) _then)
+      : super(_value, (v) => _then(v as _SetNickname));
+
+  @override
+  _SetNickname get _value => super._value as _SetNickname;
+
+  @override
+  $Res call({
+    Object? nickname = freezed,
+  }) {
+    return _then(_SetNickname(
+      nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetNickname implements _SetNickname {
+  const _$_SetNickname(this.nickname);
+
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.setNickname(nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetNickname &&
+            const DeepCollectionEquality().equals(other.nickname, nickname));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(nickname));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
+      __$SetNicknameCopyWithImpl<_SetNickname>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+  }) {
+    return setNickname(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+  }) {
+    return setNickname?.call(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    required TResult orElse(),
+  }) {
+    if (setNickname != null) {
+      return setNickname(nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+  }) {
+    return setNickname(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+  }) {
+    return setNickname?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    required TResult orElse(),
+  }) {
+    if (setNickname != null) {
+      return setNickname(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetNickname implements SettingsEvent {
+  const factory _SetNickname(String nickname) = _$_SetNickname;
+
+  String get nickname;
+  @JsonKey(ignore: true)
+  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
