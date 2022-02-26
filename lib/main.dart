@@ -27,9 +27,11 @@ void main() async {
   );
 
   runZonedGuarded<void>(
-    () => BlocOverrides.runZoned(() => runApp(const InitScope()),
-        blocObserver: AppBlocObserver(),
-        eventTransformer: bloc_concurrency.sequential<Object?>()),
+    () => BlocOverrides.runZoned(
+      () => runApp(const InitScope()),
+      blocObserver: AppBlocObserver(),
+      eventTransformer: bloc_concurrency.sequential<Object?>(),
+    ),
     (e, st) => logger.e('$e\n$st'),
   );
 }
@@ -71,7 +73,7 @@ class MyApp extends StatelessWidget {
           themeMode: state.settings.themeMode,
           routes: {
             '/': ((context) => ChatScreen(chatRepository: chatRepository)),
-            '/settings': ((context) => const SettingsScreen())
+            '/settings': ((context) => const SettingsScreen()),
           },
         );
       },

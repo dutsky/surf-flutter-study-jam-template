@@ -45,7 +45,7 @@ class ChatGeoTile extends StatelessWidget {
                         TextSpan(
                           text: ' поделился геолокацией',
                           style: DefaultTextStyle.of(context).style,
-                        )
+                        ),
                       ],
                     ),
                   ),

@@ -56,30 +56,31 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => _onSettings(),
-          )
+          ),
         ],
       ),
       body: Column(
         children: [
           Expanded(
             child: FutureBuilder<List<ChatMessageDto>>(
-                future: _messages,
-                builder: (context, snapshot) {
-                  if (snapshot.hasError) {
-                    return Center(child: Text('${snapshot.error}'));
-                  } else if (snapshot.hasData) {
-                    return ListView.builder(
-                      controller: _scrollController,
-                      itemCount: snapshot.data!.length,
-                      itemBuilder: (context, index) =>
-                          ChatMessageWidget(snapshot.data![index]),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator.adaptive(),
-                    );
-                  }
-                }),
+              future: _messages,
+              builder: (context, snapshot) {
+                if (snapshot.hasError) {
+                  return Center(child: Text('${snapshot.error}'));
+                } else if (snapshot.hasData) {
+                  return ListView.builder(
+                    controller: _scrollController,
+                    itemCount: snapshot.data!.length,
+                    itemBuilder: (context, index) =>
+                        ChatMessageWidget(snapshot.data![index]),
+                  );
+                } else {
+                  return const Center(
+                    child: CircularProgressIndicator.adaptive(),
+                  );
+                }
+              },
+            ),
           ),
           Material(
             elevation: 4,
@@ -107,7 +108,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           color: Theme.of(context).primaryColor,
                         ),
                         onPressed: () => _onSendMessage(),
-                      )
+                      ),
               ],
             ),
           ),
@@ -123,6 +124,7 @@ class _ChatScreenState extends State<ChatScreen> {
       final snackBar = SnackBar(content: Text('$e'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
     }
+
     return null;
   }
 
@@ -142,12 +144,14 @@ class _ChatScreenState extends State<ChatScreen> {
     if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       return;
     }
 
     if (_messageController.text.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите сообщение'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
+
       return;
     }
 
@@ -228,6 +232,7 @@ class _ChatScreenState extends State<ChatScreen> {
     }
 
     final locationData = await location.getLocation();
+
     return ChatGeolocationDto(
       latitude: locationData.latitude ?? 0,
       longitude: locationData.longitude ?? 0,

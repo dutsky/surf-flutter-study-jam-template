@@ -42,23 +42,24 @@ class AppThemes extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return BlocBuilder<SettingsBloc, SettingsState>(
-        builder: (BuildContext context, SettingsState state) {
-      return DropdownButton<ThemeMode>(
-        value: state.settings.themeMode,
-        items: ThemeMode.values
-            .map<DropdownMenuItem<ThemeMode>>((value) => DropdownMenuItem(
-                  value: value,
-                  child: Text(value.name),
-                ))
-            .toList(),
-        onChanged: (themeMode) {
-          if (themeMode == null) return;
+      builder: (BuildContext context, SettingsState state) {
+        return DropdownButton<ThemeMode>(
+          value: state.settings.themeMode,
+          items: ThemeMode.values
+              .map<DropdownMenuItem<ThemeMode>>((value) => DropdownMenuItem(
+                    value: value,
+                    child: Text(value.name),
+                  ))
+              .toList(),
+          onChanged: (themeMode) {
+            if (themeMode == null) return;
 
-          context
-              .read<SettingsBloc>()
-              .add(SettingsEvent.setThemeMode(themeMode));
-        },
-      );
-    });
+            context
+                .read<SettingsBloc>()
+                .add(SettingsEvent.setThemeMode(themeMode));
+          },
+        );
+      },
+    );
   }
 }

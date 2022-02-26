@@ -26,6 +26,7 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> {
 
     if (widget.messageDto is ChatMessageGeolocationDto) {
       final messageGeoDto = widget.messageDto as ChatMessageGeolocationDto;
+
       return ChatGeoTile(messageGeoDto: messageGeoDto, time: time);
     } else {
       return ChatMessageTile(messageDto: widget.messageDto, time: time);

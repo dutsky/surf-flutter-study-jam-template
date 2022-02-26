@@ -80,7 +80,8 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     if (name.length > ChatRepository.maxNameLength) {
       throw const InvalidNameException(
-          'Name cannot contain more than ${ChatRepository.maxNameLength} symbols');
+        'Name cannot contain more than ${ChatRepository.maxNameLength} symbols',
+      );
     }
   }
 
@@ -91,7 +92,8 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     if (message.length > ChatRepository.maxMessageLength) {
       throw const InvalidNameException(
-          'Message cannot contain more than ${ChatRepository.maxMessageLength} symbols');
+        'Message cannot contain more than ${ChatRepository.maxMessageLength} symbols',
+      );
     }
   }
 
@@ -101,11 +103,9 @@ class ChatRepositoryFirebase implements ChatRepository {
     final parsedData = _MessageFirebaseDto.fromMap(snapshot.data());
 
     final ChatUserDto author;
-    if (parsedData.authorName == _savedLocalName) {
-      author = ChatUserLocalDto(name: parsedData.authorName);
-    } else {
-      author = ChatUserDto(name: parsedData.authorName);
-    }
+    author = parsedData.authorName == _savedLocalName
+        ? ChatUserLocalDto(name: parsedData.authorName)
+        : ChatUserDto(name: parsedData.authorName);
 
     final geolocation = parsedData.geolocation;
     if (geolocation != null) {
