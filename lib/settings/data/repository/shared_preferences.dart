@@ -28,6 +28,7 @@ class SharedPreferencesSettingsRepository implements SettingsRepository {
   @override
   Future<String> loadNickname() async {
     final prefs = await SharedPreferences.getInstance();
+
     return prefs.getString('nickname') ?? '';
   }
 
@@ -42,6 +43,7 @@ class SharedPreferencesSettingsRepository implements SettingsRepository {
     final prefs = await SharedPreferences.getInstance();
     final themeModeValue = prefs.getInt('themeMode') ?? ThemeMode.system.index;
     final themeMode = ThemeMode.values[themeModeValue];
+
     return themeMode;
   }
 
