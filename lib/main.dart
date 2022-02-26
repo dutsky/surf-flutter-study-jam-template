@@ -12,8 +12,7 @@ import 'chat/data/repository/firebase.dart';
 import 'firebase_options.dart';
 import 'logger.dart';
 import 'settings/bloc/settings_bloc.dart';
-import 'settings/data/models/app_settings.dart';
-import 'settings/data/repository.dart';
+import 'settings/data/repository/shared_preferences.dart';
 import 'settings/settings_screen.dart';
 
 void main() async {
@@ -41,7 +40,7 @@ class InitScope extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
-    final settingsRepository = SettingsRepository(const AppSettings());
+    final settingsRepository = SharedPreferencesSettingsRepository();
 
     return BlocProvider(
       create: (_) => SettingsBloc(settingsRepository: settingsRepository)
