@@ -27,6 +27,18 @@ class _$SettingsEventTearOff {
       settings,
     );
   }
+
+  _SetNickname setNickname(String nickname) {
+    return _SetNickname(
+      nickname,
+    );
+  }
+
+  _SetThemeMode setThemeMode(ThemeMode themeMode) {
+    return _SetThemeMode(
+      themeMode,
+    );
+  }
 }
 
 /// @nodoc
@@ -38,18 +50,24 @@ mixin _$SettingsEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+    required TResult Function(ThemeMode themeMode) setThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -57,18 +75,24 @@ mixin _$SettingsEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+    required TResult Function(_SetThemeMode value) setThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -132,6 +156,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+    required TResult Function(ThemeMode themeMode) setThemeMode,
   }) {
     return load();
   }
@@ -141,6 +167,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
   }) {
     return load?.call();
   }
@@ -150,6 +178,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -163,6 +193,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+    required TResult Function(_SetThemeMode value) setThemeMode,
   }) {
     return load(this);
   }
@@ -172,6 +204,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
   }) {
     return load?.call(this);
   }
@@ -181,6 +215,8 @@ class _$_LoadEvent implements _LoadEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
     required TResult orElse(),
   }) {
     if (load != null) {
@@ -269,6 +305,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() load,
     required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+    required TResult Function(ThemeMode themeMode) setThemeMode,
   }) {
     return update(settings);
   }
@@ -278,6 +316,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
   }) {
     return update?.call(settings);
   }
@@ -287,6 +327,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? load,
     TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -300,6 +342,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(_LoadEvent value) load,
     required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+    required TResult Function(_SetThemeMode value) setThemeMode,
   }) {
     return update(this);
   }
@@ -309,6 +353,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
   }) {
     return update?.call(this);
   }
@@ -318,6 +364,8 @@ class _$_UpdateEvent implements _UpdateEvent {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_LoadEvent value)? load,
     TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
     required TResult orElse(),
   }) {
     if (update != null) {
@@ -333,6 +381,297 @@ abstract class _UpdateEvent implements SettingsEvent {
   AppSettings get settings;
   @JsonKey(ignore: true)
   _$UpdateEventCopyWith<_UpdateEvent> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SetNicknameCopyWith<$Res> {
+  factory _$SetNicknameCopyWith(
+          _SetNickname value, $Res Function(_SetNickname) then) =
+      __$SetNicknameCopyWithImpl<$Res>;
+  $Res call({String nickname});
+}
+
+/// @nodoc
+class __$SetNicknameCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$SetNicknameCopyWith<$Res> {
+  __$SetNicknameCopyWithImpl(
+      _SetNickname _value, $Res Function(_SetNickname) _then)
+      : super(_value, (v) => _then(v as _SetNickname));
+
+  @override
+  _SetNickname get _value => super._value as _SetNickname;
+
+  @override
+  $Res call({
+    Object? nickname = freezed,
+  }) {
+    return _then(_SetNickname(
+      nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetNickname implements _SetNickname {
+  const _$_SetNickname(this.nickname);
+
+  @override
+  final String nickname;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.setNickname(nickname: $nickname)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetNickname &&
+            const DeepCollectionEquality().equals(other.nickname, nickname));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(nickname));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
+      __$SetNicknameCopyWithImpl<_SetNickname>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+    required TResult Function(ThemeMode themeMode) setThemeMode,
+  }) {
+    return setNickname(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
+  }) {
+    return setNickname?.call(nickname);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
+    required TResult orElse(),
+  }) {
+    if (setNickname != null) {
+      return setNickname(nickname);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+    required TResult Function(_SetThemeMode value) setThemeMode,
+  }) {
+    return setNickname(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
+  }) {
+    return setNickname?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
+    required TResult orElse(),
+  }) {
+    if (setNickname != null) {
+      return setNickname(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetNickname implements SettingsEvent {
+  const factory _SetNickname(String nickname) = _$_SetNickname;
+
+  String get nickname;
+  @JsonKey(ignore: true)
+  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
+      throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$SetThemeModeCopyWith<$Res> {
+  factory _$SetThemeModeCopyWith(
+          _SetThemeMode value, $Res Function(_SetThemeMode) then) =
+      __$SetThemeModeCopyWithImpl<$Res>;
+  $Res call({ThemeMode themeMode});
+}
+
+/// @nodoc
+class __$SetThemeModeCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$SetThemeModeCopyWith<$Res> {
+  __$SetThemeModeCopyWithImpl(
+      _SetThemeMode _value, $Res Function(_SetThemeMode) _then)
+      : super(_value, (v) => _then(v as _SetThemeMode));
+
+  @override
+  _SetThemeMode get _value => super._value as _SetThemeMode;
+
+  @override
+  $Res call({
+    Object? themeMode = freezed,
+  }) {
+    return _then(_SetThemeMode(
+      themeMode == freezed
+          ? _value.themeMode
+          : themeMode // ignore: cast_nullable_to_non_nullable
+              as ThemeMode,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$_SetThemeMode implements _SetThemeMode {
+  const _$_SetThemeMode(this.themeMode);
+
+  @override
+  final ThemeMode themeMode;
+
+  @override
+  String toString() {
+    return 'SettingsEvent.setThemeMode(themeMode: $themeMode)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is _SetThemeMode &&
+            const DeepCollectionEquality().equals(other.themeMode, themeMode));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(themeMode));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SetThemeModeCopyWith<_SetThemeMode> get copyWith =>
+      __$SetThemeModeCopyWithImpl<_SetThemeMode>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() load,
+    required TResult Function(AppSettings settings) update,
+    required TResult Function(String nickname) setNickname,
+    required TResult Function(ThemeMode themeMode) setThemeMode,
+  }) {
+    return setThemeMode(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
+  }) {
+    return setThemeMode?.call(themeMode);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? load,
+    TResult Function(AppSettings settings)? update,
+    TResult Function(String nickname)? setNickname,
+    TResult Function(ThemeMode themeMode)? setThemeMode,
+    required TResult orElse(),
+  }) {
+    if (setThemeMode != null) {
+      return setThemeMode(themeMode);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_LoadEvent value) load,
+    required TResult Function(_UpdateEvent value) update,
+    required TResult Function(_SetNickname value) setNickname,
+    required TResult Function(_SetThemeMode value) setThemeMode,
+  }) {
+    return setThemeMode(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
+  }) {
+    return setThemeMode?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_LoadEvent value)? load,
+    TResult Function(_UpdateEvent value)? update,
+    TResult Function(_SetNickname value)? setNickname,
+    TResult Function(_SetThemeMode value)? setThemeMode,
+    required TResult orElse(),
+  }) {
+    if (setThemeMode != null) {
+      return setThemeMode(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _SetThemeMode implements SettingsEvent {
+  const factory _SetThemeMode(ThemeMode themeMode) = _$_SetThemeMode;
+
+  ThemeMode get themeMode;
+  @JsonKey(ignore: true)
+  _$SetThemeModeCopyWith<_SetThemeMode> get copyWith =>
       throw _privateConstructorUsedError;
 }
 

@@ -54,11 +54,9 @@ class AppThemes extends StatelessWidget {
         onChanged: (themeMode) {
           if (themeMode == null) return;
 
-          context.read<SettingsBloc>().add(
-                SettingsEvent.update(
-                  state.settings.copyWith(themeMode: themeMode),
-                ),
-              );
+          context
+              .read<SettingsBloc>()
+              .add(SettingsEvent.setThemeMode(themeMode));
         },
       );
     });

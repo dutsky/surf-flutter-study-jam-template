@@ -1,8 +1,9 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 import '../data/models/app_settings.dart';
-import '../data/settings_repository.dart';
+import '../data/repository/repository.dart';
 
 part 'settings_bloc.freezed.dart';
 
@@ -17,18 +18,32 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
       (event, emit) => event.map(
         load: (event) => _onLoad(event, emit),
         update: (event) => _onUpdate(event, emit),
+        setNickname: (event) => _onSetNickname(event, emit),
+        setThemeMode: (event) => _onSetThemeMode(event, emit),
       ),
     );
   }
 
-  void _onLoad(_LoadEvent event, Emitter<SettingsState> emit) {
+  Future<void> _onLoad(_LoadEvent event, Emitter<SettingsState> emit) async {
     emit(const SettingsState.inProgress());
-    final settings = _settingsRepository.loadSettings();
+    final settings = await _settingsRepository.loadSettings();
     emit(SettingsState.success(settings: settings));
   }
 
   void _onUpdate(_UpdateEvent event, Emitter<SettingsState> emit) {
     emit(SettingsState.success(settings: event.settings));
+  }
+
+  void _onSetNickname(_SetNickname event, Emitter<SettingsState> emit) {
+    _settingsRepository.saveNickname(event.nickname);
+    final settings = state.settings.copyWith(nickname: event.nickname);
+    emit(SettingsState.success(settings: settings));
+  }
+
+  void _onSetThemeMode(_SetThemeMode event, Emitter<SettingsState> emit) {
+    _settingsRepository.saveThemeMode(event.themeMode);
+    final settings = state.settings.copyWith(themeMode: event.themeMode);
+    emit(SettingsState.success(settings: settings));
   }
 }
 
@@ -36,6 +51,8 @@ class SettingsBloc extends Bloc<SettingsEvent, SettingsState> {
 class SettingsEvent with _$SettingsEvent {
   const factory SettingsEvent.load() = _LoadEvent;
   const factory SettingsEvent.update(AppSettings settings) = _UpdateEvent;
+  const factory SettingsEvent.setNickname(String nickname) = _SetNickname;
+  const factory SettingsEvent.setThemeMode(ThemeMode themeMode) = _SetThemeMode;
 }
 
 @freezed
