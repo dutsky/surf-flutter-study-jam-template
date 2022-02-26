@@ -47,7 +47,7 @@ abstract class ChatRepository {
   /// [maxMessageLength]. Throws an [InvalidMessageException].
   Future<List<ChatMessageDto>> sendGeolocationMessage({
     required String nickname,
-    required ChatGeolocationDto location,
+    required GeolocationDto location,
     String? message,
   });
 }

@@ -212,7 +212,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<ChatGeolocationDto?> _getLocationData() async {
+  Future<GeolocationDto?> _getLocationData() async {
     final location = Location();
 
     var serviceEnabled = await location.serviceEnabled();
@@ -233,7 +233,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     final locationData = await location.getLocation();
 
-    return ChatGeolocationDto(
+    return GeolocationDto(
       latitude: locationData.latitude ?? 0,
       longitude: locationData.longitude ?? 0,
     );

@@ -50,7 +50,7 @@ class ChatRepositoryFirebase implements ChatRepository {
   @override
   Future<List<ChatMessageDto>> sendGeolocationMessage({
     required String nickname,
-    required ChatGeolocationDto location,
+    required GeolocationDto location,
     String? message,
   }) async {
     _validateName(nickname);
@@ -111,7 +111,7 @@ class ChatRepositoryFirebase implements ChatRepository {
     if (geolocation != null) {
       return ChatMessageGeolocationDto(
         author: author,
-        location: ChatGeolocationDto(
+        location: GeolocationDto(
           latitude: geolocation.latitude,
           longitude: geolocation.longitude,
         ),

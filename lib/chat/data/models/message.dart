@@ -26,7 +26,7 @@ class ChatMessageDto {
 /// Data transfer object representing geolocation chat message.
 class ChatMessageGeolocationDto extends ChatMessageDto {
   /// Location point.
-  final ChatGeolocationDto location;
+  final GeolocationDto location;
 
   ChatMessageGeolocationDto({
     required ChatUserDto author,

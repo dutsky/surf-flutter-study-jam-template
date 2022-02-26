@@ -70,7 +70,7 @@ class ChatGeoTile extends StatelessWidget {
     );
   }
 
-  Future<void> _onLinkOpen(ChatGeolocationDto location) async {
+  Future<void> _onLinkOpen(GeolocationDto location) async {
     final lat = location.latitude.toString();
     final long = location.longitude.toString();
     final uri = Uri(
