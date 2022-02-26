@@ -102,10 +102,10 @@ class ChatRepositoryFirebase implements ChatRepository {
   ) {
     final parsedData = _MessageFirebaseDto.fromMap(snapshot.data());
 
-    final ChatUserDto author;
+    final UserDto author;
     author = parsedData.authorName == _savedLocalName
-        ? ChatUserLocalDto(name: parsedData.authorName)
-        : ChatUserDto(name: parsedData.authorName);
+        ? UserDto.local(name: parsedData.authorName)
+        : UserDto.basic(name: parsedData.authorName);
 
     final geolocation = parsedData.geolocation;
     if (geolocation != null) {

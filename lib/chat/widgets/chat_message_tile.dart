@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../data/models/message.dart';
-import '../data/models/user.dart';
 
 class ChatMessageTile extends StatelessWidget {
   final ChatMessageDto messageDto;
@@ -16,9 +15,10 @@ class ChatMessageTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: (messageDto.author is ChatUserLocalDto)
-          ? Colors.purple.withOpacity(0.1)
-          : null,
+      tileColor: messageDto.author.map(
+        basic: (_) => null,
+        local: (_) => Colors.purple.withOpacity(0.1),
+      ),
       leading: CircleAvatar(
         backgroundColor: Colors.deepPurple,
         child: Text(messageDto.author.name[0].toUpperCase()),

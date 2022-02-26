@@ -4,7 +4,7 @@ import 'user.dart';
 /// Data transfer object representing simple chat message.
 class ChatMessageDto {
   /// Message author.
-  final ChatUserDto author;
+  final UserDto author;
 
   /// Chat message string.
   final String message;
@@ -29,7 +29,7 @@ class ChatMessageGeolocationDto extends ChatMessageDto {
   final GeolocationDto location;
 
   ChatMessageGeolocationDto({
-    required ChatUserDto author,
+    required UserDto author,
     required this.location,
     required String message,
     required DateTime createdDate,
