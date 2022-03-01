@@ -25,9 +25,8 @@ class ChatScreen extends StatefulWidget {
 
 class _ChatScreenState extends State<ChatScreen> {
   final _messageController = TextEditingController();
-  final _scrollController = ScrollController();
 
-  Future<List<ChatMessageDto>>? _messages;
+  Future<List<MessageDto>>? _messages;
   bool _isSendInProgress = false;
 
   @override
@@ -39,7 +38,6 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void dispose() {
     _messageController.dispose();
-    _scrollController.dispose();
     super.dispose();
   }
 
@@ -62,14 +60,14 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: FutureBuilder<List<ChatMessageDto>>(
+            child: FutureBuilder<List<MessageDto>>(
               future: _messages,
               builder: (context, snapshot) {
                 if (snapshot.hasError) {
                   return Center(child: Text('${snapshot.error}'));
                 } else if (snapshot.hasData) {
                   return ListView.builder(
-                    controller: _scrollController,
+                    reverse: true,
                     itemCount: snapshot.data!.length,
                     itemBuilder: (context, index) =>
                         ChatMessageWidget(snapshot.data![index]),
@@ -117,7 +115,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<List<ChatMessageDto>>? _getMessages() {
+  Future<List<MessageDto>>? _getMessages() {
     try {
       return widget.chatRepository.messages;
     } catch (e) {
@@ -130,12 +128,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _onRefresh() {
     setState(
-      () {
-        _messages = _getMessages();
-        if (_scrollController.hasClients) {
-          _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-        }
-      },
+      () => _messages = _getMessages(),
     );
   }
 
@@ -166,9 +159,6 @@ class _ChatScreenState extends State<ChatScreen> {
       _isSendInProgress = false;
 
       _messageController.text = '';
-      if (_scrollController.hasClients) {
-        _scrollController.jumpTo(_scrollController.position.maxScrollExtent);
-      }
     });
   }
 
@@ -212,7 +202,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<ChatGeolocationDto?> _getLocationData() async {
+  Future<GeolocationDto?> _getLocationData() async {
     final location = Location();
 
     var serviceEnabled = await location.serviceEnabled();
@@ -233,7 +223,7 @@ class _ChatScreenState extends State<ChatScreen> {
 
     final locationData = await location.getLocation();
 
-    return ChatGeolocationDto(
+    return GeolocationDto(
       latitude: locationData.latitude ?? 0,
       longitude: locationData.longitude ?? 0,
     );

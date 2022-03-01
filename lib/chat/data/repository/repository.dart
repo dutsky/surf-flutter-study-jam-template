@@ -8,18 +8,18 @@ abstract class ChatRepository {
   static const int maxNameLength = 40;
   static const int maxMessageLength = 80;
 
-  /// Returns messages [ChatMessageDto] from a source.
+  /// Returns messages [MessageDto] from a source.
   ///
   /// Pay your attentions that there are two types of authors: [ChatUserDto]
   /// and [ChatUserLocalDto]. Second one representing message from user with
   /// the same name that you specified in [sendMessage].
   ///
   /// Throws an [Exception] when some error appears.
-  Future<List<ChatMessageDto>> get messages;
+  Future<List<MessageDto>> get messages;
 
   /// Sends the message by [nickname] and [message] contents.
   ///
-  /// Returns actual messages [ChatMessageDto] from a source (given your sent
+  /// Returns actual messages [MessageDto] from a source (given your sent
   /// [message]).
   ///
   /// Throws an [Exception] when some error appears.
@@ -29,12 +29,12 @@ abstract class ChatRepository {
   ///
   /// [message] mustn't be empty and longer than [maxMessageLength]. Throws an
   /// [InvalidMessageException].
-  Future<List<ChatMessageDto>> sendMessage(String nickname, String message);
+  Future<List<MessageDto>> sendMessage(String nickname, String message);
 
   /// Sends the message by [nickname] and [location] contents. [message] is
   /// optional.
   ///
-  /// Returns actual messages [ChatMessageDto] from a source (given your sent
+  /// Returns actual messages [MessageDto] from a source (given your sent
   /// [message]). Message with location point returns as
   /// [ChatMessageGeolocationDto].
   ///
@@ -45,9 +45,9 @@ abstract class ChatRepository {
   ///
   /// If [message] is non-null, content mustn't be empty and longer than
   /// [maxMessageLength]. Throws an [InvalidMessageException].
-  Future<List<ChatMessageDto>> sendGeolocationMessage({
+  Future<List<MessageDto>> sendGeolocationMessage({
     required String nickname,
-    required ChatGeolocationDto location,
+    required GeolocationDto location,
     String? message,
   });
 }

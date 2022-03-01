@@ -6,7 +6,7 @@ import 'chat_geo_tile.dart';
 import 'chat_message_tile.dart';
 
 class ChatMessageWidget extends StatefulWidget {
-  final ChatMessageDto messageDto;
+  final MessageDto messageDto;
 
   const ChatMessageWidget(
     this.messageDto, {
@@ -24,12 +24,15 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> {
   Widget build(BuildContext context) {
     final time = timeFormat.format(widget.messageDto.createdDateTime);
 
-    if (widget.messageDto is ChatMessageGeolocationDto) {
-      final messageGeoDto = widget.messageDto as ChatMessageGeolocationDto;
-
-      return ChatGeoTile(messageGeoDto: messageGeoDto, time: time);
-    } else {
-      return ChatMessageTile(messageDto: widget.messageDto, time: time);
-    }
+    return widget.messageDto.map(
+      basic: (_) => ChatMessageTile(
+        messageDto: widget.messageDto,
+        time: time,
+      ),
+      withLocation: (_) => ChatGeoTile(
+        messageGeoDto: widget.messageDto as MessageWithLocation,
+        time: time,
+      ),
+    );
   }
 }

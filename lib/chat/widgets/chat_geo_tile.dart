@@ -3,10 +3,9 @@ import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
 import '../data/models/message.dart';
-import '../data/models/user.dart';
 
 class ChatGeoTile extends StatelessWidget {
-  final ChatMessageGeolocationDto messageGeoDto;
+  final MessageWithLocation messageGeoDto;
   final String time;
 
   const ChatGeoTile({
@@ -19,9 +18,10 @@ class ChatGeoTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      color: (messageGeoDto.author is ChatUserLocalDto)
-          ? Colors.purple.withOpacity(0.1)
-          : null,
+      color: messageGeoDto.author.map(
+        basic: (_) => null,
+        local: (_) => Colors.purple.withOpacity(0.1),
+      ),
       child: Row(
         children: [
           CircleAvatar(
@@ -70,7 +70,7 @@ class ChatGeoTile extends StatelessWidget {
     );
   }
 
-  Future<void> _onLinkOpen(ChatGeolocationDto location) async {
+  Future<void> _onLinkOpen(GeolocationDto location) async {
     final lat = location.latitude.toString();
     final long = location.longitude.toString();
     final uri = Uri(

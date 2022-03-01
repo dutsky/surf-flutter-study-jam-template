@@ -1,24 +1,19 @@
-/// Basic model representing chat user.
-class ChatUserDto {
-  final String name;
+import 'package:freezed_annotation/freezed_annotation.dart';
 
-  const ChatUserDto({
-    required this.name,
-  });
+part 'user.freezed.dart';
 
-  @override
-  String toString() => 'ChatUserDto(name: $name)';
-}
-
-/// Model representing local user.
-///
-/// As rule as user with the same nickname was entered when sending a message
-/// from this device.
-class ChatUserLocalDto extends ChatUserDto {
-  ChatUserLocalDto({
+@freezed
+class UserDto with _$UserDto {
+  /// Basic model representing chat user.
+  const factory UserDto.basic({
     required String name,
-  }) : super(name: name);
+  }) = _DefaultUserDto;
 
-  @override
-  String toString() => 'ChatUserLocalDto(name: $name)';
+  /// Model representing local user.
+  ///
+  /// As rule as user with the same nickname was entered when sending a message
+  /// from this device.
+  const factory UserDto.local({
+    required String name,
+  }) = _UserDtoLocal;
 }
