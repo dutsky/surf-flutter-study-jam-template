@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
+import '../models/firebase/message_firebase.dart';
 import '../models/geolocation.dart';
 import '../models/message.dart';
 import '../models/user.dart';
@@ -38,9 +39,9 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     await _firebaseClient.collection(_messagesCollectionKey).add(
       <String, Object?>{
-        _MessageFirebaseDto._authorNameKey: nickname,
-        _MessageFirebaseDto._messageKey: message,
-        _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
+        MessageFirebaseMapper.authorNameKey: nickname,
+        MessageFirebaseMapper.messageKey: message,
+        MessageFirebaseMapper.createdKey: FieldValue.serverTimestamp(),
       },
     );
 
@@ -60,10 +61,10 @@ class ChatRepositoryFirebase implements ChatRepository {
 
     await _firebaseClient.collection(_messagesCollectionKey).add(
       <String, Object?>{
-        _MessageFirebaseDto._authorNameKey: nickname,
-        _MessageFirebaseDto._messageKey: message ?? '',
-        _MessageFirebaseDto._createdKey: FieldValue.serverTimestamp(),
-        _MessageFirebaseDto._geolocationKey: GeoPoint(
+        MessageFirebaseMapper.authorNameKey: nickname,
+        MessageFirebaseMapper.messageKey: message ?? '',
+        MessageFirebaseMapper.createdKey: FieldValue.serverTimestamp(),
+        MessageFirebaseMapper.geolocationKey: GeoPoint(
           location.latitude,
           location.longitude,
         ),
@@ -100,7 +101,7 @@ class ChatRepositoryFirebase implements ChatRepository {
   MessageDto _parseFirebaseDataToLocal(
     QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
   ) {
-    final parsedData = _MessageFirebaseDto.fromMap(snapshot.data());
+    final parsedData = MessageFirebaseMapper.mapToMessage(snapshot.data());
 
     final UserDto author;
     author = parsedData.authorName == _savedLocalName
@@ -124,73 +125,5 @@ class ChatRepositoryFirebase implements ChatRepository {
             message: parsedData.message,
             createdDateTime: parsedData.created,
           );
-  }
-}
-
-class _MessageFirebaseDto {
-  static const String _authorNameKey = 'authorName';
-  static const String _messageKey = 'message';
-  static const String _createdKey = 'created';
-  static const String _geolocationKey = 'geolocation';
-
-  final String authorName;
-  final String message;
-  final DateTime created;
-  final GeoPoint? geolocation;
-
-  _MessageFirebaseDto({
-    required this.authorName,
-    required this.message,
-    required this.created,
-    required this.geolocation,
-  });
-
-  Map<String, Object?> toMap() {
-    return <String, Object?>{
-      _authorNameKey: authorName,
-      _messageKey: message,
-      _createdKey: created.millisecondsSinceEpoch,
-    };
-  }
-
-  factory _MessageFirebaseDto.fromMap(Map<String, Object?> map) {
-    return _MessageFirebaseDto(
-      authorName: map[_authorNameKey] as String? ?? '',
-      message: map[_messageKey] as String? ?? '',
-      created: (map[_createdKey] as Timestamp).toDate(),
-      geolocation: map[_geolocationKey] as GeoPoint?,
-    );
-  }
-
-  @override
-  String toString() {
-    return '_MessageFirebaseDto(authorName: $authorName, message: $message, created: $created, geolocation: $geolocation)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    if (identical(this, other)) return true;
-
-    return other is _MessageFirebaseDto &&
-        other.authorName == authorName &&
-        other.message == message &&
-        other.created == created;
-  }
-
-  @override
-  int get hashCode => authorName.hashCode ^ message.hashCode ^ created.hashCode;
-
-  _MessageFirebaseDto copyWith({
-    String? authorName,
-    String? message,
-    DateTime? created,
-    GeoPoint? geolocation,
-  }) {
-    return _MessageFirebaseDto(
-      authorName: authorName ?? this.authorName,
-      message: message ?? this.message,
-      created: created ?? this.created,
-      geolocation: geolocation ?? this.geolocation,
-    );
   }
 }
