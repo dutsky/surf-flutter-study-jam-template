@@ -15,7 +15,7 @@ abstract class ChatRepository {
   /// the same name that you specified in [sendMessage].
   ///
   /// Throws an [Exception] when some error appears.
-  Future<List<MessageDto>> get messages;
+  Stream<MessageDto> get messages;
 
   /// Sends the message by [nickname] and [message] contents.
   ///
@@ -29,7 +29,7 @@ abstract class ChatRepository {
   ///
   /// [message] mustn't be empty and longer than [maxMessageLength]. Throws an
   /// [InvalidMessageException].
-  Future<List<MessageDto>> sendMessage(String nickname, String message);
+  void sendMessage(String nickname, String message);
 
   /// Sends the message by [nickname] and [location] contents. [message] is
   /// optional.
@@ -45,7 +45,7 @@ abstract class ChatRepository {
   ///
   /// If [message] is non-null, content mustn't be empty and longer than
   /// [maxMessageLength]. Throws an [InvalidMessageException].
-  Future<List<MessageDto>> sendGeolocationMessage({
+  void sendGeolocationMessage({
     required String nickname,
     required GeolocationDto location,
     String? message,
