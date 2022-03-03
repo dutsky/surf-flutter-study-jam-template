@@ -15,7 +15,7 @@ abstract class ChatRepository {
   /// the same name that you specified in [sendMessage].
   ///
   /// Throws an [Exception] when some error appears.
-  Stream<MessageDto> get messages;
+  Stream<Iterable<MessageDto>> get messages;
 
   /// Sends the message by [nickname] and [message] contents.
   ///

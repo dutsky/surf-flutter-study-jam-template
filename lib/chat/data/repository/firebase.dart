@@ -17,14 +17,14 @@ class ChatRepositoryFirebase implements ChatRepository {
   var _savedLocalName = '';
 
   @override
-  Stream<MessageDto> get messages async* {
+  Stream<Iterable<MessageDto>> get messages async* {
     final snapshots = _firebaseClient
         .collection(_messagesCollectionKey)
         .orderBy('created', descending: true)
         .limit(_messagesLimit)
         .snapshots();
     await for (final snapshot in snapshots) {
-      yield* _mapToMessage(snapshot);
+      yield _mapToMessage(snapshot);
     }
   }
 
@@ -95,13 +95,10 @@ class ChatRepositoryFirebase implements ChatRepository {
     }
   }
 
-  Stream<MessageDto> _mapToMessage(
+  Iterable<MessageDto> _mapToMessage(
     QuerySnapshot<Map<String, Object?>> snapshot,
-  ) async* {
-    for (final doc in snapshot.docs) {
-      yield _parseFirebaseDataToLocal(doc);
-    }
-  }
+  ) =>
+      snapshot.docs.map((doc) => _parseFirebaseDataToLocal(doc));
 
   MessageDto _parseFirebaseDataToLocal(
     QueryDocumentSnapshot<Map<String, Object?>> document,
