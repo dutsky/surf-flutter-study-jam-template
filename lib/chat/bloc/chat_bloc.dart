@@ -10,31 +10,31 @@ part 'chat_bloc.freezed.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
   final ChatRepository _chatRepository;
-  StreamSubscription? _messages;
+  StreamSubscription<Iterable<MessageDto>>? _messages;
 
   ChatBloc({required ChatRepository chatRepository})
       : _chatRepository = chatRepository,
         super(const ChatState.initial()) {
     _messages = _chatRepository.messages
-        .listen((message) => ChatEvent.newMessage(message));
+        .listen((messages) => add(ChatEvent.newMessages(messages)));
 
     on<ChatEvent>((event, emit) => event.map(
-          load: (event) => print,
-          newMessage: (event) => _onNewMessage(event, emit),
+          newMessages: (event) => _onNewMessages(event, emit),
+          sendMessage: (event) => _onSendMessage(event, emit),
+          sendLocation: (event) => _onSendLocation(event, emit),
         ));
   }
 
-  // _onLoad(ChatEvent event, Emitter<ChatState> emit) {
-  //   messages = _chatRepository.messages.listen(
-  //     (message) => ChatEvent.newMessage(message),
-  //   );
-  // }
-
-  void _onNewMessage(_NewMessageEvent event, Emitter<ChatState> emit) {
-    emit(const ChatState.inProgress());
-    final message = event.message;
-    emit(ChatState.success(message));
+  void _onNewMessages(_NewMessageEvent event, Emitter<ChatState> emit) {
+    emit(ChatState.inProgress(state.messages));
+    emit(ChatState.success(event.messages));
   }
+
+  void _onSendMessage(_SendMessageEvent event, Emitter<ChatState> emit) {
+    _chatRepository.sendMessage('Denis', event.text); // TODO: remove hardcode
+  }
+
+  void _onSendLocation(_SendLocationEvent event, Emitter<ChatState> emit) {}
 
   @override
   Future<void> close() {
@@ -46,13 +46,26 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
 @freezed
 class ChatEvent with _$ChatEvent {
-  const factory ChatEvent.load() = _LoadEvent;
-  const factory ChatEvent.newMessage(MessageDto message) = _NewMessageEvent;
+  const factory ChatEvent.newMessages(
+    Iterable<MessageDto> messages,
+  ) = _NewMessageEvent;
+
+  const factory ChatEvent.sendMessage(
+    String text,
+  ) = _SendMessageEvent;
+
+  const factory ChatEvent.sendLocation() = _SendLocationEvent;
 }
 
 @freezed
 class ChatState with _$ChatState {
-  const factory ChatState.initial() = _InitialState;
-  const factory ChatState.inProgress() = _InProgressState;
-  const factory ChatState.success(MessageDto message) = _SuccessState;
+  const factory ChatState.initial({
+    @Default(<MessageDto>[]) Iterable<MessageDto> messages,
+  }) = _InitialState;
+  const factory ChatState.inProgress(
+    Iterable<MessageDto> messages,
+  ) = _InProgressState;
+  const factory ChatState.success(
+    Iterable<MessageDto> messages,
+  ) = _SuccessState;
 }
