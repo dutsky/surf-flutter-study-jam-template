@@ -7,7 +7,6 @@ import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
 import 'bloc/chat_bloc.dart';
 import 'data/models/geolocation.dart';
-import 'data/models/message.dart';
 import 'data/repository/firebase.dart';
 import 'widgets/chat_message.dart';
 import 'widgets/nickname_field.dart';
@@ -36,14 +35,7 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final _messageController = TextEditingController();
 
-  Future<List<MessageDto>>? _messages;
   bool _isSendInProgress = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _messages = _getMessages();
-  }
 
   @override
   void dispose() {
@@ -58,10 +50,6 @@ class _ChatScreenState extends State<ChatScreen> {
         title: const NicknameField(),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => _onRefresh(),
-          ),
-          IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => _onSettings(),
           ),
@@ -72,24 +60,11 @@ class _ChatScreenState extends State<ChatScreen> {
           Expanded(
             child: BlocBuilder<ChatBloc, ChatState>(
               builder: (context, state) {
-                return FutureBuilder<List<MessageDto>>(
-                  future: _messages,
-                  builder: (context, snapshot) {
-                    if (snapshot.hasError) {
-                      return Center(child: Text('${snapshot.error}'));
-                    } else if (snapshot.hasData) {
-                      return ListView.builder(
-                        reverse: true,
-                        itemCount: snapshot.data!.length,
-                        itemBuilder: (context, index) =>
-                            ChatMessageWidget(snapshot.data![index]),
-                      );
-                    } else {
-                      return const Center(
-                        child: CircularProgressIndicator.adaptive(),
-                      );
-                    }
-                  },
+                return ListView.builder(
+                  reverse: true,
+                  itemCount: state.messages.length,
+                  itemBuilder: (context, index) =>
+                      ChatMessageWidget(state.messages.elementAt(index)),
                 );
               },
             ),
@@ -119,7 +94,7 @@ class _ChatScreenState extends State<ChatScreen> {
                           Icons.send,
                           color: Theme.of(context).primaryColor,
                         ),
-                        onPressed: () => _onSendMessage(),
+                        onPressed: () => _onSendMessage(context),
                       ),
               ],
             ),
@@ -129,24 +104,7 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<List<MessageDto>>? _getMessages() {
-    try {
-      return widget.chatRepository.messages;
-    } catch (e) {
-      final snackBar = SnackBar(content: Text('$e'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
-
-    return null;
-  }
-
-  void _onRefresh() {
-    setState(
-      () => _messages = _getMessages(),
-    );
-  }
-
-  void _onSendMessage() {
+  void _onSendMessage(BuildContext context) {
     final nickname = context.read<SettingsBloc>().state.settings.nickname;
     if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
@@ -162,18 +120,12 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
-    setState(() {
-      _isSendInProgress = true;
+    context
+        .read<ChatBloc>()
+        .add(ChatEvent.sendMessage(_messageController.text));
 
-      _messages = widget.chatRepository.sendMessage(
-        nickname,
-        _messageController.text,
-      );
-
-      _isSendInProgress = false;
-
-      _messageController.text = '';
-    });
+    _isSendInProgress = false;
+    _messageController.text = '';
   }
 
   void _onSendLocation() {
@@ -181,8 +133,6 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _showAlertDialog() async {
-    final nickname = context.read<SettingsBloc>().state.settings.nickname;
-
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -201,10 +151,10 @@ class _ChatScreenState extends State<ChatScreen> {
               onPressed: () async {
                 final locationData = await _getLocationData();
                 if (locationData != null) {
-                  widget.chatRepository.sendGeolocationMessage(
-                    nickname: nickname,
-                    location: locationData,
-                  );
+                  // widget.chatRepository.sendGeolocationMessage(
+                  //   nickname: nickname,
+                  //   location: locationData,
+                  // );
                 }
 
                 Navigator.of(context).pop();
