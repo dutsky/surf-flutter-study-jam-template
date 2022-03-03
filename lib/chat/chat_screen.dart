@@ -1,23 +1,33 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
 import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
+import 'bloc/chat_bloc.dart';
 import 'data/models/geolocation.dart';
 import 'data/models/message.dart';
-import 'data/repository/repository.dart';
+import 'data/repository/firebase.dart';
 import 'widgets/chat_message.dart';
 import 'widgets/nickname_field.dart';
 
-/// Chat screen templete. This is your starting point.
-class ChatScreen extends StatefulWidget {
-  final ChatRepository chatRepository;
+class ChatScope extends StatelessWidget {
+  const ChatScope({Key? key}) : super(key: key);
 
-  const ChatScreen({
-    Key? key,
-    required this.chatRepository,
-  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
+
+    return BlocProvider(
+      create: (context) => ChatBloc(chatRepository: chatRepository),
+      child: const ChatScreen(),
+    );
+  }
+}
+
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
@@ -60,23 +70,27 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: FutureBuilder<List<MessageDto>>(
-              future: _messages,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(child: Text('${snapshot.error}'));
-                } else if (snapshot.hasData) {
-                  return ListView.builder(
-                    reverse: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) =>
-                        ChatMessageWidget(snapshot.data![index]),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
-                }
+            child: BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                return FutureBuilder<List<MessageDto>>(
+                  future: _messages,
+                  builder: (context, snapshot) {
+                    if (snapshot.hasError) {
+                      return Center(child: Text('${snapshot.error}'));
+                    } else if (snapshot.hasData) {
+                      return ListView.builder(
+                        reverse: true,
+                        itemCount: snapshot.data!.length,
+                        itemBuilder: (context, index) =>
+                            ChatMessageWidget(snapshot.data![index]),
+                      );
+                    } else {
+                      return const Center(
+                        child: CircularProgressIndicator.adaptive(),
+                      );
+                    }
+                  },
+                );
               },
             ),
           ),
