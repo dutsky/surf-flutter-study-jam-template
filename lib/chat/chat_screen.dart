@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
-import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
 import 'bloc/chat_bloc.dart';
 import 'data/models/geolocation.dart';
@@ -107,7 +106,8 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _onSendMessage(BuildContext context) {
-    final nickname = context.read<SettingsBloc>().state.settings.nickname;
+    final nickname = _nicknameController.text;
+
     if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -122,19 +122,16 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
-    context
-        .read<ChatBloc>()
-        .add(ChatEvent.sendMessage(_messageController.text));
+    context.read<ChatBloc>().add(ChatEvent.sendMessage(
+          nickname: nickname,
+          text: _messageController.text,
+        ));
 
     _isSendInProgress = false;
     _messageController.text = '';
   }
 
-  void _onSendLocation() {
-    _showAlertDialog();
-  }
-
-  Future<void> _showAlertDialog() async {
+  Future<void> _onSendLocation() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -151,12 +148,15 @@ class _ChatScreenState extends State<ChatScreen> {
             TextButton(
               child: const Text('Отправить'),
               onPressed: () async {
+                final nickname = _nicknameController.text;
                 final locationData = await _getLocationData();
                 if (locationData != null) {
-                  // widget.chatRepository.sendGeolocationMessage(
-                  //   nickname: nickname,
-                  //   location: locationData,
-                  // );
+                  context.read<ChatBloc>().add(
+                        ChatEvent.sendLocation(
+                          nickname: nickname,
+                          location: locationData,
+                        ),
+                      );
                 }
 
                 Navigator.of(context).pop();

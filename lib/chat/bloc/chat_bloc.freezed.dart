@@ -24,14 +24,20 @@ class _$ChatEventTearOff {
     );
   }
 
-  _SendMessageEvent sendMessage(String text) {
+  _SendMessageEvent sendMessage(
+      {required String nickname, required String text}) {
     return _SendMessageEvent(
-      text,
+      nickname: nickname,
+      text: text,
     );
   }
 
-  _SendLocationEvent sendLocation() {
-    return const _SendLocationEvent();
+  _SendLocationEvent sendLocation(
+      {required String nickname, required GeolocationDto location}) {
+    return _SendLocationEvent(
+      nickname: nickname,
+      location: location,
+    );
   }
 }
 
@@ -43,22 +49,23 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
-    required TResult Function(String text) sendMessage,
-    required TResult Function() sendLocation,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -166,8 +173,9 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
-    required TResult Function(String text) sendMessage,
-    required TResult Function() sendLocation,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
   }) {
     return newMessages(messages);
   }
@@ -176,8 +184,8 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
     return newMessages?.call(messages);
   }
@@ -186,8 +194,8 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
   }) {
     if (newMessages != null) {
@@ -246,7 +254,7 @@ abstract class _$SendMessageEventCopyWith<$Res> {
   factory _$SendMessageEventCopyWith(
           _SendMessageEvent value, $Res Function(_SendMessageEvent) then) =
       __$SendMessageEventCopyWithImpl<$Res>;
-  $Res call({String text});
+  $Res call({String nickname, String text});
 }
 
 /// @nodoc
@@ -262,10 +270,15 @@ class __$SendMessageEventCopyWithImpl<$Res>
 
   @override
   $Res call({
+    Object? nickname = freezed,
     Object? text = freezed,
   }) {
     return _then(_SendMessageEvent(
-      text == freezed
+      nickname: nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      text: text == freezed
           ? _value.text
           : text // ignore: cast_nullable_to_non_nullable
               as String,
@@ -276,14 +289,16 @@ class __$SendMessageEventCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SendMessageEvent implements _SendMessageEvent {
-  const _$_SendMessageEvent(this.text);
+  const _$_SendMessageEvent({required this.nickname, required this.text});
 
+  @override
+  final String nickname;
   @override
   final String text;
 
   @override
   String toString() {
-    return 'ChatEvent.sendMessage(text: $text)';
+    return 'ChatEvent.sendMessage(nickname: $nickname, text: $text)';
   }
 
   @override
@@ -291,12 +306,15 @@ class _$_SendMessageEvent implements _SendMessageEvent {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SendMessageEvent &&
+            const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(text));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(nickname),
+      const DeepCollectionEquality().hash(text));
 
   @JsonKey(ignore: true)
   @override
@@ -307,32 +325,33 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
-    required TResult Function(String text) sendMessage,
-    required TResult Function() sendLocation,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
   }) {
-    return sendMessage(text);
+    return sendMessage(nickname, text);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
-    return sendMessage?.call(text);
+    return sendMessage?.call(nickname, text);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
   }) {
     if (sendMessage != null) {
-      return sendMessage(text);
+      return sendMessage(nickname, text);
     }
     return orElse();
   }
@@ -373,8 +392,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
 }
 
 abstract class _SendMessageEvent implements ChatEvent {
-  const factory _SendMessageEvent(String text) = _$_SendMessageEvent;
+  const factory _SendMessageEvent(
+      {required String nickname, required String text}) = _$_SendMessageEvent;
 
+  String get nickname;
   String get text;
   @JsonKey(ignore: true)
   _$SendMessageEventCopyWith<_SendMessageEvent> get copyWith =>
@@ -386,6 +407,9 @@ abstract class _$SendLocationEventCopyWith<$Res> {
   factory _$SendLocationEventCopyWith(
           _SendLocationEvent value, $Res Function(_SendLocationEvent) then) =
       __$SendLocationEventCopyWithImpl<$Res>;
+  $Res call({String nickname, GeolocationDto location});
+
+  $GeolocationDtoCopyWith<$Res> get location;
 }
 
 /// @nodoc
@@ -398,57 +422,98 @@ class __$SendLocationEventCopyWithImpl<$Res>
 
   @override
   _SendLocationEvent get _value => super._value as _SendLocationEvent;
+
+  @override
+  $Res call({
+    Object? nickname = freezed,
+    Object? location = freezed,
+  }) {
+    return _then(_SendLocationEvent(
+      nickname: nickname == freezed
+          ? _value.nickname
+          : nickname // ignore: cast_nullable_to_non_nullable
+              as String,
+      location: location == freezed
+          ? _value.location
+          : location // ignore: cast_nullable_to_non_nullable
+              as GeolocationDto,
+    ));
+  }
+
+  @override
+  $GeolocationDtoCopyWith<$Res> get location {
+    return $GeolocationDtoCopyWith<$Res>(_value.location, (value) {
+      return _then(_value.copyWith(location: value));
+    });
+  }
 }
 
 /// @nodoc
 
 class _$_SendLocationEvent implements _SendLocationEvent {
-  const _$_SendLocationEvent();
+  const _$_SendLocationEvent({required this.nickname, required this.location});
+
+  @override
+  final String nickname;
+  @override
+  final GeolocationDto location;
 
   @override
   String toString() {
-    return 'ChatEvent.sendLocation()';
+    return 'ChatEvent.sendLocation(nickname: $nickname, location: $location)';
   }
 
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _SendLocationEvent);
+        (other.runtimeType == runtimeType &&
+            other is _SendLocationEvent &&
+            const DeepCollectionEquality().equals(other.nickname, nickname) &&
+            const DeepCollectionEquality().equals(other.location, location));
   }
 
   @override
-  int get hashCode => runtimeType.hashCode;
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(nickname),
+      const DeepCollectionEquality().hash(location));
+
+  @JsonKey(ignore: true)
+  @override
+  _$SendLocationEventCopyWith<_SendLocationEvent> get copyWith =>
+      __$SendLocationEventCopyWithImpl<_SendLocationEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
-    required TResult Function(String text) sendMessage,
-    required TResult Function() sendLocation,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
   }) {
-    return sendLocation();
+    return sendLocation(nickname, location);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
-    return sendLocation?.call();
+    return sendLocation?.call(nickname, location);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
-    TResult Function(String text)? sendMessage,
-    TResult Function()? sendLocation,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
   }) {
     if (sendLocation != null) {
-      return sendLocation();
+      return sendLocation(nickname, location);
     }
     return orElse();
   }
@@ -489,7 +554,15 @@ class _$_SendLocationEvent implements _SendLocationEvent {
 }
 
 abstract class _SendLocationEvent implements ChatEvent {
-  const factory _SendLocationEvent() = _$_SendLocationEvent;
+  const factory _SendLocationEvent(
+      {required String nickname,
+      required GeolocationDto location}) = _$_SendLocationEvent;
+
+  String get nickname;
+  GeolocationDto get location;
+  @JsonKey(ignore: true)
+  _$SendLocationEventCopyWith<_SendLocationEvent> get copyWith =>
+      throw _privateConstructorUsedError;
 }
 
 /// @nodoc

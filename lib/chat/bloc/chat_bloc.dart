@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:bloc/bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
 import 'package:surf_practice_chat_flutter/chat/data/repository/repository.dart';
 
 import '../data/models/message.dart';
@@ -26,15 +27,22 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   }
 
   void _onNewMessages(_NewMessageEvent event, Emitter<ChatState> emit) {
-    emit(ChatState.inProgress(state.messages));
     emit(ChatState.success(event.messages));
   }
 
   void _onSendMessage(_SendMessageEvent event, Emitter<ChatState> emit) {
-    _chatRepository.sendMessage('Denis', event.text); // TODO: remove hardcode
+    _chatRepository.sendMessage(
+      event.nickname,
+      event.text,
+    );
   }
 
-  void _onSendLocation(_SendLocationEvent event, Emitter<ChatState> emit) {}
+  void _onSendLocation(_SendLocationEvent event, Emitter<ChatState> emit) {
+    _chatRepository.sendGeolocationMessage(
+      nickname: event.nickname,
+      location: event.location,
+    );
+  }
 
   @override
   Future<void> close() {
@@ -50,11 +58,15 @@ class ChatEvent with _$ChatEvent {
     Iterable<MessageDto> messages,
   ) = _NewMessageEvent;
 
-  const factory ChatEvent.sendMessage(
-    String text,
-  ) = _SendMessageEvent;
+  const factory ChatEvent.sendMessage({
+    required String nickname,
+    required String text,
+  }) = _SendMessageEvent;
 
-  const factory ChatEvent.sendLocation() = _SendLocationEvent;
+  const factory ChatEvent.sendLocation({
+    required String nickname,
+    required GeolocationDto location,
+  }) = _SendLocationEvent;
 }
 
 @freezed
