@@ -33,12 +33,14 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _nicknameController = TextEditingController();
   final _messageController = TextEditingController();
 
   bool _isSendInProgress = false;
 
   @override
   void dispose() {
+    _nicknameController.dispose();
     _messageController.dispose();
     super.dispose();
   }
@@ -47,7 +49,7 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const NicknameField(),
+        title: NicknameField(nicknameController: _nicknameController),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
