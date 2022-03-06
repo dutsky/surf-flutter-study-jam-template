@@ -17,16 +17,12 @@ class ChatRepositoryFirebase implements ChatRepository {
   var _savedLocalName = '';
 
   @override
-  Stream<Iterable<MessageDto>> get messages async* {
-    final snapshots = _firebaseClient
-        .collection(_messagesCollectionKey)
-        .orderBy('created', descending: true)
-        .limit(_messagesLimit)
-        .snapshots();
-    await for (final snapshot in snapshots) {
-      yield _mapToMessage(snapshot);
-    }
-  }
+  Stream<Iterable<MessageDto>> get messages => _firebaseClient
+      .collection(_messagesCollectionKey)
+      .orderBy('created', descending: true)
+      .limit(_messagesLimit)
+      .snapshots()
+      .map((snapshot) => _mapToMessage(snapshot));
 
   @override
   void sendMessage(
