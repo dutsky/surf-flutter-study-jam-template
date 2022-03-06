@@ -35,8 +35,6 @@ class _ChatScreenState extends State<ChatScreen> {
   final _nicknameController = TextEditingController();
   final _messageController = TextEditingController();
 
-  bool _isSendInProgress = false;
-
   @override
   void dispose() {
     _nicknameController.dispose();
@@ -88,15 +86,13 @@ class _ChatScreenState extends State<ChatScreen> {
                     controller: _messageController,
                   ),
                 ),
-                _isSendInProgress
-                    ? const CircularProgressIndicator.adaptive()
-                    : IconButton(
-                        icon: Icon(
-                          Icons.send,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        onPressed: () => _onSendMessage(context),
-                      ),
+                IconButton(
+                  icon: Icon(
+                    Icons.send,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => _onSendMessage(context),
+                ),
               ],
             ),
           ),
@@ -122,12 +118,13 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
-    context.read<ChatBloc>().add(ChatEvent.sendMessage(
-          nickname: nickname,
-          text: _messageController.text,
-        ));
+    context.read<ChatBloc>().add(
+          ChatEvent.sendMessage(
+            nickname: nickname,
+            text: _messageController.text,
+          ),
+        );
 
-    _isSendInProgress = false;
     _messageController.text = '';
   }
 
