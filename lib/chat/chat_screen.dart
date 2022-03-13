@@ -34,11 +34,13 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final _nicknameController = TextEditingController();
   final _messageController = TextEditingController();
+  final _messageFocusNode = FocusNode();
 
   @override
   void dispose() {
     _nicknameController.dispose();
     _messageController.dispose();
+    _messageFocusNode.dispose();
     super.dispose();
   }
 
@@ -81,9 +83,11 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () => _onSendLocation(),
                 ),
                 Expanded(
-                  child: TextFormField(
+                  child: TextField(
                     decoration: const InputDecoration(labelText: 'Сообщение'),
                     controller: _messageController,
+                    focusNode: _messageFocusNode,
+                    onSubmitted: (_) => _onSendMessage(context),
                   ),
                 ),
                 IconButton(
@@ -126,6 +130,10 @@ class _ChatScreenState extends State<ChatScreen> {
         );
 
     _messageController.text = '';
+
+    //FIXME: flutter web: textfield not focusing after submit
+    //bug in flutter https://github.com/flutter/flutter/issues/95553
+    _messageFocusNode.requestFocus();
   }
 
   Future<void> _onSendLocation() async {
