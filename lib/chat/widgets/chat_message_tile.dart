@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import '../data/models/message.dart';
@@ -31,7 +32,8 @@ class ChatMessageTile extends StatelessWidget {
             ?.copyWith(fontWeight: FontWeight.bold),
       ),
       subtitle: Text(messageDto.message),
-      trailing: Text(time),
+      trailing:
+          time.isNotEmpty ? Text(time) : const CupertinoActivityIndicator(),
     );
   }
 }

@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
@@ -64,7 +65,7 @@ class ChatGeoTile extends StatelessWidget {
               ),
             ),
           ),
-          Text(time),
+          time.isNotEmpty ? Text(time) : const CupertinoActivityIndicator(),
         ],
       ),
     );
