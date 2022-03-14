@@ -17,18 +17,15 @@ class ChatRepositoryFirebase implements ChatRepository {
   var _savedLocalName = '';
 
   @override
-  Future<List<MessageDto>> get messages async {
-    final result = await _firebaseClient
-        .collection(_messagesCollectionKey)
-        .orderBy('created', descending: true)
-        .limit(_messagesLimit)
-        .get();
-
-    return result.docs.map(_parseFirebaseDataToLocal).toList();
-  }
+  Stream<Iterable<MessageDto>> get messages => _firebaseClient
+      .collection(_messagesCollectionKey)
+      .orderBy('created', descending: true)
+      .limit(_messagesLimit)
+      .snapshots()
+      .map((snapshot) => _mapToMessage(snapshot));
 
   @override
-  Future<List<MessageDto>> sendMessage(
+  void sendMessage(
     String nickname,
     String message,
   ) async {
@@ -44,12 +41,10 @@ class ChatRepositoryFirebase implements ChatRepository {
         MessageFirebaseMapper.createdKey: FieldValue.serverTimestamp(),
       },
     );
-
-    return messages;
   }
 
   @override
-  Future<List<MessageDto>> sendGeolocationMessage({
+  void sendGeolocationMessage({
     required String nickname,
     required GeolocationDto location,
     String? message,
@@ -70,8 +65,6 @@ class ChatRepositoryFirebase implements ChatRepository {
         ),
       },
     );
-
-    return messages;
   }
 
   void _validateName(String name) {
@@ -98,13 +91,17 @@ class ChatRepositoryFirebase implements ChatRepository {
     }
   }
 
-  MessageDto _parseFirebaseDataToLocal(
-    QueryDocumentSnapshot<Map<String, dynamic>> snapshot,
-  ) {
-    final parsedData = MessageFirebaseMapper.mapToMessage(snapshot.data());
+  Iterable<MessageDto> _mapToMessage(
+    QuerySnapshot<Map<String, Object?>> snapshot,
+  ) =>
+      snapshot.docs.map((doc) => _parseFirebaseDataToLocal(doc));
 
-    final UserDto author;
-    author = parsedData.authorName == _savedLocalName
+  MessageDto _parseFirebaseDataToLocal(
+    QueryDocumentSnapshot<Map<String, Object?>> document,
+  ) {
+    final parsedData = MessageFirebaseMapper.mapToMessage(document.data());
+
+    final author = parsedData.authorName == _savedLocalName
         ? UserDto.local(name: parsedData.authorName)
         : UserDto.basic(name: parsedData.authorName);
 

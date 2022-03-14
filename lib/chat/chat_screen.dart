@@ -1,43 +1,46 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:location/location.dart';
 
-import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
+import 'bloc/chat_bloc.dart';
 import 'data/models/geolocation.dart';
-import 'data/models/message.dart';
-import 'data/repository/repository.dart';
+import 'data/repository/firebase.dart';
 import 'widgets/chat_message.dart';
 import 'widgets/nickname_field.dart';
 
-/// Chat screen templete. This is your starting point.
-class ChatScreen extends StatefulWidget {
-  final ChatRepository chatRepository;
+class ChatScope extends StatelessWidget {
+  const ChatScope({Key? key}) : super(key: key);
 
-  const ChatScreen({
-    Key? key,
-    required this.chatRepository,
-  }) : super(key: key);
+  @override
+  Widget build(BuildContext context) {
+    final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
+
+    return BlocProvider(
+      create: (context) => ChatBloc(chatRepository: chatRepository),
+      child: const ChatScreen(),
+    );
+  }
+}
+
+class ChatScreen extends StatefulWidget {
+  const ChatScreen({Key? key}) : super(key: key);
 
   @override
   State<ChatScreen> createState() => _ChatScreenState();
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _nicknameController = TextEditingController();
   final _messageController = TextEditingController();
-
-  Future<List<MessageDto>>? _messages;
-  bool _isSendInProgress = false;
-
-  @override
-  void initState() {
-    super.initState();
-    _messages = _getMessages();
-  }
+  final _messageFocusNode = FocusNode();
 
   @override
   void dispose() {
+    _nicknameController.dispose();
     _messageController.dispose();
+    _messageFocusNode.dispose();
     super.dispose();
   }
 
@@ -45,12 +48,8 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const NicknameField(),
+        title: NicknameField(nicknameController: _nicknameController),
         actions: [
-          IconButton(
-            icon: const Icon(Icons.refresh),
-            onPressed: () => _onRefresh(),
-          ),
           IconButton(
             icon: const Icon(Icons.settings),
             onPressed: () => _onSettings(),
@@ -60,23 +59,14 @@ class _ChatScreenState extends State<ChatScreen> {
       body: Column(
         children: [
           Expanded(
-            child: FutureBuilder<List<MessageDto>>(
-              future: _messages,
-              builder: (context, snapshot) {
-                if (snapshot.hasError) {
-                  return Center(child: Text('${snapshot.error}'));
-                } else if (snapshot.hasData) {
-                  return ListView.builder(
-                    reverse: true,
-                    itemCount: snapshot.data!.length,
-                    itemBuilder: (context, index) =>
-                        ChatMessageWidget(snapshot.data![index]),
-                  );
-                } else {
-                  return const Center(
-                    child: CircularProgressIndicator.adaptive(),
-                  );
-                }
+            child: BlocBuilder<ChatBloc, ChatState>(
+              builder: (context, state) {
+                return ListView.builder(
+                  reverse: true,
+                  itemCount: state.messages.length,
+                  itemBuilder: (context, index) =>
+                      ChatMessageWidget(state.messages.elementAt(index)),
+                );
               },
             ),
           ),
@@ -93,20 +83,20 @@ class _ChatScreenState extends State<ChatScreen> {
                   onPressed: () => _onSendLocation(),
                 ),
                 Expanded(
-                  child: TextFormField(
+                  child: TextField(
                     decoration: const InputDecoration(labelText: 'Сообщение'),
                     controller: _messageController,
+                    focusNode: _messageFocusNode,
+                    onSubmitted: (_) => _onSendMessage(context),
                   ),
                 ),
-                _isSendInProgress
-                    ? const CircularProgressIndicator.adaptive()
-                    : IconButton(
-                        icon: Icon(
-                          Icons.send,
-                          color: Theme.of(context).primaryColor,
-                        ),
-                        onPressed: () => _onSendMessage(),
-                      ),
+                IconButton(
+                  icon: Icon(
+                    Icons.send,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                  onPressed: () => _onSendMessage(context),
+                ),
               ],
             ),
           ),
@@ -115,25 +105,9 @@ class _ChatScreenState extends State<ChatScreen> {
     );
   }
 
-  Future<List<MessageDto>>? _getMessages() {
-    try {
-      return widget.chatRepository.messages;
-    } catch (e) {
-      final snackBar = SnackBar(content: Text('$e'));
-      ScaffoldMessenger.of(context).showSnackBar(snackBar);
-    }
+  void _onSendMessage(BuildContext context) {
+    final nickname = _nicknameController.text;
 
-    return null;
-  }
-
-  void _onRefresh() {
-    setState(
-      () => _messages = _getMessages(),
-    );
-  }
-
-  void _onSendMessage() {
-    final nickname = context.read<SettingsBloc>().state.settings.nickname;
     if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
       ScaffoldMessenger.of(context).showSnackBar(snackBar);
@@ -148,27 +122,21 @@ class _ChatScreenState extends State<ChatScreen> {
       return;
     }
 
-    setState(() {
-      _isSendInProgress = true;
+    context.read<ChatBloc>().add(
+          ChatEvent.sendMessage(
+            nickname: nickname,
+            text: _messageController.text,
+          ),
+        );
 
-      _messages = widget.chatRepository.sendMessage(
-        nickname,
-        _messageController.text,
-      );
+    _messageController.text = '';
 
-      _isSendInProgress = false;
-
-      _messageController.text = '';
-    });
+    //FIXME: flutter web: textfield not focusing after submit
+    //bug in flutter https://github.com/flutter/flutter/issues/95553
+    _messageFocusNode.requestFocus();
   }
 
-  void _onSendLocation() {
-    _showAlertDialog();
-  }
-
-  Future<void> _showAlertDialog() async {
-    final nickname = context.read<SettingsBloc>().state.settings.nickname;
-
+  Future<void> _onSendLocation() async {
     return showDialog<void>(
       context: context,
       barrierDismissible: false,
@@ -185,12 +153,15 @@ class _ChatScreenState extends State<ChatScreen> {
             TextButton(
               child: const Text('Отправить'),
               onPressed: () async {
+                final nickname = _nicknameController.text;
                 final locationData = await _getLocationData();
                 if (locationData != null) {
-                  widget.chatRepository.sendGeolocationMessage(
-                    nickname: nickname,
-                    location: locationData,
-                  );
+                  context.read<ChatBloc>().add(
+                        ChatEvent.sendLocation(
+                          nickname: nickname,
+                          location: locationData,
+                        ),
+                      );
                 }
 
                 Navigator.of(context).pop();

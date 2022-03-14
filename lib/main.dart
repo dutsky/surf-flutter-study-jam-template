@@ -1,14 +1,12 @@
 import 'dart:async';
 
 import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import 'app_bloc_observer.dart';
 import 'chat/chat_screen.dart';
-import 'chat/data/repository/firebase.dart';
 import 'firebase_options.dart';
 import 'logger.dart';
 import 'settings/bloc/settings_bloc.dart';
@@ -41,23 +39,19 @@ class InitScope extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
     final settingsRepository = SharedPreferencesSettingsRepository();
 
     return BlocProvider(
       create: (_) => SettingsBloc(settingsRepository: settingsRepository)
         ..add(const SettingsEvent.load()),
-      child: MyApp(chatRepository: chatRepository),
+      child: const MyApp(),
     );
   }
 }
 
 class MyApp extends StatelessWidget {
-  final ChatRepositoryFirebase chatRepository;
-
   const MyApp({
     Key? key,
-    required this.chatRepository,
   }) : super(key: key);
 
   @override
@@ -72,7 +66,7 @@ class MyApp extends StatelessWidget {
           darkTheme: ThemeData.dark(),
           themeMode: state.settings.themeMode,
           routes: {
-            '/': ((context) => ChatScreen(chatRepository: chatRepository)),
+            '/': ((context) => const ChatScope()),
             '/settings': ((context) => const SettingsScreen()),
           },
         );

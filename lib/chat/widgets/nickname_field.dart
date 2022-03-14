@@ -4,23 +4,22 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../settings/bloc/settings_bloc.dart';
 
 class NicknameField extends StatefulWidget {
-  const NicknameField({Key? key}) : super(key: key);
+  final TextEditingController nicknameController;
+
+  const NicknameField({
+    required this.nicknameController,
+    Key? key,
+  }) : super(key: key);
 
   @override
   State<NicknameField> createState() => _NicknameFieldState();
 }
 
 class _NicknameFieldState extends State<NicknameField> {
-  final nicknameController = TextEditingController();
-
-  @override
-  void dispose() {
-    nicknameController.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
+    final nicknameController = widget.nicknameController;
+
     return BlocListener<SettingsBloc, SettingsState>(
       listener: (context, state) {
         nicknameController.text = state.settings.nickname;

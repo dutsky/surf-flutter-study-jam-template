@@ -22,7 +22,8 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    final time = timeFormat.format(widget.messageDto.createdDateTime);
+    final created = widget.messageDto.createdDateTime;
+    final time = created != DateTime(0) ? timeFormat.format(created) : '';
 
     return widget.messageDto.map(
       basic: (_) => ChatMessageTile(
