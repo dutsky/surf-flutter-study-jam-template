@@ -18,12 +18,21 @@ class ChatMessageWidget extends StatefulWidget {
 }
 
 class _ChatMessageWidgetState extends State<ChatMessageWidget> {
-  final timeFormat = DateFormat('HH:mm');
+  final timeFormatToday = DateFormat('HH:mm');
+  final timeFormatEarlier = DateFormat('MMM dd, HH:mm');
+  final now = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
     final created = widget.messageDto.createdDateTime;
-    final time = created != DateTime(0) ? timeFormat.format(created) : '';
+    final String time;
+    if (created == DateTime(0)) {
+      time = '';
+    } else if (created.day == now.day) {
+      time = timeFormatToday.format(created);
+    } else {
+      time = timeFormatEarlier.format(created);
+    }
 
     return widget.messageDto.map(
       basic: (_) => ChatMessageTile(

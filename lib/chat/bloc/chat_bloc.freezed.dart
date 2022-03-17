@@ -24,6 +24,10 @@ class _$ChatEventTearOff {
     );
   }
 
+  _LoadPreviousPageEvent loadPreviousPage() {
+    return const _LoadPreviousPageEvent();
+  }
+
   _SendMessageEvent sendMessage(
       {required String nickname, required String text}) {
     return _SendMessageEvent(
@@ -49,6 +53,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -57,6 +62,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) =>
@@ -64,6 +70,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -72,6 +79,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) =>
@@ -79,6 +87,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) =>
@@ -86,6 +95,7 @@ mixin _$ChatEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -173,6 +183,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -184,6 +195,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -194,6 +206,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -208,6 +221,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -218,6 +232,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -228,6 +243,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -247,6 +263,124 @@ abstract class _NewMessageEvent implements ChatEvent {
   @JsonKey(ignore: true)
   _$NewMessageEventCopyWith<_NewMessageEvent> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class _$LoadPreviousPageEventCopyWith<$Res> {
+  factory _$LoadPreviousPageEventCopyWith(_LoadPreviousPageEvent value,
+          $Res Function(_LoadPreviousPageEvent) then) =
+      __$LoadPreviousPageEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$LoadPreviousPageEventCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res>
+    implements _$LoadPreviousPageEventCopyWith<$Res> {
+  __$LoadPreviousPageEventCopyWithImpl(_LoadPreviousPageEvent _value,
+      $Res Function(_LoadPreviousPageEvent) _then)
+      : super(_value, (v) => _then(v as _LoadPreviousPageEvent));
+
+  @override
+  _LoadPreviousPageEvent get _value => super._value as _LoadPreviousPageEvent;
+}
+
+/// @nodoc
+
+class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
+  const _$_LoadPreviousPageEvent();
+
+  @override
+  String toString() {
+    return 'ChatEvent.loadPreviousPage()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _LoadPreviousPageEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
+  }) {
+    return loadPreviousPage();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+  }) {
+    return loadPreviousPage?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (loadPreviousPage != null) {
+      return loadPreviousPage();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_SendMessageEvent value) sendMessage,
+    required TResult Function(_SendLocationEvent value) sendLocation,
+  }) {
+    return loadPreviousPage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+  }) {
+    return loadPreviousPage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (loadPreviousPage != null) {
+      return loadPreviousPage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _LoadPreviousPageEvent implements ChatEvent {
+  const factory _LoadPreviousPageEvent() = _$_LoadPreviousPageEvent;
 }
 
 /// @nodoc
@@ -325,6 +459,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -336,6 +471,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -346,6 +482,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -360,6 +497,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -370,6 +508,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -380,6 +519,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -487,6 +627,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -498,6 +639,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -508,6 +650,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -522,6 +665,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -532,6 +676,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -542,6 +687,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),

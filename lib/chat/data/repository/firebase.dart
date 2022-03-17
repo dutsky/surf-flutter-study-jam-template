@@ -11,18 +11,34 @@ class ChatRepositoryFirebase implements ChatRepository {
   static const int _messagesLimit = 20;
 
   final FirebaseFirestore _firebaseClient;
+  final Query<Map<String, Object?>> _query;
 
-  ChatRepositoryFirebase(this._firebaseClient);
+  ChatRepositoryFirebase(this._firebaseClient)
+      : _query = _firebaseClient
+            .collection(_messagesCollectionKey)
+            .orderBy('created', descending: true)
+            .limit(_messagesLimit);
 
   var _savedLocalName = '';
+  late DocumentSnapshot<Map<String, Object?>> _oldest;
 
   @override
-  Stream<Iterable<MessageDto>> get messages => _firebaseClient
-      .collection(_messagesCollectionKey)
-      .orderBy('created', descending: true)
-      .limit(_messagesLimit)
-      .snapshots()
-      .map((snapshot) => _mapToMessage(snapshot));
+  Stream<Iterable<MessageDto>> get messages =>
+      _query.snapshots().map(_mapToMessage);
+
+  @override
+  Stream<Iterable<MessageDto>> get previousPage =>
+      _query.startAfterDocument(_oldest).snapshots().map(_mapToMessage);
+
+  Iterable<MessageDto> _mapToMessage(
+    QuerySnapshot<Map<String, Object?>> snapshot,
+  ) {
+    _oldest = snapshot.docs.last;
+
+    return snapshot.docs.map(
+      (doc) => _parseFirebaseDataToLocal(doc),
+    );
+  }
 
   @override
   void sendMessage(
@@ -90,11 +106,6 @@ class ChatRepositoryFirebase implements ChatRepository {
       );
     }
   }
-
-  Iterable<MessageDto> _mapToMessage(
-    QuerySnapshot<Map<String, Object?>> snapshot,
-  ) =>
-      snapshot.docs.map((doc) => _parseFirebaseDataToLocal(doc));
 
   MessageDto _parseFirebaseDataToLocal(
     QueryDocumentSnapshot<Map<String, Object?>> document,
