@@ -17,11 +17,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ChatBloc({required ChatRepository chatRepository})
       : _chatRepository = chatRepository,
         super(const ChatState.initial()) {
-    _messages = _chatRepository.messages
-        .listen((messages) => add(ChatEvent.newMessages(messages)));
-
     on<ChatEvent>(
       (event, emit) => event.map(
+        start: (event) => _onStart(event, emit),
         newMessages: (event) => _onNewMessages(event, emit),
         loadPreviousPage: (event) => _onLoadPreviousPage(event, emit),
         sendMessage: (event) => _onSendMessage(event, emit),
@@ -29,6 +27,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       ),
       transformer: bloc_concurrency.droppable(),
     );
+  }
+
+  void _onStart(_StartEvent event, Emitter<ChatState> emit) {
+    emit(ChatState.inProgress(state.messages));
+    _messages = _chatRepository.messages
+        .listen((messages) => add(ChatEvent.newMessages(messages)));
   }
 
   void _onNewMessages(_NewMessageEvent event, Emitter<ChatState> emit) {
@@ -71,6 +75,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
 @freezed
 class ChatEvent with _$ChatEvent {
+  const factory ChatEvent.start() = _StartEvent;
+
   const factory ChatEvent.newMessages(
     Iterable<MessageDto> messages,
   ) = _NewMessageEvent;

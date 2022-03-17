@@ -20,7 +20,8 @@ class ChatScope extends StatelessWidget {
     final chatRepository = ChatRepositoryFirebase(FirebaseFirestore.instance);
 
     return BlocProvider(
-      create: (context) => ChatBloc(chatRepository: chatRepository),
+      create: (context) => ChatBloc(chatRepository: chatRepository)
+        ..add(const ChatEvent.start()),
       child: const ChatScreen(),
     );
   }
@@ -70,15 +71,17 @@ class _ChatScreenState extends State<ChatScreen> {
         children: [
           Expanded(
             child: BlocBuilder<ChatBloc, ChatState>(
-              builder: (context, state) {
-                return ListView.builder(
+              builder: (context, state) => state.maybeMap(
+                inProgress: (_) =>
+                    const Center(child: CircularProgressIndicator.adaptive()),
+                orElse: () => ListView.builder(
                   reverse: true,
                   controller: _chatScrollController,
                   itemCount: state.messages.length,
                   itemBuilder: (context, index) =>
                       ChatMessageWidget(state.messages.elementAt(index)),
-                );
-              },
+                ),
+              ),
             ),
           ),
           Material(
