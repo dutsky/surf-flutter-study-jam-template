@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:bloc_concurrency/bloc_concurrency.dart' as bloc_concurrency;
 import 'package:freezed_annotation/freezed_annotation.dart';
 import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
 import 'package:surf_practice_chat_flutter/chat/data/repository/repository.dart';
@@ -19,16 +20,32 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     _messages = _chatRepository.messages
         .listen((messages) => add(ChatEvent.newMessages(messages)));
 
-    on<ChatEvent>((event, emit) => event.map(
-          newMessages: (event) => _onNewMessages(event, emit),
-          sendMessage: (event) => _onSendMessage(event, emit),
-          sendLocation: (event) => _onSendLocation(event, emit),
-        ));
+    on<ChatEvent>(
+      (event, emit) => event.map(
+        newMessages: (event) => _onNewMessages(event, emit),
+        loadPreviousPage: (event) => _onLoadPreviousPage(event, emit),
+        sendMessage: (event) => _onSendMessage(event, emit),
+        sendLocation: (event) => _onSendLocation(event, emit),
+      ),
+      transformer: bloc_concurrency.droppable(),
+    );
   }
 
   void _onNewMessages(_NewMessageEvent event, Emitter<ChatState> emit) {
     emit(ChatState.success(event.messages));
   }
+
+  void _onLoadPreviousPage(
+    _LoadPreviousPageEvent event,
+    Emitter<ChatState> emit,
+  ) {
+    _messages?.cancel();
+    _messages = _chatRepository.previousPage.listen(_concatMessages);
+  }
+
+  void _concatMessages(Iterable<MessageDto> messages) => add(
+        ChatEvent.newMessages(state.messages.followedBy(messages)),
+      );
 
   void _onSendMessage(_SendMessageEvent event, Emitter<ChatState> emit) {
     _chatRepository.sendMessage(
@@ -57,6 +74,8 @@ class ChatEvent with _$ChatEvent {
   const factory ChatEvent.newMessages(
     Iterable<MessageDto> messages,
   ) = _NewMessageEvent;
+
+  const factory ChatEvent.loadPreviousPage() = _LoadPreviousPageEvent;
 
   const factory ChatEvent.sendMessage({
     required String nickname,

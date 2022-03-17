@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -32,12 +34,20 @@ class ChatScreen extends StatefulWidget {
 }
 
 class _ChatScreenState extends State<ChatScreen> {
+  final _chatScrollController = ScrollController();
   final _nicknameController = TextEditingController();
   final _messageController = TextEditingController();
   final _messageFocusNode = FocusNode();
 
   @override
+  void initState() {
+    super.initState();
+    _chatScrollController.addListener(_loadMoreMessages);
+  }
+
+  @override
   void dispose() {
+    _chatScrollController.dispose();
     _nicknameController.dispose();
     _messageController.dispose();
     _messageFocusNode.dispose();
@@ -63,6 +73,7 @@ class _ChatScreenState extends State<ChatScreen> {
               builder: (context, state) {
                 return ListView.builder(
                   reverse: true,
+                  controller: _chatScrollController,
                   itemCount: state.messages.length,
                   itemBuilder: (context, index) =>
                       ChatMessageWidget(state.messages.elementAt(index)),
@@ -202,4 +213,10 @@ class _ChatScreenState extends State<ChatScreen> {
 
   void _onSettings() =>
       Navigator.of(context).pushNamed(SettingsScreen.routeName);
+
+  void _loadMoreMessages() {
+    if (_chatScrollController.position.extentAfter == 0) {
+      context.read<ChatBloc>().add(const ChatEvent.loadPreviousPage());
+    }
+  }
 }
