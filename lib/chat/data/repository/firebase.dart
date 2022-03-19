@@ -33,6 +33,8 @@ class ChatRepositoryFirebase implements ChatRepository {
   Iterable<MessageDto> _mapToMessage(
     QuerySnapshot<Map<String, Object?>> snapshot,
   ) {
+    if (snapshot.docs.isEmpty) return [];
+
     _oldest = snapshot.docs.last;
 
     return snapshot.docs.map(

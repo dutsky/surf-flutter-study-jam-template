@@ -18,6 +18,10 @@ final _privateConstructorUsedError = UnsupportedError(
 class _$ChatEventTearOff {
   const _$ChatEventTearOff();
 
+  _StartEvent start() {
+    return const _StartEvent();
+  }
+
   _NewMessageEvent newMessages(Iterable<MessageDto> messages) {
     return _NewMessageEvent(
       messages,
@@ -26,6 +30,10 @@ class _$ChatEventTearOff {
 
   _LoadPreviousPageEvent loadPreviousPage() {
     return const _LoadPreviousPageEvent();
+  }
+
+  _NoMoreMessagesEvent noMoreMessages() {
+    return const _NoMoreMessagesEvent();
   }
 
   _SendMessageEvent sendMessage(
@@ -52,8 +60,10 @@ const $ChatEvent = _$ChatEventTearOff();
 mixin _$ChatEvent {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() start,
     required TResult Function(Iterable<MessageDto> messages) newMessages,
     required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -61,16 +71,20 @@ mixin _$ChatEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -78,24 +92,30 @@ mixin _$ChatEvent {
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
     required TResult Function(_NewMessageEvent value) newMessages,
     required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -116,6 +136,135 @@ class _$ChatEventCopyWithImpl<$Res> implements $ChatEventCopyWith<$Res> {
   final ChatEvent _value;
   // ignore: unused_field
   final $Res Function(ChatEvent) _then;
+}
+
+/// @nodoc
+abstract class _$StartEventCopyWith<$Res> {
+  factory _$StartEventCopyWith(
+          _StartEvent value, $Res Function(_StartEvent) then) =
+      __$StartEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$StartEventCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
+    implements _$StartEventCopyWith<$Res> {
+  __$StartEventCopyWithImpl(
+      _StartEvent _value, $Res Function(_StartEvent) _then)
+      : super(_value, (v) => _then(v as _StartEvent));
+
+  @override
+  _StartEvent get _value => super._value as _StartEvent;
+}
+
+/// @nodoc
+
+class _$_StartEvent implements _StartEvent {
+  const _$_StartEvent();
+
+  @override
+  String toString() {
+    return 'ChatEvent.start()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _StartEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
+  }) {
+    return start();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+  }) {
+    return start?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
+    required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
+    required TResult Function(_SendMessageEvent value) sendMessage,
+    required TResult Function(_SendLocationEvent value) sendLocation,
+  }) {
+    return start(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+  }) {
+    return start?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (start != null) {
+      return start(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _StartEvent implements ChatEvent {
+  const factory _StartEvent() = _$_StartEvent;
 }
 
 /// @nodoc
@@ -182,8 +331,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() start,
     required TResult Function(Iterable<MessageDto> messages) newMessages,
     required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -194,8 +345,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -205,8 +358,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -220,8 +375,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
     required TResult Function(_NewMessageEvent value) newMessages,
     required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -231,8 +388,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -242,8 +401,10 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -306,8 +467,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() start,
     required TResult Function(Iterable<MessageDto> messages) newMessages,
     required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -318,8 +481,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -329,8 +494,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -344,8 +511,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
     required TResult Function(_NewMessageEvent value) newMessages,
     required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -355,8 +524,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -366,8 +537,10 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -381,6 +554,136 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
 
 abstract class _LoadPreviousPageEvent implements ChatEvent {
   const factory _LoadPreviousPageEvent() = _$_LoadPreviousPageEvent;
+}
+
+/// @nodoc
+abstract class _$NoMoreMessagesEventCopyWith<$Res> {
+  factory _$NoMoreMessagesEventCopyWith(_NoMoreMessagesEvent value,
+          $Res Function(_NoMoreMessagesEvent) then) =
+      __$NoMoreMessagesEventCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class __$NoMoreMessagesEventCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res>
+    implements _$NoMoreMessagesEventCopyWith<$Res> {
+  __$NoMoreMessagesEventCopyWithImpl(
+      _NoMoreMessagesEvent _value, $Res Function(_NoMoreMessagesEvent) _then)
+      : super(_value, (v) => _then(v as _NoMoreMessagesEvent));
+
+  @override
+  _NoMoreMessagesEvent get _value => super._value as _NoMoreMessagesEvent;
+}
+
+/// @nodoc
+
+class _$_NoMoreMessagesEvent implements _NoMoreMessagesEvent {
+  const _$_NoMoreMessagesEvent();
+
+  @override
+  String toString() {
+    return 'ChatEvent.noMoreMessages()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is _NoMoreMessagesEvent);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() start,
+    required TResult Function(Iterable<MessageDto> messages) newMessages,
+    required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
+    required TResult Function(String nickname, String text) sendMessage,
+    required TResult Function(String nickname, GeolocationDto location)
+        sendLocation,
+  }) {
+    return noMoreMessages();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+  }) {
+    return noMoreMessages?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
+    TResult Function(Iterable<MessageDto> messages)? newMessages,
+    TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
+    TResult Function(String nickname, String text)? sendMessage,
+    TResult Function(String nickname, GeolocationDto location)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (noMoreMessages != null) {
+      return noMoreMessages();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
+    required TResult Function(_NewMessageEvent value) newMessages,
+    required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
+    required TResult Function(_SendMessageEvent value) sendMessage,
+    required TResult Function(_SendLocationEvent value) sendLocation,
+  }) {
+    return noMoreMessages(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+  }) {
+    return noMoreMessages?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
+    TResult Function(_NewMessageEvent value)? newMessages,
+    TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
+    TResult Function(_SendMessageEvent value)? sendMessage,
+    TResult Function(_SendLocationEvent value)? sendLocation,
+    required TResult orElse(),
+  }) {
+    if (noMoreMessages != null) {
+      return noMoreMessages(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class _NoMoreMessagesEvent implements ChatEvent {
+  const factory _NoMoreMessagesEvent() = _$_NoMoreMessagesEvent;
 }
 
 /// @nodoc
@@ -458,8 +761,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() start,
     required TResult Function(Iterable<MessageDto> messages) newMessages,
     required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -470,8 +775,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -481,8 +788,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -496,8 +805,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
     required TResult Function(_NewMessageEvent value) newMessages,
     required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -507,8 +818,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -518,8 +831,10 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -626,8 +941,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
+    required TResult Function() start,
     required TResult Function(Iterable<MessageDto> messages) newMessages,
     required TResult Function() loadPreviousPage,
+    required TResult Function() noMoreMessages,
     required TResult Function(String nickname, String text) sendMessage,
     required TResult Function(String nickname, GeolocationDto location)
         sendLocation,
@@ -638,8 +955,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
   }) {
@@ -649,8 +968,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? start,
     TResult Function(Iterable<MessageDto> messages)? newMessages,
     TResult Function()? loadPreviousPage,
+    TResult Function()? noMoreMessages,
     TResult Function(String nickname, String text)? sendMessage,
     TResult Function(String nickname, GeolocationDto location)? sendLocation,
     required TResult orElse(),
@@ -664,8 +985,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
+    required TResult Function(_StartEvent value) start,
     required TResult Function(_NewMessageEvent value) newMessages,
     required TResult Function(_LoadPreviousPageEvent value) loadPreviousPage,
+    required TResult Function(_NoMoreMessagesEvent value) noMoreMessages,
     required TResult Function(_SendMessageEvent value) sendMessage,
     required TResult Function(_SendLocationEvent value) sendLocation,
   }) {
@@ -675,8 +998,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
   }) {
@@ -686,8 +1011,10 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
+    TResult Function(_StartEvent value)? start,
     TResult Function(_NewMessageEvent value)? newMessages,
     TResult Function(_LoadPreviousPageEvent value)? loadPreviousPage,
+    TResult Function(_NoMoreMessagesEvent value)? noMoreMessages,
     TResult Function(_SendMessageEvent value)? sendMessage,
     TResult Function(_SendLocationEvent value)? sendLocation,
     required TResult orElse(),
@@ -716,21 +1043,27 @@ class _$ChatStateTearOff {
   const _$ChatStateTearOff();
 
   _InitialState initial(
-      {Iterable<MessageDto> messages = const <MessageDto>[]}) {
+      {Iterable<MessageDto> messages = const <MessageDto>[],
+      bool hasReachedEnd = false}) {
     return _InitialState(
       messages: messages,
+      hasReachedEnd: hasReachedEnd,
     );
   }
 
-  _InProgressState inProgress(Iterable<MessageDto> messages) {
+  _InProgressState inProgress(
+      {required Iterable<MessageDto> messages, bool hasReachedEnd = false}) {
     return _InProgressState(
-      messages,
+      messages: messages,
+      hasReachedEnd: hasReachedEnd,
     );
   }
 
-  _SuccessState success(Iterable<MessageDto> messages) {
+  _SuccessState success(
+      {required Iterable<MessageDto> messages, required bool hasReachedEnd}) {
     return _SuccessState(
-      messages,
+      messages: messages,
+      hasReachedEnd: hasReachedEnd,
     );
   }
 }
@@ -741,26 +1074,36 @@ const $ChatState = _$ChatStateTearOff();
 /// @nodoc
 mixin _$ChatState {
   Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
 
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Iterable<MessageDto> messages) initial,
-    required TResult Function(Iterable<MessageDto> messages) inProgress,
-    required TResult Function(Iterable<MessageDto> messages) success,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        initial,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        inProgress,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -796,7 +1139,7 @@ mixin _$ChatState {
 abstract class $ChatStateCopyWith<$Res> {
   factory $ChatStateCopyWith(ChatState value, $Res Function(ChatState) then) =
       _$ChatStateCopyWithImpl<$Res>;
-  $Res call({Iterable<MessageDto> messages});
+  $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -810,12 +1153,17 @@ class _$ChatStateCopyWithImpl<$Res> implements $ChatStateCopyWith<$Res> {
   @override
   $Res call({
     Object? messages = freezed,
+    Object? hasReachedEnd = freezed,
   }) {
     return _then(_value.copyWith(
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as Iterable<MessageDto>,
+      hasReachedEnd: hasReachedEnd == freezed
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -827,7 +1175,7 @@ abstract class _$InitialStateCopyWith<$Res>
           _InitialState value, $Res Function(_InitialState) then) =
       __$InitialStateCopyWithImpl<$Res>;
   @override
-  $Res call({Iterable<MessageDto> messages});
+  $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -843,12 +1191,17 @@ class __$InitialStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? messages = freezed,
+    Object? hasReachedEnd = freezed,
   }) {
     return _then(_InitialState(
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as Iterable<MessageDto>,
+      hasReachedEnd: hasReachedEnd == freezed
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -856,15 +1209,19 @@ class __$InitialStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_InitialState implements _InitialState {
-  const _$_InitialState({this.messages = const <MessageDto>[]});
+  const _$_InitialState(
+      {this.messages = const <MessageDto>[], this.hasReachedEnd = false});
 
   @JsonKey()
   @override
   final Iterable<MessageDto> messages;
+  @JsonKey()
+  @override
+  final bool hasReachedEnd;
 
   @override
   String toString() {
-    return 'ChatState.initial(messages: $messages)';
+    return 'ChatState.initial(messages: $messages, hasReachedEnd: $hasReachedEnd)';
   }
 
   @override
@@ -872,12 +1229,16 @@ class _$_InitialState implements _InitialState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _InitialState &&
-            const DeepCollectionEquality().equals(other.messages, messages));
+            const DeepCollectionEquality().equals(other.messages, messages) &&
+            const DeepCollectionEquality()
+                .equals(other.hasReachedEnd, hasReachedEnd));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(messages));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(messages),
+      const DeepCollectionEquality().hash(hasReachedEnd));
 
   @JsonKey(ignore: true)
   @override
@@ -887,33 +1248,42 @@ class _$_InitialState implements _InitialState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Iterable<MessageDto> messages) initial,
-    required TResult Function(Iterable<MessageDto> messages) inProgress,
-    required TResult Function(Iterable<MessageDto> messages) success,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        initial,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        inProgress,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        success,
   }) {
-    return initial(messages);
+    return initial(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
   }) {
-    return initial?.call(messages);
+    return initial?.call(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
     required TResult orElse(),
   }) {
     if (initial != null) {
-      return initial(messages);
+      return initial(messages, hasReachedEnd);
     }
     return orElse();
   }
@@ -954,11 +1324,13 @@ class _$_InitialState implements _InitialState {
 }
 
 abstract class _InitialState implements ChatState {
-  const factory _InitialState({Iterable<MessageDto> messages}) =
-      _$_InitialState;
+  const factory _InitialState(
+      {Iterable<MessageDto> messages, bool hasReachedEnd}) = _$_InitialState;
 
   @override
   Iterable<MessageDto> get messages;
+  @override
+  bool get hasReachedEnd;
   @override
   @JsonKey(ignore: true)
   _$InitialStateCopyWith<_InitialState> get copyWith =>
@@ -972,7 +1344,7 @@ abstract class _$InProgressStateCopyWith<$Res>
           _InProgressState value, $Res Function(_InProgressState) then) =
       __$InProgressStateCopyWithImpl<$Res>;
   @override
-  $Res call({Iterable<MessageDto> messages});
+  $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -988,12 +1360,17 @@ class __$InProgressStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? messages = freezed,
+    Object? hasReachedEnd = freezed,
   }) {
     return _then(_InProgressState(
-      messages == freezed
+      messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as Iterable<MessageDto>,
+      hasReachedEnd: hasReachedEnd == freezed
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1001,14 +1378,18 @@ class __$InProgressStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_InProgressState implements _InProgressState {
-  const _$_InProgressState(this.messages);
+  const _$_InProgressState(
+      {required this.messages, this.hasReachedEnd = false});
 
   @override
   final Iterable<MessageDto> messages;
+  @JsonKey()
+  @override
+  final bool hasReachedEnd;
 
   @override
   String toString() {
-    return 'ChatState.inProgress(messages: $messages)';
+    return 'ChatState.inProgress(messages: $messages, hasReachedEnd: $hasReachedEnd)';
   }
 
   @override
@@ -1016,12 +1397,16 @@ class _$_InProgressState implements _InProgressState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _InProgressState &&
-            const DeepCollectionEquality().equals(other.messages, messages));
+            const DeepCollectionEquality().equals(other.messages, messages) &&
+            const DeepCollectionEquality()
+                .equals(other.hasReachedEnd, hasReachedEnd));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(messages));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(messages),
+      const DeepCollectionEquality().hash(hasReachedEnd));
 
   @JsonKey(ignore: true)
   @override
@@ -1031,33 +1416,42 @@ class _$_InProgressState implements _InProgressState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Iterable<MessageDto> messages) initial,
-    required TResult Function(Iterable<MessageDto> messages) inProgress,
-    required TResult Function(Iterable<MessageDto> messages) success,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        initial,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        inProgress,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        success,
   }) {
-    return inProgress(messages);
+    return inProgress(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
   }) {
-    return inProgress?.call(messages);
+    return inProgress?.call(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
     required TResult orElse(),
   }) {
     if (inProgress != null) {
-      return inProgress(messages);
+      return inProgress(messages, hasReachedEnd);
     }
     return orElse();
   }
@@ -1098,11 +1492,14 @@ class _$_InProgressState implements _InProgressState {
 }
 
 abstract class _InProgressState implements ChatState {
-  const factory _InProgressState(Iterable<MessageDto> messages) =
-      _$_InProgressState;
+  const factory _InProgressState(
+      {required Iterable<MessageDto> messages,
+      bool hasReachedEnd}) = _$_InProgressState;
 
   @override
   Iterable<MessageDto> get messages;
+  @override
+  bool get hasReachedEnd;
   @override
   @JsonKey(ignore: true)
   _$InProgressStateCopyWith<_InProgressState> get copyWith =>
@@ -1116,7 +1513,7 @@ abstract class _$SuccessStateCopyWith<$Res>
           _SuccessState value, $Res Function(_SuccessState) then) =
       __$SuccessStateCopyWithImpl<$Res>;
   @override
-  $Res call({Iterable<MessageDto> messages});
+  $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
@@ -1132,12 +1529,17 @@ class __$SuccessStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? messages = freezed,
+    Object? hasReachedEnd = freezed,
   }) {
     return _then(_SuccessState(
-      messages == freezed
+      messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
               as Iterable<MessageDto>,
+      hasReachedEnd: hasReachedEnd == freezed
+          ? _value.hasReachedEnd
+          : hasReachedEnd // ignore: cast_nullable_to_non_nullable
+              as bool,
     ));
   }
 }
@@ -1145,14 +1547,16 @@ class __$SuccessStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
 /// @nodoc
 
 class _$_SuccessState implements _SuccessState {
-  const _$_SuccessState(this.messages);
+  const _$_SuccessState({required this.messages, required this.hasReachedEnd});
 
   @override
   final Iterable<MessageDto> messages;
+  @override
+  final bool hasReachedEnd;
 
   @override
   String toString() {
-    return 'ChatState.success(messages: $messages)';
+    return 'ChatState.success(messages: $messages, hasReachedEnd: $hasReachedEnd)';
   }
 
   @override
@@ -1160,12 +1564,16 @@ class _$_SuccessState implements _SuccessState {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
             other is _SuccessState &&
-            const DeepCollectionEquality().equals(other.messages, messages));
+            const DeepCollectionEquality().equals(other.messages, messages) &&
+            const DeepCollectionEquality()
+                .equals(other.hasReachedEnd, hasReachedEnd));
   }
 
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(messages));
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(messages),
+      const DeepCollectionEquality().hash(hasReachedEnd));
 
   @JsonKey(ignore: true)
   @override
@@ -1175,33 +1583,42 @@ class _$_SuccessState implements _SuccessState {
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
-    required TResult Function(Iterable<MessageDto> messages) initial,
-    required TResult Function(Iterable<MessageDto> messages) inProgress,
-    required TResult Function(Iterable<MessageDto> messages) success,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        initial,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        inProgress,
+    required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
+        success,
   }) {
-    return success(messages);
+    return success(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
   }) {
-    return success?.call(messages);
+    return success?.call(messages, hasReachedEnd);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
-    TResult Function(Iterable<MessageDto> messages)? initial,
-    TResult Function(Iterable<MessageDto> messages)? inProgress,
-    TResult Function(Iterable<MessageDto> messages)? success,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        initial,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        inProgress,
+    TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)?
+        success,
     required TResult orElse(),
   }) {
     if (success != null) {
-      return success(messages);
+      return success(messages, hasReachedEnd);
     }
     return orElse();
   }
@@ -1242,10 +1659,14 @@ class _$_SuccessState implements _SuccessState {
 }
 
 abstract class _SuccessState implements ChatState {
-  const factory _SuccessState(Iterable<MessageDto> messages) = _$_SuccessState;
+  const factory _SuccessState(
+      {required Iterable<MessageDto> messages,
+      required bool hasReachedEnd}) = _$_SuccessState;
 
   @override
   Iterable<MessageDto> get messages;
+  @override
+  bool get hasReachedEnd;
   @override
   @JsonKey(ignore: true)
   _$SuccessStateCopyWith<_SuccessState> get copyWith =>

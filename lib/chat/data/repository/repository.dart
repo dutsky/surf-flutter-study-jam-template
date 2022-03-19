@@ -17,7 +17,7 @@ abstract class ChatRepository {
   /// Throws an [Exception] when some error appears.
   Stream<Iterable<MessageDto>> get messages;
 
-  /// Returns stream with previous page of [MessageDto] from a source.
+  /// Returns stream with previous page of messages [MessageDto] from a source.
   Stream<Iterable<MessageDto>> get previousPage;
 
   /// Sends the message by [nickname] and [message] contents.
