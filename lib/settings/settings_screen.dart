@@ -1,7 +1,7 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import 'bloc/settings_bloc.dart';
+import 'settings_wm.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = '/settings';
@@ -34,32 +34,28 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class AppThemes extends StatelessWidget {
+class AppThemes extends ElementaryWidget<ISettingsWidgetModel> {
   const AppThemes({
     Key? key,
-  }) : super(key: key);
+    WidgetModelFactory wmFactory = settingsWidgetModelFactory,
+  }) : super(wmFactory, key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (BuildContext context, SettingsState state) {
-        return DropdownButton<ThemeMode>(
-          value: state.settings.themeMode,
-          items: ThemeMode.values
-              .map<DropdownMenuItem<ThemeMode>>((value) => DropdownMenuItem(
-                    value: value,
-                    child: Text(value.name),
-                  ))
-              .toList(),
-          onChanged: (themeMode) {
-            if (themeMode == null) return;
-
-            context
-                .read<SettingsBloc>()
-                .add(SettingsEvent.setThemeMode(themeMode));
-          },
-        );
-      },
+  Widget build(ISettingsWidgetModel wm) {
+    return StateNotifierBuilder<ThemeMode>(
+      listenableState: wm.currentTheme,
+      builder: ((context, theme) => DropdownButton<ThemeMode>(
+            value: theme,
+            items: ThemeMode.values
+                .map<DropdownMenuItem<ThemeMode>>(
+                  (theme) => DropdownMenuItem(
+                    value: theme,
+                    child: Text(theme.name),
+                  ),
+                )
+                .toList(),
+            onChanged: wm.onThemeChange,
+          )),
     );
   }
 }
