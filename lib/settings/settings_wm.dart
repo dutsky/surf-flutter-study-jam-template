@@ -21,7 +21,7 @@ SettingsWidgetModel settingsWidgetModelFactory(BuildContext context) {
 
 class SettingsWidgetModel extends WidgetModel<AppThemes, SettingsModel>
     implements ISettingsWidgetModel {
-  final _themeState = StateNotifier<ThemeMode>();
+  late StateNotifier<ThemeMode> _themeState;
 
   SettingsWidgetModel(SettingsModel model) : super(model);
 
@@ -31,4 +31,16 @@ class SettingsWidgetModel extends WidgetModel<AppThemes, SettingsModel>
   @override
   void onThemeChange(ThemeMode? theme) =>
       _themeState.accept(model.theme = theme ?? ThemeMode.light);
+
+  @override
+  void initWidgetModel() {
+    super.initWidgetModel();
+    _themeState = StateNotifier<ThemeMode>(initValue: model.theme);
+  }
+
+  @override
+  void dispose() {
+    _themeState.dispose();
+    super.dispose();
+  }
 }

@@ -10,7 +10,7 @@ class SettingsModel extends ElementaryModel {
     ErrorHandler errorHandler,
   ) : super(errorHandler: errorHandler);
 
-  ThemeMode get themeMode => _bloc.state.settings.themeMode;
+  ThemeMode get theme => _bloc.state.settings.themeMode;
 
   set theme(ThemeMode theme) => _bloc.add(SettingsEvent.setThemeMode(theme));
 }
