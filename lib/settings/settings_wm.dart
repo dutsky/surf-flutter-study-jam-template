@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -24,29 +26,38 @@ class SettingsWidgetModel extends WidgetModel<AppThemes, SettingsModel>
     implements ISettingsWidgetModel {
   late StateNotifier<LocalizedTheme> _themeState;
 
+  StreamSubscription<ThemeMode>? _themeSubscription;
+
   SettingsWidgetModel(SettingsModel model) : super(model);
 
   @override
   ListenableState<LocalizedTheme> get currentTheme => _themeState;
 
   @override
-  void onThemeChange(LocalizedTheme? theme) {
-    final themeMode = _byLocalizedTheme(theme ?? LocalizedTheme.fallback);
+  void onThemeChange(LocalizedTheme? localizedTheme) {
+    final themeMode =
+        _byLocalizedTheme(localizedTheme ?? LocalizedTheme.fallback);
     model.theme = themeMode;
-    _themeState.accept(theme);
   }
 
   @override
   void initWidgetModel() {
     super.initWidgetModel();
+
     _themeState = StateNotifier<LocalizedTheme>(
-      initValue: _byThemeMode(model.theme),
+      initValue: LocalizedTheme.fallback,
     );
+
+    _themeSubscription = model.themeState.listen((theme) {
+      final localized = _byThemeMode(theme);
+      _themeState.accept(localized);
+    });
   }
 
   @override
   void dispose() {
     _themeState.dispose();
+    _themeSubscription?.cancel();
     super.dispose();
   }
 
