@@ -1,7 +1,8 @@
+import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:surf_practice_chat_flutter/settings/data/models/localized_theme.dart';
 
-import 'bloc/settings_bloc.dart';
+import 'settings_wm.dart';
 
 class SettingsScreen extends StatelessWidget {
   static const String routeName = '/settings';
@@ -34,32 +35,28 @@ class SettingsScreen extends StatelessWidget {
   }
 }
 
-class AppThemes extends StatelessWidget {
+class AppThemes extends ElementaryWidget<ISettingsWidgetModel> {
   const AppThemes({
     Key? key,
-  }) : super(key: key);
+    WidgetModelFactory wmFactory = settingsWidgetModelFactory,
+  }) : super(wmFactory, key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return BlocBuilder<SettingsBloc, SettingsState>(
-      builder: (BuildContext context, SettingsState state) {
-        return DropdownButton<ThemeMode>(
-          value: state.settings.themeMode,
-          items: ThemeMode.values
-              .map<DropdownMenuItem<ThemeMode>>((value) => DropdownMenuItem(
-                    value: value,
-                    child: Text(value.name),
-                  ))
-              .toList(),
-          onChanged: (themeMode) {
-            if (themeMode == null) return;
-
-            context
-                .read<SettingsBloc>()
-                .add(SettingsEvent.setThemeMode(themeMode));
-          },
-        );
-      },
+  Widget build(ISettingsWidgetModel wm) {
+    return StateNotifierBuilder<LocalizedTheme>(
+      listenableState: wm.currentTheme,
+      builder: ((context, localizedTheme) => DropdownButton<LocalizedTheme>(
+            value: localizedTheme,
+            items: LocalizedTheme.available
+                .map<DropdownMenuItem<LocalizedTheme>>(
+                  (theme) => DropdownMenuItem(
+                    value: theme,
+                    child: Text(theme.name),
+                  ),
+                )
+                .toList(),
+            onChanged: wm.onThemeChange,
+          )),
     );
   }
 }
