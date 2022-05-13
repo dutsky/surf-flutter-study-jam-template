@@ -1,5 +1,6 @@
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
+import 'package:surf_practice_chat_flutter/settings/data/models/localized_theme.dart';
 
 import 'settings_wm.dart';
 
@@ -42,12 +43,12 @@ class AppThemes extends ElementaryWidget<ISettingsWidgetModel> {
 
   @override
   Widget build(ISettingsWidgetModel wm) {
-    return StateNotifierBuilder<ThemeMode>(
+    return StateNotifierBuilder<LocalizedTheme>(
       listenableState: wm.currentTheme,
-      builder: ((context, theme) => DropdownButton<ThemeMode>(
-            value: theme,
-            items: ThemeMode.values
-                .map<DropdownMenuItem<ThemeMode>>(
+      builder: ((context, localizedTheme) => DropdownButton<LocalizedTheme>(
+            value: localizedTheme,
+            items: LocalizedTheme.available
+                .map<DropdownMenuItem<LocalizedTheme>>(
                   (theme) => DropdownMenuItem(
                     value: theme,
                     child: Text(theme.name),
