@@ -7,8 +7,8 @@ import 'package:surf_practice_chat_flutter/chat/data/models/message.dart';
 import 'bloc/chat_bloc.dart';
 import 'chat_wm.dart';
 import 'data/repository/firebase.dart';
+import 'nickname/nickname_field.dart';
 import 'widgets/chat_message.dart';
-import 'widgets/nickname_field.dart';
 
 class ChatScope extends StatelessWidget {
   const ChatScope({Key? key}) : super(key: key);
@@ -35,7 +35,7 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
   Widget build(IChatWidgetModel wm) {
     return Scaffold(
       appBar: AppBar(
-        title: NicknameField(nicknameController: wm.nicknameController),
+        title: const NicknameField(),
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
