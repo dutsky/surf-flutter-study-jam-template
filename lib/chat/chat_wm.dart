@@ -2,6 +2,7 @@ import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:surf_practice_chat_flutter/logging_error_hander.dart';
+import '../settings/bloc/settings_bloc.dart';
 import '../settings/settings_screen.dart';
 import 'bloc/chat_bloc.dart';
 import 'chat_model.dart';
@@ -17,8 +18,6 @@ abstract class IChatWidgetModel extends IWidgetModel {
 
   TextEditingController get messageController;
 
-  TextEditingController get nicknameController;
-
   FocusNode get messageFocusNode;
 
   ThemeData get theme;
@@ -33,8 +32,9 @@ abstract class IChatWidgetModel extends IWidgetModel {
 ChatWidgetModel chatWidgetModelFactory(BuildContext context) {
   final errorHandler = LoggingErrorHandler();
   final chatBloc = context.read<ChatBloc>();
+  final settingsBloc = context.read<SettingsBloc>();
 
-  return ChatWidgetModel(ChatModel(chatBloc, errorHandler));
+  return ChatWidgetModel(ChatModel(chatBloc, settingsBloc, errorHandler));
 }
 
 class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
@@ -44,9 +44,6 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
 
   @override
   final messageController = TextEditingController();
-
-  @override
-  final nicknameController = TextEditingController();
 
   @override
   final messageFocusNode = FocusNode();
@@ -79,7 +76,6 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
   void dispose() {
     scrollController.dispose();
     messageController.dispose();
-    nicknameController.dispose();
     messageFocusNode.dispose();
 
     super.dispose();
@@ -87,7 +83,7 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
 
   @override
   void onSendMessage() {
-    final nickname = nicknameController.text;
+    final nickname = model.nickname;
 
     if (nickname.isEmpty) {
       const snackBar = SnackBar(content: Text('Введите никнейм'));
@@ -133,8 +129,7 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
             TextButton(
               child: const Text('Отправить'),
               onPressed: () {
-                final nickname = nicknameController.text;
-                model.sendLocation(nickname);
+                model.sendLocation();
                 Navigator.of(context).pop();
               },
             ),

@@ -1,39 +1,43 @@
 import 'package:elementary/elementary.dart';
 import 'package:location/location.dart';
 
+import '../settings/bloc/settings_bloc.dart';
 import 'bloc/chat_bloc.dart';
 import 'data/models/geolocation.dart';
 import 'data/models/message.dart';
 
 class ChatModel extends ElementaryModel {
-  final ChatBloc _bloc;
+  final ChatBloc _chatBloc;
+  final SettingsBloc _settingsBloc;
 
-  ChatModel(this._bloc, ErrorHandler errorHandler)
+  ChatModel(this._chatBloc, this._settingsBloc, ErrorHandler errorHandler)
       : super(errorHandler: errorHandler);
 
+  String get nickname => _settingsBloc.state.settings.nickname;
+
   Stream<Iterable<MessageDto>> get messages =>
-      _bloc.stream.map((state) => state.messages);
+      _chatBloc.stream.map((state) => state.messages);
 
-  bool get hasReachedEnd => _bloc.state.hasReachedEnd;
+  bool get hasReachedEnd => _chatBloc.state.hasReachedEnd;
 
-  void loadMoreMessages() => _bloc.add(const ChatEvent.loadPreviousPage());
+  void loadMoreMessages() => _chatBloc.add(const ChatEvent.loadPreviousPage());
 
   void sendMessage({
     required String nickname,
     required String text,
   }) =>
-      _bloc.add(
+      _chatBloc.add(
         ChatEvent.sendMessage(
           nickname: nickname,
           text: text,
         ),
       );
 
-  Future<void> sendLocation(String nickname) async {
+  Future<void> sendLocation() async {
     final locationData = await _locationData();
     if (locationData == null) return;
 
-    _bloc.add(
+    _chatBloc.add(
       ChatEvent.sendLocation(
         nickname: nickname,
         location: locationData,
