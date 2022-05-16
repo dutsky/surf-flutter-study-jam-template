@@ -43,6 +43,19 @@ class _$MessageUIModelTearOff {
       longitude: longitude,
     );
   }
+
+  MessageUIModelWithImage withImage(
+      {required String author,
+      required String message,
+      required String created,
+      required String url}) {
+    return MessageUIModelWithImage(
+      author: author,
+      message: message,
+      created: created,
+      url: url,
+    );
+  }
 }
 
 /// @nodoc
@@ -66,6 +79,9 @@ mixin _$MessageUIModel {
     required TResult Function(String author, String message, String created,
             String latitude, String longitude)
         withLocation,
+    required TResult Function(
+            String author, String message, String created, String url)
+        withImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -74,6 +90,8 @@ mixin _$MessageUIModel {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -82,6 +100,8 @@ mixin _$MessageUIModel {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -89,18 +109,21 @@ mixin _$MessageUIModel {
   TResult map<TResult extends Object?>({
     required TResult Function(_MessageUIModel value) basic,
     required TResult Function(MessageUIModelWithLocation value) withLocation,
+    required TResult Function(MessageUIModelWithImage value) withImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -248,6 +271,9 @@ class _$_MessageUIModel implements _MessageUIModel {
     required TResult Function(String author, String message, String created,
             String latitude, String longitude)
         withLocation,
+    required TResult Function(
+            String author, String message, String created, String url)
+        withImage,
   }) {
     return basic(author, message, created);
   }
@@ -259,6 +285,8 @@ class _$_MessageUIModel implements _MessageUIModel {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
   }) {
     return basic?.call(author, message, created);
   }
@@ -270,6 +298,8 @@ class _$_MessageUIModel implements _MessageUIModel {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
     required TResult orElse(),
   }) {
     if (basic != null) {
@@ -283,6 +313,7 @@ class _$_MessageUIModel implements _MessageUIModel {
   TResult map<TResult extends Object?>({
     required TResult Function(_MessageUIModel value) basic,
     required TResult Function(MessageUIModelWithLocation value) withLocation,
+    required TResult Function(MessageUIModelWithImage value) withImage,
   }) {
     return basic(this);
   }
@@ -292,6 +323,7 @@ class _$_MessageUIModel implements _MessageUIModel {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
   }) {
     return basic?.call(this);
   }
@@ -301,6 +333,7 @@ class _$_MessageUIModel implements _MessageUIModel {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
     required TResult orElse(),
   }) {
     if (basic != null) {
@@ -456,6 +489,9 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
     required TResult Function(String author, String message, String created,
             String latitude, String longitude)
         withLocation,
+    required TResult Function(
+            String author, String message, String created, String url)
+        withImage,
   }) {
     return withLocation(author, message, created, latitude, longitude);
   }
@@ -467,6 +503,8 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
   }) {
     return withLocation?.call(author, message, created, latitude, longitude);
   }
@@ -478,6 +516,8 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
     TResult Function(String author, String message, String created,
             String latitude, String longitude)?
         withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
     required TResult orElse(),
   }) {
     if (withLocation != null) {
@@ -491,6 +531,7 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
   TResult map<TResult extends Object?>({
     required TResult Function(_MessageUIModel value) basic,
     required TResult Function(MessageUIModelWithLocation value) withLocation,
+    required TResult Function(MessageUIModelWithImage value) withImage,
   }) {
     return withLocation(this);
   }
@@ -500,6 +541,7 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
   }) {
     return withLocation?.call(this);
   }
@@ -509,6 +551,7 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(_MessageUIModel value)? basic,
     TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
     required TResult orElse(),
   }) {
     if (withLocation != null) {
@@ -538,4 +581,201 @@ abstract class MessageUIModelWithLocation implements MessageUIModel {
   @JsonKey(ignore: true)
   $MessageUIModelWithLocationCopyWith<MessageUIModelWithLocation>
       get copyWith => throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $MessageUIModelWithImageCopyWith<$Res>
+    implements $MessageUIModelCopyWith<$Res> {
+  factory $MessageUIModelWithImageCopyWith(MessageUIModelWithImage value,
+          $Res Function(MessageUIModelWithImage) then) =
+      _$MessageUIModelWithImageCopyWithImpl<$Res>;
+  @override
+  $Res call({String author, String message, String created, String url});
+}
+
+/// @nodoc
+class _$MessageUIModelWithImageCopyWithImpl<$Res>
+    extends _$MessageUIModelCopyWithImpl<$Res>
+    implements $MessageUIModelWithImageCopyWith<$Res> {
+  _$MessageUIModelWithImageCopyWithImpl(MessageUIModelWithImage _value,
+      $Res Function(MessageUIModelWithImage) _then)
+      : super(_value, (v) => _then(v as MessageUIModelWithImage));
+
+  @override
+  MessageUIModelWithImage get _value => super._value as MessageUIModelWithImage;
+
+  @override
+  $Res call({
+    Object? author = freezed,
+    Object? message = freezed,
+    Object? created = freezed,
+    Object? url = freezed,
+  }) {
+    return _then(MessageUIModelWithImage(
+      author: author == freezed
+          ? _value.author
+          : author // ignore: cast_nullable_to_non_nullable
+              as String,
+      message: message == freezed
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String,
+      created: created == freezed
+          ? _value.created
+          : created // ignore: cast_nullable_to_non_nullable
+              as String,
+      url: url == freezed
+          ? _value.url
+          : url // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$MessageUIModelWithImage implements MessageUIModelWithImage {
+  const _$MessageUIModelWithImage(
+      {required this.author,
+      required this.message,
+      required this.created,
+      required this.url});
+
+  @override
+  final String author;
+  @override
+  final String message;
+  @override
+  final String created;
+  @override
+  final String url;
+
+  @override
+  String toString() {
+    return 'MessageUIModel.withImage(author: $author, message: $message, created: $created, url: $url)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is MessageUIModelWithImage &&
+            const DeepCollectionEquality().equals(other.author, author) &&
+            const DeepCollectionEquality().equals(other.message, message) &&
+            const DeepCollectionEquality().equals(other.created, created) &&
+            const DeepCollectionEquality().equals(other.url, url));
+  }
+
+  @override
+  int get hashCode => Object.hash(
+      runtimeType,
+      const DeepCollectionEquality().hash(author),
+      const DeepCollectionEquality().hash(message),
+      const DeepCollectionEquality().hash(created),
+      const DeepCollectionEquality().hash(url));
+
+  @JsonKey(ignore: true)
+  @override
+  $MessageUIModelWithImageCopyWith<MessageUIModelWithImage> get copyWith =>
+      _$MessageUIModelWithImageCopyWithImpl<MessageUIModelWithImage>(
+          this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function(String author, String message, String created)
+        basic,
+    required TResult Function(String author, String message, String created,
+            String latitude, String longitude)
+        withLocation,
+    required TResult Function(
+            String author, String message, String created, String url)
+        withImage,
+  }) {
+    return withImage(author, message, created, url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function(String author, String message, String created)? basic,
+    TResult Function(String author, String message, String created,
+            String latitude, String longitude)?
+        withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
+  }) {
+    return withImage?.call(author, message, created, url);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function(String author, String message, String created)? basic,
+    TResult Function(String author, String message, String created,
+            String latitude, String longitude)?
+        withLocation,
+    TResult Function(String author, String message, String created, String url)?
+        withImage,
+    required TResult orElse(),
+  }) {
+    if (withImage != null) {
+      return withImage(author, message, created, url);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(_MessageUIModel value) basic,
+    required TResult Function(MessageUIModelWithLocation value) withLocation,
+    required TResult Function(MessageUIModelWithImage value) withImage,
+  }) {
+    return withImage(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(_MessageUIModel value)? basic,
+    TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
+  }) {
+    return withImage?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(_MessageUIModel value)? basic,
+    TResult Function(MessageUIModelWithLocation value)? withLocation,
+    TResult Function(MessageUIModelWithImage value)? withImage,
+    required TResult orElse(),
+  }) {
+    if (withImage != null) {
+      return withImage(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class MessageUIModelWithImage implements MessageUIModel {
+  const factory MessageUIModelWithImage(
+      {required String author,
+      required String message,
+      required String created,
+      required String url}) = _$MessageUIModelWithImage;
+
+  @override
+  String get author;
+  @override
+  String get message;
+  @override
+  String get created;
+  String get url;
+  @override
+  @JsonKey(ignore: true)
+  $MessageUIModelWithImageCopyWith<MessageUIModelWithImage> get copyWith =>
+      throw _privateConstructorUsedError;
 }

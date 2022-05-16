@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:surf_practice_chat_flutter/chat/widgets/chat_image_tile.dart';
 
 import '../data/models/message_ui_model.dart';
 import 'chat_geo_tile.dart';
@@ -17,6 +18,7 @@ class ChatMessageWidget extends StatelessWidget {
     return model.map(
       basic: (basicModel) => ChatMessageTile(basicModel),
       withLocation: (modelWithLocation) => ChatGeoTile(modelWithLocation),
+      withImage: (modelWithImage) => ChatImageTile(modelWithImage),
     );
   }
 }

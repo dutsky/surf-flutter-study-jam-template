@@ -24,4 +24,11 @@ class MessageUIModel with _$MessageUIModel {
     required String latitude,
     required String longitude,
   }) = MessageUIModelWithLocation;
+
+  const factory MessageUIModel.withImage({
+    required String author,
+    required String message,
+    required String created,
+    required String url,
+  }) = MessageUIModelWithImage;
 }

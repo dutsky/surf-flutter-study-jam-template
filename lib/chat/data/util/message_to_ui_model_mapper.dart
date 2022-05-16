@@ -20,6 +20,16 @@ MessageUIModel toUIModel(MessageDto messageDto) {
     time = timeFormatEarlier.format(created);
   }
 
+  final url = lookupForUrl(messageDto.message);
+  if (url != null) {
+    return MessageUIModel.withImage(
+      author: messageDto.author.name,
+      message: messageDto.message,
+      created: time,
+      url: url,
+    );
+  }
+
   return messageDto.map(
     basic: (_) => MessageUIModel.basic(
       author: messageDto.author.name,
@@ -34,4 +44,11 @@ MessageUIModel toUIModel(MessageDto messageDto) {
       created: time,
     ),
   );
+}
+
+String? lookupForUrl(String message) {
+  final isUrl = RegExp(r'https?:\/\/(www\.)?[\w-]+\.[\w-]+[\/\w.?&=-]*');
+  final match = isUrl.firstMatch(message);
+
+  return match?[0];
 }
