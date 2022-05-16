@@ -28,7 +28,9 @@ class _ChatMessageWidgetState extends State<ChatMessageWidget> {
     final String time;
     if (created == DateTime(0)) {
       time = '';
-    } else if (created.day == now.day) {
+    } else if (created.day == now.day &&
+        created.month == now.month &&
+        created.year == now.year) {
       time = timeFormatToday.format(created);
     } else {
       time = timeFormatEarlier.format(created);

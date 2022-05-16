@@ -79,6 +79,6 @@ class ChatGeoTile extends StatelessWidget {
       host: 'maps.google.com',
       queryParameters: <String, String>{'q': '$lat,$long'},
     );
-    await url_launcher.launch(uri.toString());
+    await url_launcher.launchUrl(uri);
   }
 }
