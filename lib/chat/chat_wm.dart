@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -50,6 +52,8 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
 
   final _chatState = EntityStateNotifier<Iterable<MessageDto>>();
 
+  StreamSubscription? messagesSubscription;
+
   ChatWidgetModel(ChatModel model) : super(model);
 
   @override
@@ -67,7 +71,8 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
 
     _chatState.loading();
 
-    model.messages.listen((messages) => _chatState.content(messages));
+    messagesSubscription =
+        model.messages.listen((messages) => _chatState.content(messages));
 
     scrollController.addListener(_loadMoreMessages);
   }
@@ -77,6 +82,7 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
     scrollController.dispose();
     messageController.dispose();
     messageFocusNode.dispose();
+    messagesSubscription?.cancel();
 
     super.dispose();
   }
