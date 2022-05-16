@@ -10,9 +10,11 @@ import 'bloc/chat_bloc.dart';
 import 'chat_model.dart';
 import 'chat_screen.dart';
 import 'data/models/message.dart';
+import 'data/models/message_ui_model.dart';
+import 'data/util/message_to_ui_model_mapper.dart';
 
 abstract class IChatWidgetModel extends IWidgetModel {
-  ListenableState<EntityState<Iterable<MessageDto>>> get messages;
+  ListenableState<EntityState<Iterable<MessageUIModel>>> get messages;
 
   bool get hasReachedEnd;
 
@@ -50,14 +52,15 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
   @override
   final messageFocusNode = FocusNode();
 
-  final _chatState = EntityStateNotifier<Iterable<MessageDto>>();
+  final _chatState = EntityStateNotifier<Iterable<MessageUIModel>>();
 
   StreamSubscription? messagesSubscription;
 
   ChatWidgetModel(ChatModel model) : super(model);
 
   @override
-  ListenableState<EntityState<Iterable<MessageDto>>> get messages => _chatState;
+  ListenableState<EntityState<Iterable<MessageUIModel>>> get messages =>
+      _chatState;
 
   @override
   bool get hasReachedEnd => model.hasReachedEnd;
@@ -70,9 +73,7 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
     super.initWidgetModel();
 
     _chatState.loading();
-
-    messagesSubscription =
-        model.messages.listen((messages) => _chatState.content(messages));
+    messagesSubscription = model.messages.listen(_onMessages);
 
     scrollController.addListener(_loadMoreMessages);
   }
@@ -148,6 +149,9 @@ class ChatWidgetModel extends WidgetModel<ChatScreen, ChatModel>
   @override
   void onSettings() =>
       Navigator.of(context).pushNamed(SettingsScreen.routeName);
+
+  void _onMessages(Iterable<MessageDto> messages) =>
+      _chatState.content(messages.map(toUIModel));
 
   void _loadMoreMessages() {
     if (scrollController.position.extentAfter == 0) {

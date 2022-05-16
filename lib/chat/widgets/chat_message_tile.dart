@@ -1,39 +1,33 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-
-import '../data/models/message.dart';
+import 'package:surf_practice_chat_flutter/chat/data/models/message_ui_model.dart';
 
 class ChatMessageTile extends StatelessWidget {
-  final MessageDto messageDto;
-  final String time;
+  final MessageUIModel model;
 
   const ChatMessageTile({
     Key? key,
-    required this.messageDto,
-    required this.time,
+    required this.model,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-      tileColor: messageDto.author.map(
-        basic: (_) => null,
-        local: (_) => Colors.purple.withOpacity(0.1),
-      ),
       leading: CircleAvatar(
         backgroundColor: Colors.deepPurple,
-        child: Text(messageDto.author.name[0].toUpperCase()),
+        child: Text(model.author[0].toUpperCase()),
       ),
       title: Text(
-        messageDto.author.name,
+        model.author,
         style: Theme.of(context)
             .textTheme
             .subtitle1
             ?.copyWith(fontWeight: FontWeight.bold),
       ),
-      subtitle: Text(messageDto.message),
-      trailing:
-          time.isNotEmpty ? Text(time) : const CupertinoActivityIndicator(),
+      subtitle: Text(model.message),
+      trailing: model.created.isNotEmpty
+          ? Text(model.created)
+          : const CupertinoActivityIndicator(),
     );
   }
 }

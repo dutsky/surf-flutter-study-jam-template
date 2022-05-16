@@ -1,49 +1,23 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
-import '../data/models/message.dart';
+import '../data/models/message_ui_model.dart';
 import 'chat_geo_tile.dart';
 import 'chat_message_tile.dart';
 
-class ChatMessageWidget extends StatefulWidget {
-  final MessageDto messageDto;
+class ChatMessageWidget extends StatelessWidget {
+  final MessageUIModel model;
 
   const ChatMessageWidget(
-    this.messageDto, {
+    this.model, {
     Key? key,
   }) : super(key: key);
 
   @override
-  State<ChatMessageWidget> createState() => _ChatMessageWidgetState();
-}
-
-class _ChatMessageWidgetState extends State<ChatMessageWidget> {
-  final timeFormatToday = DateFormat('HH:mm');
-  final timeFormatEarlier = DateFormat('MMM dd, HH:mm');
-  final now = DateTime.now();
-
-  @override
   Widget build(BuildContext context) {
-    final created = widget.messageDto.createdDateTime;
-    final String time;
-    if (created == DateTime(0)) {
-      time = '';
-    } else if (created.day == now.day &&
-        created.month == now.month &&
-        created.year == now.year) {
-      time = timeFormatToday.format(created);
-    } else {
-      time = timeFormatEarlier.format(created);
-    }
-
-    return widget.messageDto.map(
-      basic: (_) => ChatMessageTile(
-        messageDto: widget.messageDto,
-        time: time,
-      ),
+    return model.map(
+      basic: (_) => ChatMessageTile(model: model),
       withLocation: (_) => ChatGeoTile(
-        messageGeoDto: widget.messageDto as MessageWithLocation,
-        time: time,
+        model: model as MessageUIModelWithLocation,
       ),
     );
   }

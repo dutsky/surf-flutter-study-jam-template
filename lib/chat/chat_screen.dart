@@ -2,10 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:elementary/elementary.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:surf_practice_chat_flutter/chat/data/models/message.dart';
 
 import 'bloc/chat_bloc.dart';
 import 'chat_wm.dart';
+import 'data/models/message_ui_model.dart';
 import 'data/repository/firebase.dart';
 import 'nickname/nickname_field.dart';
 import 'widgets/chat_message.dart';
@@ -46,7 +46,7 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
       body: Column(
         children: [
           Expanded(
-            child: EntityStateNotifierBuilder<Iterable<MessageDto>>(
+            child: EntityStateNotifierBuilder<Iterable<MessageUIModel>>(
               listenableEntityState: wm.messages,
               loadingBuilder: (_, __) =>
                   const Center(child: CircularProgressIndicator.adaptive()),
