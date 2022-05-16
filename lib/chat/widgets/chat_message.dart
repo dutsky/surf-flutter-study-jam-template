@@ -15,10 +15,8 @@ class ChatMessageWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return model.map(
-      basic: (_) => ChatMessageTile(model: model),
-      withLocation: (_) => ChatGeoTile(
-        model: model as MessageUIModelWithLocation,
-      ),
+      basic: (basicModel) => ChatMessageTile(basicModel),
+      withLocation: (modelWithLocation) => ChatGeoTile(modelWithLocation),
     );
   }
 }

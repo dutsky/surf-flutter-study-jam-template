@@ -5,9 +5,9 @@ import 'package:surf_practice_chat_flutter/chat/data/models/message_ui_model.dar
 class ChatMessageTile extends StatelessWidget {
   final MessageUIModel model;
 
-  const ChatMessageTile({
+  const ChatMessageTile(
+    this.model, {
     Key? key,
-    required this.model,
   }) : super(key: key);
 
   @override

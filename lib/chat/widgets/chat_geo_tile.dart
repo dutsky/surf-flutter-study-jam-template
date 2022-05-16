@@ -7,9 +7,9 @@ import '../data/models/message_ui_model.dart';
 class ChatGeoTile extends StatelessWidget {
   final MessageUIModelWithLocation model;
 
-  const ChatGeoTile({
+  const ChatGeoTile(
+    this.model, {
     Key? key,
-    required this.model,
   }) : super(key: key);
 
   @override
