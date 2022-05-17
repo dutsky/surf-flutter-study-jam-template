@@ -39,7 +39,6 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
-            color: wm.theme.primaryColor,
             onPressed: () => wm.onSettings(),
           ),
         ],
@@ -73,10 +72,7 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 IconButton(
-                  icon: Icon(
-                    Icons.share_location_outlined,
-                    color: wm.theme.primaryColor,
-                  ),
+                  icon: const Icon(Icons.share_location_outlined),
                   onPressed: () => wm.onSendLocation(),
                 ),
                 Expanded(
@@ -88,10 +84,7 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
                   ),
                 ),
                 IconButton(
-                  icon: Icon(
-                    Icons.send,
-                    color: wm.theme.primaryColor,
-                  ),
+                  icon: const Icon(Icons.send),
                   onPressed: () => wm.onSendMessage(),
                 ),
               ],

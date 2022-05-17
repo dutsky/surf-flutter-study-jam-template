@@ -63,11 +63,13 @@ class MyApp extends StatelessWidget {
             brightness: Brightness.light,
             colorSchemeSeed: Colors.deepPurple,
             useMaterial3: true,
+            iconTheme: const IconThemeData(color: Colors.deepPurple),
           ),
           darkTheme: ThemeData(
             brightness: Brightness.dark,
             colorSchemeSeed: Colors.deepPurple,
             useMaterial3: true,
+            iconTheme: const IconThemeData(color: Colors.deepPurpleAccent),
           ),
           themeMode: state.settings.themeMode,
           routes: {
