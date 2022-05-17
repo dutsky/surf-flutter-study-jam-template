@@ -13,11 +13,8 @@ class NicknameField extends ElementaryWidget<INicknameWidgetModel> {
   Widget build(INicknameWidgetModel wm) {
     return TextField(
       controller: wm.nicknameController,
-      style: const TextStyle(color: Colors.white),
-      cursorColor: Colors.white,
       decoration: const InputDecoration(
         labelText: 'Введите ник',
-        labelStyle: TextStyle(color: Colors.grey),
       ),
       onChanged: wm.onChange,
     );

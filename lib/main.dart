@@ -60,10 +60,15 @@ class MyApp extends StatelessWidget {
       builder: (context, state) {
         return MaterialApp(
           theme: ThemeData(
+            brightness: Brightness.light,
             colorSchemeSeed: Colors.deepPurple,
             useMaterial3: true,
           ),
-          darkTheme: ThemeData.dark(),
+          darkTheme: ThemeData(
+            brightness: Brightness.dark,
+            colorSchemeSeed: Colors.deepPurple,
+            useMaterial3: true,
+          ),
           themeMode: state.settings.themeMode,
           routes: {
             '/': ((context) => const ChatScope()),
