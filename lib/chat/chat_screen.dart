@@ -39,6 +39,7 @@ class ChatScreen extends ElementaryWidget<IChatWidgetModel> {
         actions: [
           IconButton(
             icon: const Icon(Icons.settings),
+            color: wm.theme.primaryColor,
             onPressed: () => wm.onSettings(),
           ),
         ],

@@ -12,28 +12,7 @@ part of 'message_firebase.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MessageFirebaseDtoTearOff {
-  const _$MessageFirebaseDtoTearOff();
-
-  _MessageFirebaseDto call(
-      {required String authorName,
-      required String message,
-      required DateTime created,
-      required GeoPoint? geolocation}) {
-    return _MessageFirebaseDto(
-      authorName: authorName,
-      message: message,
-      created: created,
-      geolocation: geolocation,
-    );
-  }
-}
-
-/// @nodoc
-const $MessageFirebaseDto = _$MessageFirebaseDtoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MessageFirebaseDto {
@@ -97,11 +76,11 @@ class _$MessageFirebaseDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MessageFirebaseDtoCopyWith<$Res>
+abstract class _$$_MessageFirebaseDtoCopyWith<$Res>
     implements $MessageFirebaseDtoCopyWith<$Res> {
-  factory _$MessageFirebaseDtoCopyWith(
-          _MessageFirebaseDto value, $Res Function(_MessageFirebaseDto) then) =
-      __$MessageFirebaseDtoCopyWithImpl<$Res>;
+  factory _$$_MessageFirebaseDtoCopyWith(_$_MessageFirebaseDto value,
+          $Res Function(_$_MessageFirebaseDto) then) =
+      __$$_MessageFirebaseDtoCopyWithImpl<$Res>;
   @override
   $Res call(
       {String authorName,
@@ -111,15 +90,15 @@ abstract class _$MessageFirebaseDtoCopyWith<$Res>
 }
 
 /// @nodoc
-class __$MessageFirebaseDtoCopyWithImpl<$Res>
+class __$$_MessageFirebaseDtoCopyWithImpl<$Res>
     extends _$MessageFirebaseDtoCopyWithImpl<$Res>
-    implements _$MessageFirebaseDtoCopyWith<$Res> {
-  __$MessageFirebaseDtoCopyWithImpl(
-      _MessageFirebaseDto _value, $Res Function(_MessageFirebaseDto) _then)
-      : super(_value, (v) => _then(v as _MessageFirebaseDto));
+    implements _$$_MessageFirebaseDtoCopyWith<$Res> {
+  __$$_MessageFirebaseDtoCopyWithImpl(
+      _$_MessageFirebaseDto _value, $Res Function(_$_MessageFirebaseDto) _then)
+      : super(_value, (v) => _then(v as _$_MessageFirebaseDto));
 
   @override
-  _MessageFirebaseDto get _value => super._value as _MessageFirebaseDto;
+  _$_MessageFirebaseDto get _value => super._value as _$_MessageFirebaseDto;
 
   @override
   $Res call({
@@ -128,7 +107,7 @@ class __$MessageFirebaseDtoCopyWithImpl<$Res>
     Object? created = freezed,
     Object? geolocation = freezed,
   }) {
-    return _then(_MessageFirebaseDto(
+    return _then(_$_MessageFirebaseDto(
       authorName: authorName == freezed
           ? _value.authorName
           : authorName // ignore: cast_nullable_to_non_nullable
@@ -176,7 +155,7 @@ class _$_MessageFirebaseDto implements _MessageFirebaseDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MessageFirebaseDto &&
+            other is _$_MessageFirebaseDto &&
             const DeepCollectionEquality()
                 .equals(other.authorName, authorName) &&
             const DeepCollectionEquality().equals(other.message, message) &&
@@ -195,27 +174,28 @@ class _$_MessageFirebaseDto implements _MessageFirebaseDto {
 
   @JsonKey(ignore: true)
   @override
-  _$MessageFirebaseDtoCopyWith<_MessageFirebaseDto> get copyWith =>
-      __$MessageFirebaseDtoCopyWithImpl<_MessageFirebaseDto>(this, _$identity);
+  _$$_MessageFirebaseDtoCopyWith<_$_MessageFirebaseDto> get copyWith =>
+      __$$_MessageFirebaseDtoCopyWithImpl<_$_MessageFirebaseDto>(
+          this, _$identity);
 }
 
 abstract class _MessageFirebaseDto implements MessageFirebaseDto {
   const factory _MessageFirebaseDto(
-      {required String authorName,
-      required String message,
-      required DateTime created,
-      required GeoPoint? geolocation}) = _$_MessageFirebaseDto;
+      {required final String authorName,
+      required final String message,
+      required final DateTime created,
+      required final GeoPoint? geolocation}) = _$_MessageFirebaseDto;
 
   @override
-  String get authorName;
+  String get authorName => throw _privateConstructorUsedError;
   @override
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
-  DateTime get created;
+  DateTime get created => throw _privateConstructorUsedError;
   @override
-  GeoPoint? get geolocation;
+  GeoPoint? get geolocation => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageFirebaseDtoCopyWith<_MessageFirebaseDto> get copyWith =>
+  _$$_MessageFirebaseDtoCopyWith<_$_MessageFirebaseDto> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,37 +12,7 @@ part of 'settings_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$SettingsEventTearOff {
-  const _$SettingsEventTearOff();
-
-  _LoadEvent load() {
-    return const _LoadEvent();
-  }
-
-  _UpdateEvent update(AppSettings settings) {
-    return _UpdateEvent(
-      settings,
-    );
-  }
-
-  _SetNickname setNickname(String nickname) {
-    return _SetNickname(
-      nickname,
-    );
-  }
-
-  _SetThemeMode setThemeMode(ThemeMode themeMode) {
-    return _SetThemeMode(
-      themeMode,
-    );
-  }
-}
-
-/// @nodoc
-const $SettingsEvent = _$SettingsEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$SettingsEvent {
@@ -116,20 +86,21 @@ class _$SettingsEventCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$LoadEventCopyWith<$Res> {
-  factory _$LoadEventCopyWith(
-          _LoadEvent value, $Res Function(_LoadEvent) then) =
-      __$LoadEventCopyWithImpl<$Res>;
+abstract class _$$_LoadEventCopyWith<$Res> {
+  factory _$$_LoadEventCopyWith(
+          _$_LoadEvent value, $Res Function(_$_LoadEvent) then) =
+      __$$_LoadEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadEventCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$LoadEventCopyWith<$Res> {
-  __$LoadEventCopyWithImpl(_LoadEvent _value, $Res Function(_LoadEvent) _then)
-      : super(_value, (v) => _then(v as _LoadEvent));
+class __$$_LoadEventCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$$_LoadEventCopyWith<$Res> {
+  __$$_LoadEventCopyWithImpl(
+      _$_LoadEvent _value, $Res Function(_$_LoadEvent) _then)
+      : super(_value, (v) => _then(v as _$_LoadEvent));
 
   @override
-  _LoadEvent get _value => super._value as _LoadEvent;
+  _$_LoadEvent get _value => super._value as _$_LoadEvent;
 }
 
 /// @nodoc
@@ -145,7 +116,7 @@ class _$_LoadEvent implements _LoadEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _LoadEvent);
+        (other.runtimeType == runtimeType && other is _$_LoadEvent);
   }
 
   @override
@@ -231,30 +202,31 @@ abstract class _LoadEvent implements SettingsEvent {
 }
 
 /// @nodoc
-abstract class _$UpdateEventCopyWith<$Res> {
-  factory _$UpdateEventCopyWith(
-          _UpdateEvent value, $Res Function(_UpdateEvent) then) =
-      __$UpdateEventCopyWithImpl<$Res>;
+abstract class _$$_UpdateEventCopyWith<$Res> {
+  factory _$$_UpdateEventCopyWith(
+          _$_UpdateEvent value, $Res Function(_$_UpdateEvent) then) =
+      __$$_UpdateEventCopyWithImpl<$Res>;
   $Res call({AppSettings settings});
 
   $AppSettingsCopyWith<$Res> get settings;
 }
 
 /// @nodoc
-class __$UpdateEventCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$UpdateEventCopyWith<$Res> {
-  __$UpdateEventCopyWithImpl(
-      _UpdateEvent _value, $Res Function(_UpdateEvent) _then)
-      : super(_value, (v) => _then(v as _UpdateEvent));
+class __$$_UpdateEventCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$$_UpdateEventCopyWith<$Res> {
+  __$$_UpdateEventCopyWithImpl(
+      _$_UpdateEvent _value, $Res Function(_$_UpdateEvent) _then)
+      : super(_value, (v) => _then(v as _$_UpdateEvent));
 
   @override
-  _UpdateEvent get _value => super._value as _UpdateEvent;
+  _$_UpdateEvent get _value => super._value as _$_UpdateEvent;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(_UpdateEvent(
+    return _then(_$_UpdateEvent(
       settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -287,7 +259,7 @@ class _$_UpdateEvent implements _UpdateEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UpdateEvent &&
+            other is _$_UpdateEvent &&
             const DeepCollectionEquality().equals(other.settings, settings));
   }
 
@@ -297,8 +269,8 @@ class _$_UpdateEvent implements _UpdateEvent {
 
   @JsonKey(ignore: true)
   @override
-  _$UpdateEventCopyWith<_UpdateEvent> get copyWith =>
-      __$UpdateEventCopyWithImpl<_UpdateEvent>(this, _$identity);
+  _$$_UpdateEventCopyWith<_$_UpdateEvent> get copyWith =>
+      __$$_UpdateEventCopyWithImpl<_$_UpdateEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -376,37 +348,38 @@ class _$_UpdateEvent implements _UpdateEvent {
 }
 
 abstract class _UpdateEvent implements SettingsEvent {
-  const factory _UpdateEvent(AppSettings settings) = _$_UpdateEvent;
+  const factory _UpdateEvent(final AppSettings settings) = _$_UpdateEvent;
 
-  AppSettings get settings;
+  AppSettings get settings => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$UpdateEventCopyWith<_UpdateEvent> get copyWith =>
+  _$$_UpdateEventCopyWith<_$_UpdateEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SetNicknameCopyWith<$Res> {
-  factory _$SetNicknameCopyWith(
-          _SetNickname value, $Res Function(_SetNickname) then) =
-      __$SetNicknameCopyWithImpl<$Res>;
+abstract class _$$_SetNicknameCopyWith<$Res> {
+  factory _$$_SetNicknameCopyWith(
+          _$_SetNickname value, $Res Function(_$_SetNickname) then) =
+      __$$_SetNicknameCopyWithImpl<$Res>;
   $Res call({String nickname});
 }
 
 /// @nodoc
-class __$SetNicknameCopyWithImpl<$Res> extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$SetNicknameCopyWith<$Res> {
-  __$SetNicknameCopyWithImpl(
-      _SetNickname _value, $Res Function(_SetNickname) _then)
-      : super(_value, (v) => _then(v as _SetNickname));
+class __$$_SetNicknameCopyWithImpl<$Res>
+    extends _$SettingsEventCopyWithImpl<$Res>
+    implements _$$_SetNicknameCopyWith<$Res> {
+  __$$_SetNicknameCopyWithImpl(
+      _$_SetNickname _value, $Res Function(_$_SetNickname) _then)
+      : super(_value, (v) => _then(v as _$_SetNickname));
 
   @override
-  _SetNickname get _value => super._value as _SetNickname;
+  _$_SetNickname get _value => super._value as _$_SetNickname;
 
   @override
   $Res call({
     Object? nickname = freezed,
   }) {
-    return _then(_SetNickname(
+    return _then(_$_SetNickname(
       nickname == freezed
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -432,7 +405,7 @@ class _$_SetNickname implements _SetNickname {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SetNickname &&
+            other is _$_SetNickname &&
             const DeepCollectionEquality().equals(other.nickname, nickname));
   }
 
@@ -442,8 +415,8 @@ class _$_SetNickname implements _SetNickname {
 
   @JsonKey(ignore: true)
   @override
-  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
-      __$SetNicknameCopyWithImpl<_SetNickname>(this, _$identity);
+  _$$_SetNicknameCopyWith<_$_SetNickname> get copyWith =>
+      __$$_SetNicknameCopyWithImpl<_$_SetNickname>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -521,38 +494,38 @@ class _$_SetNickname implements _SetNickname {
 }
 
 abstract class _SetNickname implements SettingsEvent {
-  const factory _SetNickname(String nickname) = _$_SetNickname;
+  const factory _SetNickname(final String nickname) = _$_SetNickname;
 
-  String get nickname;
+  String get nickname => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SetNicknameCopyWith<_SetNickname> get copyWith =>
+  _$$_SetNicknameCopyWith<_$_SetNickname> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SetThemeModeCopyWith<$Res> {
-  factory _$SetThemeModeCopyWith(
-          _SetThemeMode value, $Res Function(_SetThemeMode) then) =
-      __$SetThemeModeCopyWithImpl<$Res>;
+abstract class _$$_SetThemeModeCopyWith<$Res> {
+  factory _$$_SetThemeModeCopyWith(
+          _$_SetThemeMode value, $Res Function(_$_SetThemeMode) then) =
+      __$$_SetThemeModeCopyWithImpl<$Res>;
   $Res call({ThemeMode themeMode});
 }
 
 /// @nodoc
-class __$SetThemeModeCopyWithImpl<$Res>
+class __$$_SetThemeModeCopyWithImpl<$Res>
     extends _$SettingsEventCopyWithImpl<$Res>
-    implements _$SetThemeModeCopyWith<$Res> {
-  __$SetThemeModeCopyWithImpl(
-      _SetThemeMode _value, $Res Function(_SetThemeMode) _then)
-      : super(_value, (v) => _then(v as _SetThemeMode));
+    implements _$$_SetThemeModeCopyWith<$Res> {
+  __$$_SetThemeModeCopyWithImpl(
+      _$_SetThemeMode _value, $Res Function(_$_SetThemeMode) _then)
+      : super(_value, (v) => _then(v as _$_SetThemeMode));
 
   @override
-  _SetThemeMode get _value => super._value as _SetThemeMode;
+  _$_SetThemeMode get _value => super._value as _$_SetThemeMode;
 
   @override
   $Res call({
     Object? themeMode = freezed,
   }) {
-    return _then(_SetThemeMode(
+    return _then(_$_SetThemeMode(
       themeMode == freezed
           ? _value.themeMode
           : themeMode // ignore: cast_nullable_to_non_nullable
@@ -578,7 +551,7 @@ class _$_SetThemeMode implements _SetThemeMode {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SetThemeMode &&
+            other is _$_SetThemeMode &&
             const DeepCollectionEquality().equals(other.themeMode, themeMode));
   }
 
@@ -588,8 +561,8 @@ class _$_SetThemeMode implements _SetThemeMode {
 
   @JsonKey(ignore: true)
   @override
-  _$SetThemeModeCopyWith<_SetThemeMode> get copyWith =>
-      __$SetThemeModeCopyWithImpl<_SetThemeMode>(this, _$identity);
+  _$$_SetThemeModeCopyWith<_$_SetThemeMode> get copyWith =>
+      __$$_SetThemeModeCopyWithImpl<_$_SetThemeMode>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -667,50 +640,17 @@ class _$_SetThemeMode implements _SetThemeMode {
 }
 
 abstract class _SetThemeMode implements SettingsEvent {
-  const factory _SetThemeMode(ThemeMode themeMode) = _$_SetThemeMode;
+  const factory _SetThemeMode(final ThemeMode themeMode) = _$_SetThemeMode;
 
-  ThemeMode get themeMode;
+  ThemeMode get themeMode => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SetThemeModeCopyWith<_SetThemeMode> get copyWith =>
+  _$$_SetThemeModeCopyWith<_$_SetThemeMode> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-class _$SettingsStateTearOff {
-  const _$SettingsStateTearOff();
-
-  _InitialState initial({AppSettings settings = const AppSettings()}) {
-    return _InitialState(
-      settings: settings,
-    );
-  }
-
-  _InProgressState inProgress({AppSettings settings = const AppSettings()}) {
-    return _InProgressState(
-      settings: settings,
-    );
-  }
-
-  _SuccessState success({required AppSettings settings}) {
-    return _SuccessState(
-      settings: settings,
-    );
-  }
-
-  _FailureState failure({AppSettings settings = const AppSettings()}) {
-    return _FailureState(
-      settings: settings,
-    );
-  }
-}
-
-/// @nodoc
-const $SettingsState = _$SettingsStateTearOff();
-
-/// @nodoc
 mixin _$SettingsState {
   AppSettings get settings => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(AppSettings settings) initial,
@@ -807,11 +747,11 @@ class _$SettingsStateCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$InitialStateCopyWith<$Res>
+abstract class _$$_InitialStateCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$InitialStateCopyWith(
-          _InitialState value, $Res Function(_InitialState) then) =
-      __$InitialStateCopyWithImpl<$Res>;
+  factory _$$_InitialStateCopyWith(
+          _$_InitialState value, $Res Function(_$_InitialState) then) =
+      __$$_InitialStateCopyWithImpl<$Res>;
   @override
   $Res call({AppSettings settings});
 
@@ -820,21 +760,21 @@ abstract class _$InitialStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InitialStateCopyWithImpl<$Res>
+class __$$_InitialStateCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$InitialStateCopyWith<$Res> {
-  __$InitialStateCopyWithImpl(
-      _InitialState _value, $Res Function(_InitialState) _then)
-      : super(_value, (v) => _then(v as _InitialState));
+    implements _$$_InitialStateCopyWith<$Res> {
+  __$$_InitialStateCopyWithImpl(
+      _$_InitialState _value, $Res Function(_$_InitialState) _then)
+      : super(_value, (v) => _then(v as _$_InitialState));
 
   @override
-  _InitialState get _value => super._value as _InitialState;
+  _$_InitialState get _value => super._value as _$_InitialState;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(_InitialState(
+    return _then(_$_InitialState(
       settings: settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -848,8 +788,8 @@ class __$InitialStateCopyWithImpl<$Res>
 class _$_InitialState implements _InitialState {
   const _$_InitialState({this.settings = const AppSettings()});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final AppSettings settings;
 
   @override
@@ -861,7 +801,7 @@ class _$_InitialState implements _InitialState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InitialState &&
+            other is _$_InitialState &&
             const DeepCollectionEquality().equals(other.settings, settings));
   }
 
@@ -871,8 +811,8 @@ class _$_InitialState implements _InitialState {
 
   @JsonKey(ignore: true)
   @override
-  _$InitialStateCopyWith<_InitialState> get copyWith =>
-      __$InitialStateCopyWithImpl<_InitialState>(this, _$identity);
+  _$$_InitialStateCopyWith<_$_InitialState> get copyWith =>
+      __$$_InitialStateCopyWithImpl<_$_InitialState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -950,22 +890,22 @@ class _$_InitialState implements _InitialState {
 }
 
 abstract class _InitialState implements SettingsState {
-  const factory _InitialState({AppSettings settings}) = _$_InitialState;
+  const factory _InitialState({final AppSettings settings}) = _$_InitialState;
 
   @override
-  AppSettings get settings;
+  AppSettings get settings => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InitialStateCopyWith<_InitialState> get copyWith =>
+  _$$_InitialStateCopyWith<_$_InitialState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$InProgressStateCopyWith<$Res>
+abstract class _$$_InProgressStateCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$InProgressStateCopyWith(
-          _InProgressState value, $Res Function(_InProgressState) then) =
-      __$InProgressStateCopyWithImpl<$Res>;
+  factory _$$_InProgressStateCopyWith(
+          _$_InProgressState value, $Res Function(_$_InProgressState) then) =
+      __$$_InProgressStateCopyWithImpl<$Res>;
   @override
   $Res call({AppSettings settings});
 
@@ -974,21 +914,21 @@ abstract class _$InProgressStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$InProgressStateCopyWithImpl<$Res>
+class __$$_InProgressStateCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$InProgressStateCopyWith<$Res> {
-  __$InProgressStateCopyWithImpl(
-      _InProgressState _value, $Res Function(_InProgressState) _then)
-      : super(_value, (v) => _then(v as _InProgressState));
+    implements _$$_InProgressStateCopyWith<$Res> {
+  __$$_InProgressStateCopyWithImpl(
+      _$_InProgressState _value, $Res Function(_$_InProgressState) _then)
+      : super(_value, (v) => _then(v as _$_InProgressState));
 
   @override
-  _InProgressState get _value => super._value as _InProgressState;
+  _$_InProgressState get _value => super._value as _$_InProgressState;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(_InProgressState(
+    return _then(_$_InProgressState(
       settings: settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -1002,8 +942,8 @@ class __$InProgressStateCopyWithImpl<$Res>
 class _$_InProgressState implements _InProgressState {
   const _$_InProgressState({this.settings = const AppSettings()});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final AppSettings settings;
 
   @override
@@ -1015,7 +955,7 @@ class _$_InProgressState implements _InProgressState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InProgressState &&
+            other is _$_InProgressState &&
             const DeepCollectionEquality().equals(other.settings, settings));
   }
 
@@ -1025,8 +965,8 @@ class _$_InProgressState implements _InProgressState {
 
   @JsonKey(ignore: true)
   @override
-  _$InProgressStateCopyWith<_InProgressState> get copyWith =>
-      __$InProgressStateCopyWithImpl<_InProgressState>(this, _$identity);
+  _$$_InProgressStateCopyWith<_$_InProgressState> get copyWith =>
+      __$$_InProgressStateCopyWithImpl<_$_InProgressState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1104,22 +1044,23 @@ class _$_InProgressState implements _InProgressState {
 }
 
 abstract class _InProgressState implements SettingsState {
-  const factory _InProgressState({AppSettings settings}) = _$_InProgressState;
+  const factory _InProgressState({final AppSettings settings}) =
+      _$_InProgressState;
 
   @override
-  AppSettings get settings;
+  AppSettings get settings => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InProgressStateCopyWith<_InProgressState> get copyWith =>
+  _$$_InProgressStateCopyWith<_$_InProgressState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SuccessStateCopyWith<$Res>
+abstract class _$$_SuccessStateCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$SuccessStateCopyWith(
-          _SuccessState value, $Res Function(_SuccessState) then) =
-      __$SuccessStateCopyWithImpl<$Res>;
+  factory _$$_SuccessStateCopyWith(
+          _$_SuccessState value, $Res Function(_$_SuccessState) then) =
+      __$$_SuccessStateCopyWithImpl<$Res>;
   @override
   $Res call({AppSettings settings});
 
@@ -1128,21 +1069,21 @@ abstract class _$SuccessStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$SuccessStateCopyWithImpl<$Res>
+class __$$_SuccessStateCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$SuccessStateCopyWith<$Res> {
-  __$SuccessStateCopyWithImpl(
-      _SuccessState _value, $Res Function(_SuccessState) _then)
-      : super(_value, (v) => _then(v as _SuccessState));
+    implements _$$_SuccessStateCopyWith<$Res> {
+  __$$_SuccessStateCopyWithImpl(
+      _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessState));
 
   @override
-  _SuccessState get _value => super._value as _SuccessState;
+  _$_SuccessState get _value => super._value as _$_SuccessState;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(_SuccessState(
+    return _then(_$_SuccessState(
       settings: settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -1168,7 +1109,7 @@ class _$_SuccessState implements _SuccessState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SuccessState &&
+            other is _$_SuccessState &&
             const DeepCollectionEquality().equals(other.settings, settings));
   }
 
@@ -1178,8 +1119,8 @@ class _$_SuccessState implements _SuccessState {
 
   @JsonKey(ignore: true)
   @override
-  _$SuccessStateCopyWith<_SuccessState> get copyWith =>
-      __$SuccessStateCopyWithImpl<_SuccessState>(this, _$identity);
+  _$$_SuccessStateCopyWith<_$_SuccessState> get copyWith =>
+      __$$_SuccessStateCopyWithImpl<_$_SuccessState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1257,23 +1198,23 @@ class _$_SuccessState implements _SuccessState {
 }
 
 abstract class _SuccessState implements SettingsState {
-  const factory _SuccessState({required AppSettings settings}) =
+  const factory _SuccessState({required final AppSettings settings}) =
       _$_SuccessState;
 
   @override
-  AppSettings get settings;
+  AppSettings get settings => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SuccessStateCopyWith<_SuccessState> get copyWith =>
+  _$$_SuccessStateCopyWith<_$_SuccessState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$FailureStateCopyWith<$Res>
+abstract class _$$_FailureStateCopyWith<$Res>
     implements $SettingsStateCopyWith<$Res> {
-  factory _$FailureStateCopyWith(
-          _FailureState value, $Res Function(_FailureState) then) =
-      __$FailureStateCopyWithImpl<$Res>;
+  factory _$$_FailureStateCopyWith(
+          _$_FailureState value, $Res Function(_$_FailureState) then) =
+      __$$_FailureStateCopyWithImpl<$Res>;
   @override
   $Res call({AppSettings settings});
 
@@ -1282,21 +1223,21 @@ abstract class _$FailureStateCopyWith<$Res>
 }
 
 /// @nodoc
-class __$FailureStateCopyWithImpl<$Res>
+class __$$_FailureStateCopyWithImpl<$Res>
     extends _$SettingsStateCopyWithImpl<$Res>
-    implements _$FailureStateCopyWith<$Res> {
-  __$FailureStateCopyWithImpl(
-      _FailureState _value, $Res Function(_FailureState) _then)
-      : super(_value, (v) => _then(v as _FailureState));
+    implements _$$_FailureStateCopyWith<$Res> {
+  __$$_FailureStateCopyWithImpl(
+      _$_FailureState _value, $Res Function(_$_FailureState) _then)
+      : super(_value, (v) => _then(v as _$_FailureState));
 
   @override
-  _FailureState get _value => super._value as _FailureState;
+  _$_FailureState get _value => super._value as _$_FailureState;
 
   @override
   $Res call({
     Object? settings = freezed,
   }) {
-    return _then(_FailureState(
+    return _then(_$_FailureState(
       settings: settings == freezed
           ? _value.settings
           : settings // ignore: cast_nullable_to_non_nullable
@@ -1310,8 +1251,8 @@ class __$FailureStateCopyWithImpl<$Res>
 class _$_FailureState implements _FailureState {
   const _$_FailureState({this.settings = const AppSettings()});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final AppSettings settings;
 
   @override
@@ -1323,7 +1264,7 @@ class _$_FailureState implements _FailureState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _FailureState &&
+            other is _$_FailureState &&
             const DeepCollectionEquality().equals(other.settings, settings));
   }
 
@@ -1333,8 +1274,8 @@ class _$_FailureState implements _FailureState {
 
   @JsonKey(ignore: true)
   @override
-  _$FailureStateCopyWith<_FailureState> get copyWith =>
-      __$FailureStateCopyWithImpl<_FailureState>(this, _$identity);
+  _$$_FailureStateCopyWith<_$_FailureState> get copyWith =>
+      __$$_FailureStateCopyWithImpl<_$_FailureState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1412,12 +1353,12 @@ class _$_FailureState implements _FailureState {
 }
 
 abstract class _FailureState implements SettingsState {
-  const factory _FailureState({AppSettings settings}) = _$_FailureState;
+  const factory _FailureState({final AppSettings settings}) = _$_FailureState;
 
   @override
-  AppSettings get settings;
+  AppSettings get settings => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$FailureStateCopyWith<_FailureState> get copyWith =>
+  _$$_FailureStateCopyWith<_$_FailureState> get copyWith =>
       throw _privateConstructorUsedError;
 }

@@ -12,22 +12,7 @@ part of 'geolocation.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$GeolocationDtoTearOff {
-  const _$GeolocationDtoTearOff();
-
-  _GeoLocation call({required double latitude, required double longitude}) {
-    return _GeoLocation(
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-}
-
-/// @nodoc
-const $GeolocationDto = _$GeolocationDtoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$GeolocationDto {
@@ -78,32 +63,32 @@ class _$GeolocationDtoCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$GeoLocationCopyWith<$Res>
+abstract class _$$_GeoLocationCopyWith<$Res>
     implements $GeolocationDtoCopyWith<$Res> {
-  factory _$GeoLocationCopyWith(
-          _GeoLocation value, $Res Function(_GeoLocation) then) =
-      __$GeoLocationCopyWithImpl<$Res>;
+  factory _$$_GeoLocationCopyWith(
+          _$_GeoLocation value, $Res Function(_$_GeoLocation) then) =
+      __$$_GeoLocationCopyWithImpl<$Res>;
   @override
   $Res call({double latitude, double longitude});
 }
 
 /// @nodoc
-class __$GeoLocationCopyWithImpl<$Res>
+class __$$_GeoLocationCopyWithImpl<$Res>
     extends _$GeolocationDtoCopyWithImpl<$Res>
-    implements _$GeoLocationCopyWith<$Res> {
-  __$GeoLocationCopyWithImpl(
-      _GeoLocation _value, $Res Function(_GeoLocation) _then)
-      : super(_value, (v) => _then(v as _GeoLocation));
+    implements _$$_GeoLocationCopyWith<$Res> {
+  __$$_GeoLocationCopyWithImpl(
+      _$_GeoLocation _value, $Res Function(_$_GeoLocation) _then)
+      : super(_value, (v) => _then(v as _$_GeoLocation));
 
   @override
-  _GeoLocation get _value => super._value as _GeoLocation;
+  _$_GeoLocation get _value => super._value as _$_GeoLocation;
 
   @override
   $Res call({
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(_GeoLocation(
+    return _then(_$_GeoLocation(
       latitude: latitude == freezed
           ? _value.latitude
           : latitude // ignore: cast_nullable_to_non_nullable
@@ -121,13 +106,12 @@ class __$GeoLocationCopyWithImpl<$Res>
 class _$_GeoLocation implements _GeoLocation {
   const _$_GeoLocation({required this.latitude, required this.longitude});
 
-  @override
-
   /// Latitude, in degrees.
-  final double latitude;
   @override
+  final double latitude;
 
   /// Longitude, in degrees.
+  @override
   final double longitude;
 
   @override
@@ -139,7 +123,7 @@ class _$_GeoLocation implements _GeoLocation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _GeoLocation &&
+            other is _$_GeoLocation &&
             const DeepCollectionEquality().equals(other.latitude, latitude) &&
             const DeepCollectionEquality().equals(other.longitude, longitude));
   }
@@ -152,24 +136,25 @@ class _$_GeoLocation implements _GeoLocation {
 
   @JsonKey(ignore: true)
   @override
-  _$GeoLocationCopyWith<_GeoLocation> get copyWith =>
-      __$GeoLocationCopyWithImpl<_GeoLocation>(this, _$identity);
+  _$$_GeoLocationCopyWith<_$_GeoLocation> get copyWith =>
+      __$$_GeoLocationCopyWithImpl<_$_GeoLocation>(this, _$identity);
 }
 
 abstract class _GeoLocation implements GeolocationDto {
   const factory _GeoLocation(
-      {required double latitude, required double longitude}) = _$_GeoLocation;
+      {required final double latitude,
+      required final double longitude}) = _$_GeoLocation;
 
   @override
 
   /// Latitude, in degrees.
-  double get latitude;
+  double get latitude => throw _privateConstructorUsedError;
   @override
 
   /// Longitude, in degrees.
-  double get longitude;
+  double get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$GeoLocationCopyWith<_GeoLocation> get copyWith =>
+  _$$_GeoLocationCopyWith<_$_GeoLocation> get copyWith =>
       throw _privateConstructorUsedError;
 }

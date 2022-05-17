@@ -12,32 +12,11 @@ part of 'user.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$UserDtoTearOff {
-  const _$UserDtoTearOff();
-
-  _DefaultUserDto basic({required String name}) {
-    return _DefaultUserDto(
-      name: name,
-    );
-  }
-
-  _UserDtoLocal local({required String name}) {
-    return _UserDtoLocal(
-      name: name,
-    );
-  }
-}
-
-/// @nodoc
-const $UserDto = _$UserDtoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$UserDto {
   String get name => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String name) basic,
@@ -110,30 +89,30 @@ class _$UserDtoCopyWithImpl<$Res> implements $UserDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$DefaultUserDtoCopyWith<$Res>
+abstract class _$$_DefaultUserDtoCopyWith<$Res>
     implements $UserDtoCopyWith<$Res> {
-  factory _$DefaultUserDtoCopyWith(
-          _DefaultUserDto value, $Res Function(_DefaultUserDto) then) =
-      __$DefaultUserDtoCopyWithImpl<$Res>;
+  factory _$$_DefaultUserDtoCopyWith(
+          _$_DefaultUserDto value, $Res Function(_$_DefaultUserDto) then) =
+      __$$_DefaultUserDtoCopyWithImpl<$Res>;
   @override
   $Res call({String name});
 }
 
 /// @nodoc
-class __$DefaultUserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
-    implements _$DefaultUserDtoCopyWith<$Res> {
-  __$DefaultUserDtoCopyWithImpl(
-      _DefaultUserDto _value, $Res Function(_DefaultUserDto) _then)
-      : super(_value, (v) => _then(v as _DefaultUserDto));
+class __$$_DefaultUserDtoCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
+    implements _$$_DefaultUserDtoCopyWith<$Res> {
+  __$$_DefaultUserDtoCopyWithImpl(
+      _$_DefaultUserDto _value, $Res Function(_$_DefaultUserDto) _then)
+      : super(_value, (v) => _then(v as _$_DefaultUserDto));
 
   @override
-  _DefaultUserDto get _value => super._value as _DefaultUserDto;
+  _$_DefaultUserDto get _value => super._value as _$_DefaultUserDto;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(_DefaultUserDto(
+    return _then(_$_DefaultUserDto(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -159,7 +138,7 @@ class _$_DefaultUserDto implements _DefaultUserDto {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _DefaultUserDto &&
+            other is _$_DefaultUserDto &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -169,8 +148,8 @@ class _$_DefaultUserDto implements _DefaultUserDto {
 
   @JsonKey(ignore: true)
   @override
-  _$DefaultUserDtoCopyWith<_DefaultUserDto> get copyWith =>
-      __$DefaultUserDtoCopyWithImpl<_DefaultUserDto>(this, _$identity);
+  _$$_DefaultUserDtoCopyWith<_$_DefaultUserDto> get copyWith =>
+      __$$_DefaultUserDtoCopyWithImpl<_$_DefaultUserDto>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -236,40 +215,42 @@ class _$_DefaultUserDto implements _DefaultUserDto {
 }
 
 abstract class _DefaultUserDto implements UserDto {
-  const factory _DefaultUserDto({required String name}) = _$_DefaultUserDto;
+  const factory _DefaultUserDto({required final String name}) =
+      _$_DefaultUserDto;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$DefaultUserDtoCopyWith<_DefaultUserDto> get copyWith =>
+  _$$_DefaultUserDtoCopyWith<_$_DefaultUserDto> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$UserDtoLocalCopyWith<$Res> implements $UserDtoCopyWith<$Res> {
-  factory _$UserDtoLocalCopyWith(
-          _UserDtoLocal value, $Res Function(_UserDtoLocal) then) =
-      __$UserDtoLocalCopyWithImpl<$Res>;
+abstract class _$$_UserDtoLocalCopyWith<$Res>
+    implements $UserDtoCopyWith<$Res> {
+  factory _$$_UserDtoLocalCopyWith(
+          _$_UserDtoLocal value, $Res Function(_$_UserDtoLocal) then) =
+      __$$_UserDtoLocalCopyWithImpl<$Res>;
   @override
   $Res call({String name});
 }
 
 /// @nodoc
-class __$UserDtoLocalCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
-    implements _$UserDtoLocalCopyWith<$Res> {
-  __$UserDtoLocalCopyWithImpl(
-      _UserDtoLocal _value, $Res Function(_UserDtoLocal) _then)
-      : super(_value, (v) => _then(v as _UserDtoLocal));
+class __$$_UserDtoLocalCopyWithImpl<$Res> extends _$UserDtoCopyWithImpl<$Res>
+    implements _$$_UserDtoLocalCopyWith<$Res> {
+  __$$_UserDtoLocalCopyWithImpl(
+      _$_UserDtoLocal _value, $Res Function(_$_UserDtoLocal) _then)
+      : super(_value, (v) => _then(v as _$_UserDtoLocal));
 
   @override
-  _UserDtoLocal get _value => super._value as _UserDtoLocal;
+  _$_UserDtoLocal get _value => super._value as _$_UserDtoLocal;
 
   @override
   $Res call({
     Object? name = freezed,
   }) {
-    return _then(_UserDtoLocal(
+    return _then(_$_UserDtoLocal(
       name: name == freezed
           ? _value.name
           : name // ignore: cast_nullable_to_non_nullable
@@ -295,7 +276,7 @@ class _$_UserDtoLocal implements _UserDtoLocal {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _UserDtoLocal &&
+            other is _$_UserDtoLocal &&
             const DeepCollectionEquality().equals(other.name, name));
   }
 
@@ -305,8 +286,8 @@ class _$_UserDtoLocal implements _UserDtoLocal {
 
   @JsonKey(ignore: true)
   @override
-  _$UserDtoLocalCopyWith<_UserDtoLocal> get copyWith =>
-      __$UserDtoLocalCopyWithImpl<_UserDtoLocal>(this, _$identity);
+  _$$_UserDtoLocalCopyWith<_$_UserDtoLocal> get copyWith =>
+      __$$_UserDtoLocalCopyWithImpl<_$_UserDtoLocal>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -372,12 +353,12 @@ class _$_UserDtoLocal implements _UserDtoLocal {
 }
 
 abstract class _UserDtoLocal implements UserDto {
-  const factory _UserDtoLocal({required String name}) = _$_UserDtoLocal;
+  const factory _UserDtoLocal({required final String name}) = _$_UserDtoLocal;
 
   @override
-  String get name;
+  String get name => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$UserDtoLocalCopyWith<_UserDtoLocal> get copyWith =>
+  _$$_UserDtoLocalCopyWith<_$_UserDtoLocal> get copyWith =>
       throw _privateConstructorUsedError;
 }

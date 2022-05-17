@@ -12,39 +12,7 @@ part of 'message.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MessageDtoTearOff {
-  const _$MessageDtoTearOff();
-
-  _Message basic(
-      {required UserDto author,
-      required String message,
-      required DateTime createdDateTime}) {
-    return _Message(
-      author: author,
-      message: message,
-      createdDateTime: createdDateTime,
-    );
-  }
-
-  MessageWithLocation withLocation(
-      {required UserDto author,
-      required GeolocationDto location,
-      required String message,
-      required DateTime createdDateTime}) {
-    return MessageWithLocation(
-      author: author,
-      location: location,
-      message: message,
-      createdDateTime: createdDateTime,
-    );
-  }
-}
-
-/// @nodoc
-const $MessageDto = _$MessageDtoTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MessageDto {
@@ -56,7 +24,6 @@ mixin _$MessageDto {
 
   /// Creation date and time.
   DateTime get createdDateTime => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(
@@ -160,9 +127,10 @@ class _$MessageDtoCopyWithImpl<$Res> implements $MessageDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$MessageCopyWith<$Res> implements $MessageDtoCopyWith<$Res> {
-  factory _$MessageCopyWith(_Message value, $Res Function(_Message) then) =
-      __$MessageCopyWithImpl<$Res>;
+abstract class _$$_MessageCopyWith<$Res> implements $MessageDtoCopyWith<$Res> {
+  factory _$$_MessageCopyWith(
+          _$_Message value, $Res Function(_$_Message) then) =
+      __$$_MessageCopyWithImpl<$Res>;
   @override
   $Res call({UserDto author, String message, DateTime createdDateTime});
 
@@ -171,13 +139,13 @@ abstract class _$MessageCopyWith<$Res> implements $MessageDtoCopyWith<$Res> {
 }
 
 /// @nodoc
-class __$MessageCopyWithImpl<$Res> extends _$MessageDtoCopyWithImpl<$Res>
-    implements _$MessageCopyWith<$Res> {
-  __$MessageCopyWithImpl(_Message _value, $Res Function(_Message) _then)
-      : super(_value, (v) => _then(v as _Message));
+class __$$_MessageCopyWithImpl<$Res> extends _$MessageDtoCopyWithImpl<$Res>
+    implements _$$_MessageCopyWith<$Res> {
+  __$$_MessageCopyWithImpl(_$_Message _value, $Res Function(_$_Message) _then)
+      : super(_value, (v) => _then(v as _$_Message));
 
   @override
-  _Message get _value => super._value as _Message;
+  _$_Message get _value => super._value as _$_Message;
 
   @override
   $Res call({
@@ -185,7 +153,7 @@ class __$MessageCopyWithImpl<$Res> extends _$MessageDtoCopyWithImpl<$Res>
     Object? message = freezed,
     Object? createdDateTime = freezed,
   }) {
-    return _then(_Message(
+    return _then(_$_Message(
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -210,17 +178,16 @@ class _$_Message implements _Message {
       required this.message,
       required this.createdDateTime});
 
-  @override
-
   /// Message author.
-  final UserDto author;
   @override
+  final UserDto author;
 
   /// Chat message string.
-  final String message;
   @override
+  final String message;
 
   /// Creation date and time.
+  @override
   final DateTime createdDateTime;
 
   @override
@@ -232,7 +199,7 @@ class _$_Message implements _Message {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _Message &&
+            other is _$_Message &&
             const DeepCollectionEquality().equals(other.author, author) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality()
@@ -248,8 +215,8 @@ class _$_Message implements _Message {
 
   @JsonKey(ignore: true)
   @override
-  _$MessageCopyWith<_Message> get copyWith =>
-      __$MessageCopyWithImpl<_Message>(this, _$identity);
+  _$$_MessageCopyWith<_$_Message> get copyWith =>
+      __$$_MessageCopyWithImpl<_$_Message>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -326,34 +293,34 @@ class _$_Message implements _Message {
 
 abstract class _Message implements MessageDto {
   const factory _Message(
-      {required UserDto author,
-      required String message,
-      required DateTime createdDateTime}) = _$_Message;
+      {required final UserDto author,
+      required final String message,
+      required final DateTime createdDateTime}) = _$_Message;
 
   @override
 
   /// Message author.
-  UserDto get author;
+  UserDto get author => throw _privateConstructorUsedError;
   @override
 
   /// Chat message string.
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
 
   /// Creation date and time.
-  DateTime get createdDateTime;
+  DateTime get createdDateTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageCopyWith<_Message> get copyWith =>
+  _$$_MessageCopyWith<_$_Message> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageWithLocationCopyWith<$Res>
+abstract class _$$MessageWithLocationCopyWith<$Res>
     implements $MessageDtoCopyWith<$Res> {
-  factory $MessageWithLocationCopyWith(
-          MessageWithLocation value, $Res Function(MessageWithLocation) then) =
-      _$MessageWithLocationCopyWithImpl<$Res>;
+  factory _$$MessageWithLocationCopyWith(_$MessageWithLocation value,
+          $Res Function(_$MessageWithLocation) then) =
+      __$$MessageWithLocationCopyWithImpl<$Res>;
   @override
   $Res call(
       {UserDto author,
@@ -367,15 +334,15 @@ abstract class $MessageWithLocationCopyWith<$Res>
 }
 
 /// @nodoc
-class _$MessageWithLocationCopyWithImpl<$Res>
+class __$$MessageWithLocationCopyWithImpl<$Res>
     extends _$MessageDtoCopyWithImpl<$Res>
-    implements $MessageWithLocationCopyWith<$Res> {
-  _$MessageWithLocationCopyWithImpl(
-      MessageWithLocation _value, $Res Function(MessageWithLocation) _then)
-      : super(_value, (v) => _then(v as MessageWithLocation));
+    implements _$$MessageWithLocationCopyWith<$Res> {
+  __$$MessageWithLocationCopyWithImpl(
+      _$MessageWithLocation _value, $Res Function(_$MessageWithLocation) _then)
+      : super(_value, (v) => _then(v as _$MessageWithLocation));
 
   @override
-  MessageWithLocation get _value => super._value as MessageWithLocation;
+  _$MessageWithLocation get _value => super._value as _$MessageWithLocation;
 
   @override
   $Res call({
@@ -384,7 +351,7 @@ class _$MessageWithLocationCopyWithImpl<$Res>
     Object? message = freezed,
     Object? createdDateTime = freezed,
   }) {
-    return _then(MessageWithLocation(
+    return _then(_$MessageWithLocation(
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -423,9 +390,9 @@ class _$MessageWithLocation implements MessageWithLocation {
 
   @override
   final UserDto author;
-  @override
 
   /// Location point.
+  @override
   final GeolocationDto location;
   @override
   final String message;
@@ -441,7 +408,7 @@ class _$MessageWithLocation implements MessageWithLocation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MessageWithLocation &&
+            other is _$MessageWithLocation &&
             const DeepCollectionEquality().equals(other.author, author) &&
             const DeepCollectionEquality().equals(other.location, location) &&
             const DeepCollectionEquality().equals(other.message, message) &&
@@ -459,8 +426,9 @@ class _$MessageWithLocation implements MessageWithLocation {
 
   @JsonKey(ignore: true)
   @override
-  $MessageWithLocationCopyWith<MessageWithLocation> get copyWith =>
-      _$MessageWithLocationCopyWithImpl<MessageWithLocation>(this, _$identity);
+  _$$MessageWithLocationCopyWith<_$MessageWithLocation> get copyWith =>
+      __$$MessageWithLocationCopyWithImpl<_$MessageWithLocation>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -537,22 +505,22 @@ class _$MessageWithLocation implements MessageWithLocation {
 
 abstract class MessageWithLocation implements MessageDto {
   const factory MessageWithLocation(
-      {required UserDto author,
-      required GeolocationDto location,
-      required String message,
-      required DateTime createdDateTime}) = _$MessageWithLocation;
+      {required final UserDto author,
+      required final GeolocationDto location,
+      required final String message,
+      required final DateTime createdDateTime}) = _$MessageWithLocation;
 
   @override
-  UserDto get author;
+  UserDto get author => throw _privateConstructorUsedError;
 
   /// Location point.
-  GeolocationDto get location;
+  GeolocationDto get location => throw _privateConstructorUsedError;
   @override
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
-  DateTime get createdDateTime;
+  DateTime get createdDateTime => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $MessageWithLocationCopyWith<MessageWithLocation> get copyWith =>
+  _$$MessageWithLocationCopyWith<_$MessageWithLocation> get copyWith =>
       throw _privateConstructorUsedError;
 }
