@@ -12,49 +12,7 @@ part of 'chat_bloc.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$ChatEventTearOff {
-  const _$ChatEventTearOff();
-
-  _StartEvent start() {
-    return const _StartEvent();
-  }
-
-  _NewMessageEvent newMessages(Iterable<MessageDto> messages) {
-    return _NewMessageEvent(
-      messages,
-    );
-  }
-
-  _LoadPreviousPageEvent loadPreviousPage() {
-    return const _LoadPreviousPageEvent();
-  }
-
-  _NoMoreMessagesEvent noMoreMessages() {
-    return const _NoMoreMessagesEvent();
-  }
-
-  _SendMessageEvent sendMessage(
-      {required String nickname, required String text}) {
-    return _SendMessageEvent(
-      nickname: nickname,
-      text: text,
-    );
-  }
-
-  _SendLocationEvent sendLocation(
-      {required String nickname, required GeolocationDto location}) {
-    return _SendLocationEvent(
-      nickname: nickname,
-      location: location,
-    );
-  }
-}
-
-/// @nodoc
-const $ChatEvent = _$ChatEventTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$ChatEvent {
@@ -139,21 +97,21 @@ class _$ChatEventCopyWithImpl<$Res> implements $ChatEventCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$StartEventCopyWith<$Res> {
-  factory _$StartEventCopyWith(
-          _StartEvent value, $Res Function(_StartEvent) then) =
-      __$StartEventCopyWithImpl<$Res>;
+abstract class _$$_StartEventCopyWith<$Res> {
+  factory _$$_StartEventCopyWith(
+          _$_StartEvent value, $Res Function(_$_StartEvent) then) =
+      __$$_StartEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$StartEventCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$StartEventCopyWith<$Res> {
-  __$StartEventCopyWithImpl(
-      _StartEvent _value, $Res Function(_StartEvent) _then)
-      : super(_value, (v) => _then(v as _StartEvent));
+class __$$_StartEventCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
+    implements _$$_StartEventCopyWith<$Res> {
+  __$$_StartEventCopyWithImpl(
+      _$_StartEvent _value, $Res Function(_$_StartEvent) _then)
+      : super(_value, (v) => _then(v as _$_StartEvent));
 
   @override
-  _StartEvent get _value => super._value as _StartEvent;
+  _$_StartEvent get _value => super._value as _$_StartEvent;
 }
 
 /// @nodoc
@@ -169,7 +127,7 @@ class _$_StartEvent implements _StartEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _StartEvent);
+        (other.runtimeType == runtimeType && other is _$_StartEvent);
   }
 
   @override
@@ -268,28 +226,29 @@ abstract class _StartEvent implements ChatEvent {
 }
 
 /// @nodoc
-abstract class _$NewMessageEventCopyWith<$Res> {
-  factory _$NewMessageEventCopyWith(
-          _NewMessageEvent value, $Res Function(_NewMessageEvent) then) =
-      __$NewMessageEventCopyWithImpl<$Res>;
+abstract class _$$_NewMessageEventCopyWith<$Res> {
+  factory _$$_NewMessageEventCopyWith(
+          _$_NewMessageEvent value, $Res Function(_$_NewMessageEvent) then) =
+      __$$_NewMessageEventCopyWithImpl<$Res>;
   $Res call({Iterable<MessageDto> messages});
 }
 
 /// @nodoc
-class __$NewMessageEventCopyWithImpl<$Res> extends _$ChatEventCopyWithImpl<$Res>
-    implements _$NewMessageEventCopyWith<$Res> {
-  __$NewMessageEventCopyWithImpl(
-      _NewMessageEvent _value, $Res Function(_NewMessageEvent) _then)
-      : super(_value, (v) => _then(v as _NewMessageEvent));
+class __$$_NewMessageEventCopyWithImpl<$Res>
+    extends _$ChatEventCopyWithImpl<$Res>
+    implements _$$_NewMessageEventCopyWith<$Res> {
+  __$$_NewMessageEventCopyWithImpl(
+      _$_NewMessageEvent _value, $Res Function(_$_NewMessageEvent) _then)
+      : super(_value, (v) => _then(v as _$_NewMessageEvent));
 
   @override
-  _NewMessageEvent get _value => super._value as _NewMessageEvent;
+  _$_NewMessageEvent get _value => super._value as _$_NewMessageEvent;
 
   @override
   $Res call({
     Object? messages = freezed,
   }) {
-    return _then(_NewMessageEvent(
+    return _then(_$_NewMessageEvent(
       messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -315,7 +274,7 @@ class _$_NewMessageEvent implements _NewMessageEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _NewMessageEvent &&
+            other is _$_NewMessageEvent &&
             const DeepCollectionEquality().equals(other.messages, messages));
   }
 
@@ -325,8 +284,8 @@ class _$_NewMessageEvent implements _NewMessageEvent {
 
   @JsonKey(ignore: true)
   @override
-  _$NewMessageEventCopyWith<_NewMessageEvent> get copyWith =>
-      __$NewMessageEventCopyWithImpl<_NewMessageEvent>(this, _$identity);
+  _$$_NewMessageEventCopyWith<_$_NewMessageEvent> get copyWith =>
+      __$$_NewMessageEventCopyWithImpl<_$_NewMessageEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -417,32 +376,33 @@ class _$_NewMessageEvent implements _NewMessageEvent {
 }
 
 abstract class _NewMessageEvent implements ChatEvent {
-  const factory _NewMessageEvent(Iterable<MessageDto> messages) =
+  const factory _NewMessageEvent(final Iterable<MessageDto> messages) =
       _$_NewMessageEvent;
 
-  Iterable<MessageDto> get messages;
+  Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$NewMessageEventCopyWith<_NewMessageEvent> get copyWith =>
+  _$$_NewMessageEventCopyWith<_$_NewMessageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$LoadPreviousPageEventCopyWith<$Res> {
-  factory _$LoadPreviousPageEventCopyWith(_LoadPreviousPageEvent value,
-          $Res Function(_LoadPreviousPageEvent) then) =
-      __$LoadPreviousPageEventCopyWithImpl<$Res>;
+abstract class _$$_LoadPreviousPageEventCopyWith<$Res> {
+  factory _$$_LoadPreviousPageEventCopyWith(_$_LoadPreviousPageEvent value,
+          $Res Function(_$_LoadPreviousPageEvent) then) =
+      __$$_LoadPreviousPageEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$LoadPreviousPageEventCopyWithImpl<$Res>
+class __$$_LoadPreviousPageEventCopyWithImpl<$Res>
     extends _$ChatEventCopyWithImpl<$Res>
-    implements _$LoadPreviousPageEventCopyWith<$Res> {
-  __$LoadPreviousPageEventCopyWithImpl(_LoadPreviousPageEvent _value,
-      $Res Function(_LoadPreviousPageEvent) _then)
-      : super(_value, (v) => _then(v as _LoadPreviousPageEvent));
+    implements _$$_LoadPreviousPageEventCopyWith<$Res> {
+  __$$_LoadPreviousPageEventCopyWithImpl(_$_LoadPreviousPageEvent _value,
+      $Res Function(_$_LoadPreviousPageEvent) _then)
+      : super(_value, (v) => _then(v as _$_LoadPreviousPageEvent));
 
   @override
-  _LoadPreviousPageEvent get _value => super._value as _LoadPreviousPageEvent;
+  _$_LoadPreviousPageEvent get _value =>
+      super._value as _$_LoadPreviousPageEvent;
 }
 
 /// @nodoc
@@ -458,7 +418,7 @@ class _$_LoadPreviousPageEvent implements _LoadPreviousPageEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _LoadPreviousPageEvent);
+        (other.runtimeType == runtimeType && other is _$_LoadPreviousPageEvent);
   }
 
   @override
@@ -557,22 +517,22 @@ abstract class _LoadPreviousPageEvent implements ChatEvent {
 }
 
 /// @nodoc
-abstract class _$NoMoreMessagesEventCopyWith<$Res> {
-  factory _$NoMoreMessagesEventCopyWith(_NoMoreMessagesEvent value,
-          $Res Function(_NoMoreMessagesEvent) then) =
-      __$NoMoreMessagesEventCopyWithImpl<$Res>;
+abstract class _$$_NoMoreMessagesEventCopyWith<$Res> {
+  factory _$$_NoMoreMessagesEventCopyWith(_$_NoMoreMessagesEvent value,
+          $Res Function(_$_NoMoreMessagesEvent) then) =
+      __$$_NoMoreMessagesEventCopyWithImpl<$Res>;
 }
 
 /// @nodoc
-class __$NoMoreMessagesEventCopyWithImpl<$Res>
+class __$$_NoMoreMessagesEventCopyWithImpl<$Res>
     extends _$ChatEventCopyWithImpl<$Res>
-    implements _$NoMoreMessagesEventCopyWith<$Res> {
-  __$NoMoreMessagesEventCopyWithImpl(
-      _NoMoreMessagesEvent _value, $Res Function(_NoMoreMessagesEvent) _then)
-      : super(_value, (v) => _then(v as _NoMoreMessagesEvent));
+    implements _$$_NoMoreMessagesEventCopyWith<$Res> {
+  __$$_NoMoreMessagesEventCopyWithImpl(_$_NoMoreMessagesEvent _value,
+      $Res Function(_$_NoMoreMessagesEvent) _then)
+      : super(_value, (v) => _then(v as _$_NoMoreMessagesEvent));
 
   @override
-  _NoMoreMessagesEvent get _value => super._value as _NoMoreMessagesEvent;
+  _$_NoMoreMessagesEvent get _value => super._value as _$_NoMoreMessagesEvent;
 }
 
 /// @nodoc
@@ -588,7 +548,7 @@ class _$_NoMoreMessagesEvent implements _NoMoreMessagesEvent {
   @override
   bool operator ==(dynamic other) {
     return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _NoMoreMessagesEvent);
+        (other.runtimeType == runtimeType && other is _$_NoMoreMessagesEvent);
   }
 
   @override
@@ -687,30 +647,30 @@ abstract class _NoMoreMessagesEvent implements ChatEvent {
 }
 
 /// @nodoc
-abstract class _$SendMessageEventCopyWith<$Res> {
-  factory _$SendMessageEventCopyWith(
-          _SendMessageEvent value, $Res Function(_SendMessageEvent) then) =
-      __$SendMessageEventCopyWithImpl<$Res>;
+abstract class _$$_SendMessageEventCopyWith<$Res> {
+  factory _$$_SendMessageEventCopyWith(
+          _$_SendMessageEvent value, $Res Function(_$_SendMessageEvent) then) =
+      __$$_SendMessageEventCopyWithImpl<$Res>;
   $Res call({String nickname, String text});
 }
 
 /// @nodoc
-class __$SendMessageEventCopyWithImpl<$Res>
+class __$$_SendMessageEventCopyWithImpl<$Res>
     extends _$ChatEventCopyWithImpl<$Res>
-    implements _$SendMessageEventCopyWith<$Res> {
-  __$SendMessageEventCopyWithImpl(
-      _SendMessageEvent _value, $Res Function(_SendMessageEvent) _then)
-      : super(_value, (v) => _then(v as _SendMessageEvent));
+    implements _$$_SendMessageEventCopyWith<$Res> {
+  __$$_SendMessageEventCopyWithImpl(
+      _$_SendMessageEvent _value, $Res Function(_$_SendMessageEvent) _then)
+      : super(_value, (v) => _then(v as _$_SendMessageEvent));
 
   @override
-  _SendMessageEvent get _value => super._value as _SendMessageEvent;
+  _$_SendMessageEvent get _value => super._value as _$_SendMessageEvent;
 
   @override
   $Res call({
     Object? nickname = freezed,
     Object? text = freezed,
   }) {
-    return _then(_SendMessageEvent(
+    return _then(_$_SendMessageEvent(
       nickname: nickname == freezed
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -742,7 +702,7 @@ class _$_SendMessageEvent implements _SendMessageEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SendMessageEvent &&
+            other is _$_SendMessageEvent &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.text, text));
   }
@@ -755,8 +715,8 @@ class _$_SendMessageEvent implements _SendMessageEvent {
 
   @JsonKey(ignore: true)
   @override
-  _$SendMessageEventCopyWith<_SendMessageEvent> get copyWith =>
-      __$SendMessageEventCopyWithImpl<_SendMessageEvent>(this, _$identity);
+  _$$_SendMessageEventCopyWith<_$_SendMessageEvent> get copyWith =>
+      __$$_SendMessageEventCopyWithImpl<_$_SendMessageEvent>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -848,42 +808,43 @@ class _$_SendMessageEvent implements _SendMessageEvent {
 
 abstract class _SendMessageEvent implements ChatEvent {
   const factory _SendMessageEvent(
-      {required String nickname, required String text}) = _$_SendMessageEvent;
+      {required final String nickname,
+      required final String text}) = _$_SendMessageEvent;
 
-  String get nickname;
-  String get text;
+  String get nickname => throw _privateConstructorUsedError;
+  String get text => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SendMessageEventCopyWith<_SendMessageEvent> get copyWith =>
+  _$$_SendMessageEventCopyWith<_$_SendMessageEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SendLocationEventCopyWith<$Res> {
-  factory _$SendLocationEventCopyWith(
-          _SendLocationEvent value, $Res Function(_SendLocationEvent) then) =
-      __$SendLocationEventCopyWithImpl<$Res>;
+abstract class _$$_SendLocationEventCopyWith<$Res> {
+  factory _$$_SendLocationEventCopyWith(_$_SendLocationEvent value,
+          $Res Function(_$_SendLocationEvent) then) =
+      __$$_SendLocationEventCopyWithImpl<$Res>;
   $Res call({String nickname, GeolocationDto location});
 
   $GeolocationDtoCopyWith<$Res> get location;
 }
 
 /// @nodoc
-class __$SendLocationEventCopyWithImpl<$Res>
+class __$$_SendLocationEventCopyWithImpl<$Res>
     extends _$ChatEventCopyWithImpl<$Res>
-    implements _$SendLocationEventCopyWith<$Res> {
-  __$SendLocationEventCopyWithImpl(
-      _SendLocationEvent _value, $Res Function(_SendLocationEvent) _then)
-      : super(_value, (v) => _then(v as _SendLocationEvent));
+    implements _$$_SendLocationEventCopyWith<$Res> {
+  __$$_SendLocationEventCopyWithImpl(
+      _$_SendLocationEvent _value, $Res Function(_$_SendLocationEvent) _then)
+      : super(_value, (v) => _then(v as _$_SendLocationEvent));
 
   @override
-  _SendLocationEvent get _value => super._value as _SendLocationEvent;
+  _$_SendLocationEvent get _value => super._value as _$_SendLocationEvent;
 
   @override
   $Res call({
     Object? nickname = freezed,
     Object? location = freezed,
   }) {
-    return _then(_SendLocationEvent(
+    return _then(_$_SendLocationEvent(
       nickname: nickname == freezed
           ? _value.nickname
           : nickname // ignore: cast_nullable_to_non_nullable
@@ -922,7 +883,7 @@ class _$_SendLocationEvent implements _SendLocationEvent {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SendLocationEvent &&
+            other is _$_SendLocationEvent &&
             const DeepCollectionEquality().equals(other.nickname, nickname) &&
             const DeepCollectionEquality().equals(other.location, location));
   }
@@ -935,8 +896,9 @@ class _$_SendLocationEvent implements _SendLocationEvent {
 
   @JsonKey(ignore: true)
   @override
-  _$SendLocationEventCopyWith<_SendLocationEvent> get copyWith =>
-      __$SendLocationEventCopyWithImpl<_SendLocationEvent>(this, _$identity);
+  _$$_SendLocationEventCopyWith<_$_SendLocationEvent> get copyWith =>
+      __$$_SendLocationEventCopyWithImpl<_$_SendLocationEvent>(
+          this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1028,54 +990,20 @@ class _$_SendLocationEvent implements _SendLocationEvent {
 
 abstract class _SendLocationEvent implements ChatEvent {
   const factory _SendLocationEvent(
-      {required String nickname,
-      required GeolocationDto location}) = _$_SendLocationEvent;
+      {required final String nickname,
+      required final GeolocationDto location}) = _$_SendLocationEvent;
 
-  String get nickname;
-  GeolocationDto get location;
+  String get nickname => throw _privateConstructorUsedError;
+  GeolocationDto get location => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
-  _$SendLocationEventCopyWith<_SendLocationEvent> get copyWith =>
+  _$$_SendLocationEventCopyWith<_$_SendLocationEvent> get copyWith =>
       throw _privateConstructorUsedError;
 }
-
-/// @nodoc
-class _$ChatStateTearOff {
-  const _$ChatStateTearOff();
-
-  _InitialState initial(
-      {Iterable<MessageDto> messages = const <MessageDto>[],
-      bool hasReachedEnd = false}) {
-    return _InitialState(
-      messages: messages,
-      hasReachedEnd: hasReachedEnd,
-    );
-  }
-
-  _InProgressState inProgress(
-      {required Iterable<MessageDto> messages, bool hasReachedEnd = false}) {
-    return _InProgressState(
-      messages: messages,
-      hasReachedEnd: hasReachedEnd,
-    );
-  }
-
-  _SuccessState success(
-      {required Iterable<MessageDto> messages, required bool hasReachedEnd}) {
-    return _SuccessState(
-      messages: messages,
-      hasReachedEnd: hasReachedEnd,
-    );
-  }
-}
-
-/// @nodoc
-const $ChatState = _$ChatStateTearOff();
 
 /// @nodoc
 mixin _$ChatState {
   Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
   bool get hasReachedEnd => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(Iterable<MessageDto> messages, bool hasReachedEnd)
@@ -1169,31 +1097,31 @@ class _$ChatStateCopyWithImpl<$Res> implements $ChatStateCopyWith<$Res> {
 }
 
 /// @nodoc
-abstract class _$InitialStateCopyWith<$Res>
+abstract class _$$_InitialStateCopyWith<$Res>
     implements $ChatStateCopyWith<$Res> {
-  factory _$InitialStateCopyWith(
-          _InitialState value, $Res Function(_InitialState) then) =
-      __$InitialStateCopyWithImpl<$Res>;
+  factory _$$_InitialStateCopyWith(
+          _$_InitialState value, $Res Function(_$_InitialState) then) =
+      __$$_InitialStateCopyWithImpl<$Res>;
   @override
   $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
-class __$InitialStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
-    implements _$InitialStateCopyWith<$Res> {
-  __$InitialStateCopyWithImpl(
-      _InitialState _value, $Res Function(_InitialState) _then)
-      : super(_value, (v) => _then(v as _InitialState));
+class __$$_InitialStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
+    implements _$$_InitialStateCopyWith<$Res> {
+  __$$_InitialStateCopyWithImpl(
+      _$_InitialState _value, $Res Function(_$_InitialState) _then)
+      : super(_value, (v) => _then(v as _$_InitialState));
 
   @override
-  _InitialState get _value => super._value as _InitialState;
+  _$_InitialState get _value => super._value as _$_InitialState;
 
   @override
   $Res call({
     Object? messages = freezed,
     Object? hasReachedEnd = freezed,
   }) {
-    return _then(_InitialState(
+    return _then(_$_InitialState(
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -1212,11 +1140,11 @@ class _$_InitialState implements _InitialState {
   const _$_InitialState(
       {this.messages = const <MessageDto>[], this.hasReachedEnd = false});
 
-  @JsonKey()
   @override
+  @JsonKey()
   final Iterable<MessageDto> messages;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool hasReachedEnd;
 
   @override
@@ -1228,7 +1156,7 @@ class _$_InitialState implements _InitialState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InitialState &&
+            other is _$_InitialState &&
             const DeepCollectionEquality().equals(other.messages, messages) &&
             const DeepCollectionEquality()
                 .equals(other.hasReachedEnd, hasReachedEnd));
@@ -1242,8 +1170,8 @@ class _$_InitialState implements _InitialState {
 
   @JsonKey(ignore: true)
   @override
-  _$InitialStateCopyWith<_InitialState> get copyWith =>
-      __$InitialStateCopyWithImpl<_InitialState>(this, _$identity);
+  _$$_InitialStateCopyWith<_$_InitialState> get copyWith =>
+      __$$_InitialStateCopyWithImpl<_$_InitialState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1325,44 +1253,46 @@ class _$_InitialState implements _InitialState {
 
 abstract class _InitialState implements ChatState {
   const factory _InitialState(
-      {Iterable<MessageDto> messages, bool hasReachedEnd}) = _$_InitialState;
+      {final Iterable<MessageDto> messages,
+      final bool hasReachedEnd}) = _$_InitialState;
 
   @override
-  Iterable<MessageDto> get messages;
+  Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
   @override
-  bool get hasReachedEnd;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InitialStateCopyWith<_InitialState> get copyWith =>
+  _$$_InitialStateCopyWith<_$_InitialState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$InProgressStateCopyWith<$Res>
+abstract class _$$_InProgressStateCopyWith<$Res>
     implements $ChatStateCopyWith<$Res> {
-  factory _$InProgressStateCopyWith(
-          _InProgressState value, $Res Function(_InProgressState) then) =
-      __$InProgressStateCopyWithImpl<$Res>;
+  factory _$$_InProgressStateCopyWith(
+          _$_InProgressState value, $Res Function(_$_InProgressState) then) =
+      __$$_InProgressStateCopyWithImpl<$Res>;
   @override
   $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
-class __$InProgressStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
-    implements _$InProgressStateCopyWith<$Res> {
-  __$InProgressStateCopyWithImpl(
-      _InProgressState _value, $Res Function(_InProgressState) _then)
-      : super(_value, (v) => _then(v as _InProgressState));
+class __$$_InProgressStateCopyWithImpl<$Res>
+    extends _$ChatStateCopyWithImpl<$Res>
+    implements _$$_InProgressStateCopyWith<$Res> {
+  __$$_InProgressStateCopyWithImpl(
+      _$_InProgressState _value, $Res Function(_$_InProgressState) _then)
+      : super(_value, (v) => _then(v as _$_InProgressState));
 
   @override
-  _InProgressState get _value => super._value as _InProgressState;
+  _$_InProgressState get _value => super._value as _$_InProgressState;
 
   @override
   $Res call({
     Object? messages = freezed,
     Object? hasReachedEnd = freezed,
   }) {
-    return _then(_InProgressState(
+    return _then(_$_InProgressState(
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -1383,8 +1313,8 @@ class _$_InProgressState implements _InProgressState {
 
   @override
   final Iterable<MessageDto> messages;
-  @JsonKey()
   @override
+  @JsonKey()
   final bool hasReachedEnd;
 
   @override
@@ -1396,7 +1326,7 @@ class _$_InProgressState implements _InProgressState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _InProgressState &&
+            other is _$_InProgressState &&
             const DeepCollectionEquality().equals(other.messages, messages) &&
             const DeepCollectionEquality()
                 .equals(other.hasReachedEnd, hasReachedEnd));
@@ -1410,8 +1340,8 @@ class _$_InProgressState implements _InProgressState {
 
   @JsonKey(ignore: true)
   @override
-  _$InProgressStateCopyWith<_InProgressState> get copyWith =>
-      __$InProgressStateCopyWithImpl<_InProgressState>(this, _$identity);
+  _$$_InProgressStateCopyWith<_$_InProgressState> get copyWith =>
+      __$$_InProgressStateCopyWithImpl<_$_InProgressState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1493,45 +1423,45 @@ class _$_InProgressState implements _InProgressState {
 
 abstract class _InProgressState implements ChatState {
   const factory _InProgressState(
-      {required Iterable<MessageDto> messages,
-      bool hasReachedEnd}) = _$_InProgressState;
+      {required final Iterable<MessageDto> messages,
+      final bool hasReachedEnd}) = _$_InProgressState;
 
   @override
-  Iterable<MessageDto> get messages;
+  Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
   @override
-  bool get hasReachedEnd;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$InProgressStateCopyWith<_InProgressState> get copyWith =>
+  _$$_InProgressStateCopyWith<_$_InProgressState> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class _$SuccessStateCopyWith<$Res>
+abstract class _$$_SuccessStateCopyWith<$Res>
     implements $ChatStateCopyWith<$Res> {
-  factory _$SuccessStateCopyWith(
-          _SuccessState value, $Res Function(_SuccessState) then) =
-      __$SuccessStateCopyWithImpl<$Res>;
+  factory _$$_SuccessStateCopyWith(
+          _$_SuccessState value, $Res Function(_$_SuccessState) then) =
+      __$$_SuccessStateCopyWithImpl<$Res>;
   @override
   $Res call({Iterable<MessageDto> messages, bool hasReachedEnd});
 }
 
 /// @nodoc
-class __$SuccessStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
-    implements _$SuccessStateCopyWith<$Res> {
-  __$SuccessStateCopyWithImpl(
-      _SuccessState _value, $Res Function(_SuccessState) _then)
-      : super(_value, (v) => _then(v as _SuccessState));
+class __$$_SuccessStateCopyWithImpl<$Res> extends _$ChatStateCopyWithImpl<$Res>
+    implements _$$_SuccessStateCopyWith<$Res> {
+  __$$_SuccessStateCopyWithImpl(
+      _$_SuccessState _value, $Res Function(_$_SuccessState) _then)
+      : super(_value, (v) => _then(v as _$_SuccessState));
 
   @override
-  _SuccessState get _value => super._value as _SuccessState;
+  _$_SuccessState get _value => super._value as _$_SuccessState;
 
   @override
   $Res call({
     Object? messages = freezed,
     Object? hasReachedEnd = freezed,
   }) {
-    return _then(_SuccessState(
+    return _then(_$_SuccessState(
       messages: messages == freezed
           ? _value.messages
           : messages // ignore: cast_nullable_to_non_nullable
@@ -1563,7 +1493,7 @@ class _$_SuccessState implements _SuccessState {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _SuccessState &&
+            other is _$_SuccessState &&
             const DeepCollectionEquality().equals(other.messages, messages) &&
             const DeepCollectionEquality()
                 .equals(other.hasReachedEnd, hasReachedEnd));
@@ -1577,8 +1507,8 @@ class _$_SuccessState implements _SuccessState {
 
   @JsonKey(ignore: true)
   @override
-  _$SuccessStateCopyWith<_SuccessState> get copyWith =>
-      __$SuccessStateCopyWithImpl<_SuccessState>(this, _$identity);
+  _$$_SuccessStateCopyWith<_$_SuccessState> get copyWith =>
+      __$$_SuccessStateCopyWithImpl<_$_SuccessState>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -1660,15 +1590,15 @@ class _$_SuccessState implements _SuccessState {
 
 abstract class _SuccessState implements ChatState {
   const factory _SuccessState(
-      {required Iterable<MessageDto> messages,
-      required bool hasReachedEnd}) = _$_SuccessState;
+      {required final Iterable<MessageDto> messages,
+      required final bool hasReachedEnd}) = _$_SuccessState;
 
   @override
-  Iterable<MessageDto> get messages;
+  Iterable<MessageDto> get messages => throw _privateConstructorUsedError;
   @override
-  bool get hasReachedEnd;
+  bool get hasReachedEnd => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$SuccessStateCopyWith<_SuccessState> get copyWith =>
+  _$$_SuccessStateCopyWith<_$_SuccessState> get copyWith =>
       throw _privateConstructorUsedError;
 }

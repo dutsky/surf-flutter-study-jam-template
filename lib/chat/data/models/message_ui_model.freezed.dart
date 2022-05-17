@@ -12,54 +12,7 @@ part of 'message_ui_model.dart';
 T _$identity<T>(T value) => value;
 
 final _privateConstructorUsedError = UnsupportedError(
-    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more informations: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
-
-/// @nodoc
-class _$MessageUIModelTearOff {
-  const _$MessageUIModelTearOff();
-
-  _MessageUIModel basic(
-      {required String author,
-      required String message,
-      required String created}) {
-    return _MessageUIModel(
-      author: author,
-      message: message,
-      created: created,
-    );
-  }
-
-  MessageUIModelWithLocation withLocation(
-      {required String author,
-      required String message,
-      required String created,
-      required String latitude,
-      required String longitude}) {
-    return MessageUIModelWithLocation(
-      author: author,
-      message: message,
-      created: created,
-      latitude: latitude,
-      longitude: longitude,
-    );
-  }
-
-  MessageUIModelWithImage withImage(
-      {required String author,
-      required String message,
-      required String created,
-      required String url}) {
-    return MessageUIModelWithImage(
-      author: author,
-      message: message,
-      created: created,
-      url: url,
-    );
-  }
-}
-
-/// @nodoc
-const $MessageUIModel = _$MessageUIModelTearOff();
+    'It seems like you constructed your class using `MyClass._()`. This constructor is only meant to be used by freezed and you are not supposed to need it nor use it.\nPlease check the documentation here for more information: https://github.com/rrousselGit/freezed#custom-getters-and-methods');
 
 /// @nodoc
 mixin _$MessageUIModel {
@@ -71,7 +24,6 @@ mixin _$MessageUIModel {
 
   /// Creation date and time.
   String get created => throw _privateConstructorUsedError;
-
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function(String author, String message, String created)
@@ -174,25 +126,25 @@ class _$MessageUIModelCopyWithImpl<$Res>
 }
 
 /// @nodoc
-abstract class _$MessageUIModelCopyWith<$Res>
+abstract class _$$_MessageUIModelCopyWith<$Res>
     implements $MessageUIModelCopyWith<$Res> {
-  factory _$MessageUIModelCopyWith(
-          _MessageUIModel value, $Res Function(_MessageUIModel) then) =
-      __$MessageUIModelCopyWithImpl<$Res>;
+  factory _$$_MessageUIModelCopyWith(
+          _$_MessageUIModel value, $Res Function(_$_MessageUIModel) then) =
+      __$$_MessageUIModelCopyWithImpl<$Res>;
   @override
   $Res call({String author, String message, String created});
 }
 
 /// @nodoc
-class __$MessageUIModelCopyWithImpl<$Res>
+class __$$_MessageUIModelCopyWithImpl<$Res>
     extends _$MessageUIModelCopyWithImpl<$Res>
-    implements _$MessageUIModelCopyWith<$Res> {
-  __$MessageUIModelCopyWithImpl(
-      _MessageUIModel _value, $Res Function(_MessageUIModel) _then)
-      : super(_value, (v) => _then(v as _MessageUIModel));
+    implements _$$_MessageUIModelCopyWith<$Res> {
+  __$$_MessageUIModelCopyWithImpl(
+      _$_MessageUIModel _value, $Res Function(_$_MessageUIModel) _then)
+      : super(_value, (v) => _then(v as _$_MessageUIModel));
 
   @override
-  _MessageUIModel get _value => super._value as _MessageUIModel;
+  _$_MessageUIModel get _value => super._value as _$_MessageUIModel;
 
   @override
   $Res call({
@@ -200,7 +152,7 @@ class __$MessageUIModelCopyWithImpl<$Res>
     Object? message = freezed,
     Object? created = freezed,
   }) {
-    return _then(_MessageUIModel(
+    return _then(_$_MessageUIModel(
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -223,17 +175,16 @@ class _$_MessageUIModel implements _MessageUIModel {
   const _$_MessageUIModel(
       {required this.author, required this.message, required this.created});
 
-  @override
-
   /// Message author.
-  final String author;
   @override
+  final String author;
 
   /// Chat message string.
-  final String message;
   @override
+  final String message;
 
   /// Creation date and time.
+  @override
   final String created;
 
   @override
@@ -245,7 +196,7 @@ class _$_MessageUIModel implements _MessageUIModel {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _MessageUIModel &&
+            other is _$_MessageUIModel &&
             const DeepCollectionEquality().equals(other.author, author) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.created, created));
@@ -260,8 +211,8 @@ class _$_MessageUIModel implements _MessageUIModel {
 
   @JsonKey(ignore: true)
   @override
-  _$MessageUIModelCopyWith<_MessageUIModel> get copyWith =>
-      __$MessageUIModelCopyWithImpl<_MessageUIModel>(this, _$identity);
+  _$$_MessageUIModelCopyWith<_$_MessageUIModel> get copyWith =>
+      __$$_MessageUIModelCopyWithImpl<_$_MessageUIModel>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -345,34 +296,35 @@ class _$_MessageUIModel implements _MessageUIModel {
 
 abstract class _MessageUIModel implements MessageUIModel {
   const factory _MessageUIModel(
-      {required String author,
-      required String message,
-      required String created}) = _$_MessageUIModel;
+      {required final String author,
+      required final String message,
+      required final String created}) = _$_MessageUIModel;
 
   @override
 
   /// Message author.
-  String get author;
+  String get author => throw _privateConstructorUsedError;
   @override
 
   /// Chat message string.
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
 
   /// Creation date and time.
-  String get created;
+  String get created => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  _$MessageUIModelCopyWith<_MessageUIModel> get copyWith =>
+  _$$_MessageUIModelCopyWith<_$_MessageUIModel> get copyWith =>
       throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageUIModelWithLocationCopyWith<$Res>
+abstract class _$$MessageUIModelWithLocationCopyWith<$Res>
     implements $MessageUIModelCopyWith<$Res> {
-  factory $MessageUIModelWithLocationCopyWith(MessageUIModelWithLocation value,
-          $Res Function(MessageUIModelWithLocation) then) =
-      _$MessageUIModelWithLocationCopyWithImpl<$Res>;
+  factory _$$MessageUIModelWithLocationCopyWith(
+          _$MessageUIModelWithLocation value,
+          $Res Function(_$MessageUIModelWithLocation) then) =
+      __$$MessageUIModelWithLocationCopyWithImpl<$Res>;
   @override
   $Res call(
       {String author,
@@ -383,16 +335,17 @@ abstract class $MessageUIModelWithLocationCopyWith<$Res>
 }
 
 /// @nodoc
-class _$MessageUIModelWithLocationCopyWithImpl<$Res>
+class __$$MessageUIModelWithLocationCopyWithImpl<$Res>
     extends _$MessageUIModelCopyWithImpl<$Res>
-    implements $MessageUIModelWithLocationCopyWith<$Res> {
-  _$MessageUIModelWithLocationCopyWithImpl(MessageUIModelWithLocation _value,
-      $Res Function(MessageUIModelWithLocation) _then)
-      : super(_value, (v) => _then(v as MessageUIModelWithLocation));
+    implements _$$MessageUIModelWithLocationCopyWith<$Res> {
+  __$$MessageUIModelWithLocationCopyWithImpl(
+      _$MessageUIModelWithLocation _value,
+      $Res Function(_$MessageUIModelWithLocation) _then)
+      : super(_value, (v) => _then(v as _$MessageUIModelWithLocation));
 
   @override
-  MessageUIModelWithLocation get _value =>
-      super._value as MessageUIModelWithLocation;
+  _$MessageUIModelWithLocation get _value =>
+      super._value as _$MessageUIModelWithLocation;
 
   @override
   $Res call({
@@ -402,7 +355,7 @@ class _$MessageUIModelWithLocationCopyWithImpl<$Res>
     Object? latitude = freezed,
     Object? longitude = freezed,
   }) {
-    return _then(MessageUIModelWithLocation(
+    return _then(_$MessageUIModelWithLocation(
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -457,7 +410,7 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MessageUIModelWithLocation &&
+            other is _$MessageUIModelWithLocation &&
             const DeepCollectionEquality().equals(other.author, author) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.created, created) &&
@@ -476,10 +429,9 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
 
   @JsonKey(ignore: true)
   @override
-  $MessageUIModelWithLocationCopyWith<MessageUIModelWithLocation>
-      get copyWith =>
-          _$MessageUIModelWithLocationCopyWithImpl<MessageUIModelWithLocation>(
-              this, _$identity);
+  _$$MessageUIModelWithLocationCopyWith<_$MessageUIModelWithLocation>
+      get copyWith => __$$MessageUIModelWithLocationCopyWithImpl<
+          _$MessageUIModelWithLocation>(this, _$identity);
 
   @override
   @optionalTypeArgs
@@ -563,46 +515,47 @@ class _$MessageUIModelWithLocation implements MessageUIModelWithLocation {
 
 abstract class MessageUIModelWithLocation implements MessageUIModel {
   const factory MessageUIModelWithLocation(
-      {required String author,
-      required String message,
-      required String created,
-      required String latitude,
-      required String longitude}) = _$MessageUIModelWithLocation;
+      {required final String author,
+      required final String message,
+      required final String created,
+      required final String latitude,
+      required final String longitude}) = _$MessageUIModelWithLocation;
 
   @override
-  String get author;
+  String get author => throw _privateConstructorUsedError;
   @override
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
-  String get created;
-  String get latitude;
-  String get longitude;
+  String get created => throw _privateConstructorUsedError;
+  String get latitude => throw _privateConstructorUsedError;
+  String get longitude => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $MessageUIModelWithLocationCopyWith<MessageUIModelWithLocation>
+  _$$MessageUIModelWithLocationCopyWith<_$MessageUIModelWithLocation>
       get copyWith => throw _privateConstructorUsedError;
 }
 
 /// @nodoc
-abstract class $MessageUIModelWithImageCopyWith<$Res>
+abstract class _$$MessageUIModelWithImageCopyWith<$Res>
     implements $MessageUIModelCopyWith<$Res> {
-  factory $MessageUIModelWithImageCopyWith(MessageUIModelWithImage value,
-          $Res Function(MessageUIModelWithImage) then) =
-      _$MessageUIModelWithImageCopyWithImpl<$Res>;
+  factory _$$MessageUIModelWithImageCopyWith(_$MessageUIModelWithImage value,
+          $Res Function(_$MessageUIModelWithImage) then) =
+      __$$MessageUIModelWithImageCopyWithImpl<$Res>;
   @override
   $Res call({String author, String message, String created, String url});
 }
 
 /// @nodoc
-class _$MessageUIModelWithImageCopyWithImpl<$Res>
+class __$$MessageUIModelWithImageCopyWithImpl<$Res>
     extends _$MessageUIModelCopyWithImpl<$Res>
-    implements $MessageUIModelWithImageCopyWith<$Res> {
-  _$MessageUIModelWithImageCopyWithImpl(MessageUIModelWithImage _value,
-      $Res Function(MessageUIModelWithImage) _then)
-      : super(_value, (v) => _then(v as MessageUIModelWithImage));
+    implements _$$MessageUIModelWithImageCopyWith<$Res> {
+  __$$MessageUIModelWithImageCopyWithImpl(_$MessageUIModelWithImage _value,
+      $Res Function(_$MessageUIModelWithImage) _then)
+      : super(_value, (v) => _then(v as _$MessageUIModelWithImage));
 
   @override
-  MessageUIModelWithImage get _value => super._value as MessageUIModelWithImage;
+  _$MessageUIModelWithImage get _value =>
+      super._value as _$MessageUIModelWithImage;
 
   @override
   $Res call({
@@ -611,7 +564,7 @@ class _$MessageUIModelWithImageCopyWithImpl<$Res>
     Object? created = freezed,
     Object? url = freezed,
   }) {
-    return _then(MessageUIModelWithImage(
+    return _then(_$MessageUIModelWithImage(
       author: author == freezed
           ? _value.author
           : author // ignore: cast_nullable_to_non_nullable
@@ -659,7 +612,7 @@ class _$MessageUIModelWithImage implements MessageUIModelWithImage {
   bool operator ==(dynamic other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is MessageUIModelWithImage &&
+            other is _$MessageUIModelWithImage &&
             const DeepCollectionEquality().equals(other.author, author) &&
             const DeepCollectionEquality().equals(other.message, message) &&
             const DeepCollectionEquality().equals(other.created, created) &&
@@ -676,8 +629,8 @@ class _$MessageUIModelWithImage implements MessageUIModelWithImage {
 
   @JsonKey(ignore: true)
   @override
-  $MessageUIModelWithImageCopyWith<MessageUIModelWithImage> get copyWith =>
-      _$MessageUIModelWithImageCopyWithImpl<MessageUIModelWithImage>(
+  _$$MessageUIModelWithImageCopyWith<_$MessageUIModelWithImage> get copyWith =>
+      __$$MessageUIModelWithImageCopyWithImpl<_$MessageUIModelWithImage>(
           this, _$identity);
 
   @override
@@ -762,20 +715,20 @@ class _$MessageUIModelWithImage implements MessageUIModelWithImage {
 
 abstract class MessageUIModelWithImage implements MessageUIModel {
   const factory MessageUIModelWithImage(
-      {required String author,
-      required String message,
-      required String created,
-      required String url}) = _$MessageUIModelWithImage;
+      {required final String author,
+      required final String message,
+      required final String created,
+      required final String url}) = _$MessageUIModelWithImage;
 
   @override
-  String get author;
+  String get author => throw _privateConstructorUsedError;
   @override
-  String get message;
+  String get message => throw _privateConstructorUsedError;
   @override
-  String get created;
-  String get url;
+  String get created => throw _privateConstructorUsedError;
+  String get url => throw _privateConstructorUsedError;
   @override
   @JsonKey(ignore: true)
-  $MessageUIModelWithImageCopyWith<MessageUIModelWithImage> get copyWith =>
+  _$$MessageUIModelWithImageCopyWith<_$MessageUIModelWithImage> get copyWith =>
       throw _privateConstructorUsedError;
 }
