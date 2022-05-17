@@ -6,7 +6,7 @@ import '../models/message.dart';
 /// The only tool needed to implement the chat.
 abstract class ChatRepository {
   static const int maxNameLength = 40;
-  static const int maxMessageLength = 80;
+  static const int maxMessageLength = 240;
 
   /// Returns stream of messages [MessageDto] from a source.
   ///

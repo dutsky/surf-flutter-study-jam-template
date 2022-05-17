@@ -1,33 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_practice_chat_flutter/chat/data/models/geolocation.dart';
 import 'package:url_launcher/url_launcher.dart' as url_launcher;
 
-import '../data/models/message.dart';
+import '../data/models/message_ui_model.dart';
 
 class ChatGeoTile extends StatelessWidget {
-  final MessageWithLocation messageGeoDto;
-  final String time;
+  final MessageUIModelWithLocation model;
 
-  const ChatGeoTile({
+  const ChatGeoTile(
+    this.model, {
     Key? key,
-    required this.messageGeoDto,
-    required this.time,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
       margin: const EdgeInsets.all(16),
-      color: messageGeoDto.author.map(
-        basic: (_) => null,
-        local: (_) => Colors.purple.withOpacity(0.1),
-      ),
       child: Row(
         children: [
           CircleAvatar(
             backgroundColor: Colors.deepPurple,
-            child: Text(messageGeoDto.author.name[0].toUpperCase()),
+            child: Text(model.author[0].toUpperCase()),
           ),
           Expanded(
             child: Padding(
@@ -37,7 +30,7 @@ class ChatGeoTile extends StatelessWidget {
                 children: [
                   RichText(
                     text: TextSpan(
-                      text: messageGeoDto.author.name,
+                      text: model.author,
                       style: Theme.of(context)
                           .textTheme
                           .subtitle1
@@ -52,7 +45,10 @@ class ChatGeoTile extends StatelessWidget {
                   ),
                   const SizedBox(height: 4),
                   InkWell(
-                    onTap: () => _onLinkOpen(messageGeoDto.location),
+                    onTap: () => _onLinkOpen(
+                      latitude: model.latitude,
+                      longitude: model.longitude,
+                    ),
                     child: const Text(
                       'Открыть в картах',
                       style: TextStyle(
@@ -65,19 +61,22 @@ class ChatGeoTile extends StatelessWidget {
               ),
             ),
           ),
-          time.isNotEmpty ? Text(time) : const CupertinoActivityIndicator(),
+          model.created.isNotEmpty
+              ? Text(model.created)
+              : const CupertinoActivityIndicator(),
         ],
       ),
     );
   }
 
-  Future<void> _onLinkOpen(GeolocationDto location) async {
-    final lat = location.latitude.toString();
-    final long = location.longitude.toString();
+  Future<void> _onLinkOpen({
+    required String latitude,
+    required String longitude,
+  }) async {
     final uri = Uri(
       scheme: 'https',
       host: 'maps.google.com',
-      queryParameters: <String, String>{'q': '$lat,$long'},
+      queryParameters: <String, String>{'q': '$latitude,$longitude'},
     );
     await url_launcher.launchUrl(uri);
   }

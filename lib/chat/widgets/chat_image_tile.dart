@@ -1,12 +1,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:surf_practice_chat_flutter/chat/data/models/message_ui_model.dart';
 
-class ChatMessageTile extends StatelessWidget {
-  final MessageUIModel model;
+import '../data/models/message_ui_model.dart';
 
-  const ChatMessageTile(
-    this.model, {
+class ChatImageTile extends StatelessWidget {
+  final MessageUIModelWithImage model;
+  final Widget Function(String url) imageBuilder;
+
+  const ChatImageTile({
+    required this.model,
+    required this.imageBuilder,
     Key? key,
   }) : super(key: key);
 
@@ -24,7 +27,18 @@ class ChatMessageTile extends StatelessWidget {
             .subtitle1
             ?.copyWith(fontWeight: FontWeight.bold),
       ),
-      subtitle: Text(model.message),
+      subtitle: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(model.message),
+          Center(
+            child: SizedBox.square(
+              dimension: 100,
+              child: imageBuilder(model.url),
+            ),
+          ),
+        ],
+      ),
       trailing: model.created.isNotEmpty
           ? Text(model.created)
           : const CupertinoActivityIndicator(),
