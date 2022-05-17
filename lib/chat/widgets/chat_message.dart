@@ -1,3 +1,4 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:surf_practice_chat_flutter/chat/widgets/chat_image_tile.dart';
 
@@ -18,7 +19,14 @@ class ChatMessageWidget extends StatelessWidget {
     return model.map(
       basic: (basicModel) => ChatMessageTile(basicModel),
       withLocation: (modelWithLocation) => ChatGeoTile(modelWithLocation),
-      withImage: (modelWithImage) => ChatImageTile(modelWithImage),
+      withImage: (modelWithImage) => ChatImageTile(
+        model: modelWithImage,
+        imageBuilder: (url) => CachedNetworkImage(
+          placeholder: (_, __) =>
+              const Center(child: CircularProgressIndicator.adaptive()),
+          imageUrl: url,
+        ),
+      ),
     );
   }
 }

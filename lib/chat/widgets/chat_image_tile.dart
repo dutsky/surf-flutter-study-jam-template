@@ -1,4 +1,3 @@
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -6,8 +5,13 @@ import '../data/models/message_ui_model.dart';
 
 class ChatImageTile extends StatelessWidget {
   final MessageUIModelWithImage model;
+  final Widget Function(String url) imageBuilder;
 
-  const ChatImageTile(this.model, {Key? key}) : super(key: key);
+  const ChatImageTile({
+    required this.model,
+    required this.imageBuilder,
+    Key? key,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -30,11 +34,7 @@ class ChatImageTile extends StatelessWidget {
           Center(
             child: SizedBox.square(
               dimension: 100,
-              child: CachedNetworkImage(
-                placeholder: (_, __) =>
-                    const Center(child: CircularProgressIndicator.adaptive()),
-                imageUrl: model.url,
-              ),
+              child: imageBuilder(model.url),
             ),
           ),
         ],
